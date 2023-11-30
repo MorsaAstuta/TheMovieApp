@@ -1,4 +1,4 @@
-package dii2dam.movieApp;
+package dii2dam.movieApp.credentials;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
