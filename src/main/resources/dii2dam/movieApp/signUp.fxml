@@ -62,7 +62,7 @@
                                  <center>
                                     <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../../../../../../../../../safe/src/main/resources/dii2dam/movieApp/img/icon/new_acc.png" />
+                                          <Image url="@img/icon/new_acc.png" />
                                        </image>
                                     </ImageView>
                                  </center>
@@ -102,21 +102,21 @@
                                  </font>
                               </Label>
                               <TextField fx:id="txtMail" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="4" />
-                              <GridPane hgap="16.0" vgap="16.0" GridPane.rowIndex="6">
+                              <GridPane hgap="16.0" prefHeight="2.0" prefWidth="314.0" vgap="16.0" GridPane.rowIndex="6">
                                  <columnConstraints>
-                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="148.0" prefWidth="149.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="148.0" prefWidth="149.0" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="118.0" prefWidth="147.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="131.0" prefWidth="151.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="lblPassword" alignment="CENTER" text="Password" textFill="WHITE">
+                                    <Label fx:id="lblPassword" alignment="CENTER" graphicTextGap="0.0" text="Password" textFill="WHITE">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblConfirm" alignment="CENTER" text="Confirm password" textFill="WHITE" GridPane.columnIndex="1">
+                                    <Label fx:id="lblConfirm" alignment="CENTER" graphicTextGap="0.0" prefHeight="27.0" prefWidth="149.0" text="Confirm password" textFill="WHITE" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
