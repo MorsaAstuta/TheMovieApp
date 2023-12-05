@@ -1,32 +1,47 @@
 package dii2dam.movieApp.controller;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import java.io.IOException;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.*;
-import dii2dam.movieApp.utils.*;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 public class SignUp {
 
-	@FXML
-	private TextField txtUsername;
-	
-	@FXML
-	private PasswordField txtPassword;
+    @FXML
+    private Button btnContinue;
 
-	@FXML
-	private PasswordField txtConfirm;
+    @FXML
+    private Button btnLogIn;
 
-	@FXML
-	private Button btnLogIn;
+    @FXML
+    private Label lblConfirm;
 
-	@FXML
-	private Button btnContinue;
+    @FXML
+    private Label lblMail;
+
+    @FXML
+    private Label lblPassword;
+
+    @FXML
+    private Label lblUsername;
+
+    @FXML
+    private PasswordField txtConfirm;
+
+    @FXML
+    private TextField txtMail;
+
+    @FXML
+    private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtUsername;
 
 	@FXML
 	void loadUser(ActionEvent event) {

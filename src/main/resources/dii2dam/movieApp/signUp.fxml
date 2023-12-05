@@ -69,7 +69,7 @@
                               </BorderPane>
                               <Label text="SIGN UP" textFill="WHITE">
                                  <font>
-                                    <Font name="Verdana" size="38.0" />
+                                    <Font name="Reem Kufi Regular" size="38.0" />
                                  </font>
                               </Label>
                            </children>
@@ -84,6 +84,9 @@
                             <ColumnConstraints hgrow="SOMETIMES" />
                           </columnConstraints>
                           <rowConstraints>
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
                             <RowConstraints vgrow="SOMETIMES" />
                             <RowConstraints vgrow="SOMETIMES" />
                             <RowConstraints vgrow="SOMETIMES" />
@@ -93,34 +96,34 @@
                               <RowConstraints />
                           </rowConstraints>
                            <children>
-                              <Label text="USERNAME/EMAIL" textFill="WHITE">
+                              <Label fx:id="lblMail" text="e-Mail" textFill="WHITE" GridPane.rowIndex="3">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font name="Reem Kufi Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1" />
-                              <GridPane hgap="16.0" vgap="16.0" GridPane.rowIndex="3">
+                              <TextField fx:id="txtMail" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="4" />
+                              <GridPane hgap="16.0" vgap="16.0" GridPane.rowIndex="6">
                                  <columnConstraints>
-                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
-                                    <ColumnConstraints hgrow="SOMETIMES" />
+                                    <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="148.0" prefWidth="149.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="148.0" prefWidth="149.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label alignment="CENTER" text="PASSWORD" textFill="WHITE">
+                                    <Label fx:id="lblPassword" alignment="CENTER" text="Password" textFill="WHITE">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER" text="CONFIRM" textFill="WHITE" GridPane.columnIndex="1">
+                                    <Label fx:id="lblConfirm" alignment="CENTER" text="Confirm password" textFill="WHITE" GridPane.columnIndex="1">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
                               </GridPane>
-                              <GridPane hgap="16.0" vgap="16.0" GridPane.rowIndex="4">
+                              <GridPane hgap="16.0" vgap="16.0" GridPane.rowIndex="7">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
                                     <ColumnConstraints hgrow="SOMETIMES" />
@@ -133,11 +136,17 @@
                                     <PasswordField fx:id="txtConfirm" style="-fx-background-color: rgb(199, 164, 113);" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
-                              <Button fx:id="btnContinue" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                              <Button fx:id="btnContinue" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="Reem Kufi Bold" size="12.0" />
                                  </font>
                               </Button>
+                              <Label fx:id="lblUsername" text="Username" textFill="WHITE">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1" />
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -147,10 +156,13 @@
                      <bottom>
                         <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="96.0" orientation="VERTICAL" vgap="16.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Label text="Don't have an account?" textFill="WHITE" />
-                              <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#logIn" prefHeight="5.0" prefWidth="71.0" text="LOG IN">
+                              <Label text="Already have an account?" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Button fx:id="btnLogIn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#logIn" prefHeight="5.0" prefWidth="71.0" text="LOG IN" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Reem Kufi Bold" size="12.0" />
                                  </font>
                               </Button>
                            </children>
