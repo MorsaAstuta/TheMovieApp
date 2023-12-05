@@ -16,10 +16,12 @@ public class App extends Application {
 
     private static Scene scene;
     
-    @SuppressWarnings("exports")
 	@Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("signUp"), 1000, 1000);
+        scene = new Scene(loadFXML("signUp"), 1024, 1024);
+        stage.setMinHeight(1024);
+        stage.setMinWidth(1024);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
         

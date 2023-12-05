@@ -6,7 +6,9 @@ module dii2dam.movieApp {
 	requires javafx.base;
 	requires javafx.graphics;
 
+    opens dii2dam.movieApp to javafx.fxml;
     opens dii2dam.movieApp.controller to javafx.fxml;
 
+    exports dii2dam.movieApp.controller;
     exports dii2dam.movieApp;
 }

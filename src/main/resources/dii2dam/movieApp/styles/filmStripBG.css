@@ -1,0 +1,4 @@
+#mainPane {
+    -fx-background-image: url("../img/background/fastStrip.gif");
+		-fx-background-size: cover;
+}
