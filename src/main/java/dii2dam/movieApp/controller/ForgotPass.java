@@ -15,72 +15,59 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
-public class SignUp {
+public class ForgotPass {
 
     @FXML
-    private Button btnContinue;
+    private Button btnCheck;
 
     @FXML
     private Button btnLogIn;
 
     @FXML
-    private Label lblConfirm;
-
-    @FXML
     private Label lblMail;
 
     @FXML
-    private Label lblPassword;
+    private Label lblPass;
 
     @FXML
     private Label lblUsername;
 
     @FXML
-    private PasswordField txtConfirm;
+    private Label lblDesc;
 
     @FXML
     private TextField txtMail;
 
     @FXML
-    private PasswordField txtPassword;
+    private TextField txtPass;
 
     @FXML
     private TextField txtUsername;
 
 	@FXML
-	void loadUser(ActionEvent event) {
+	void loadPass(ActionEvent event) {
 		boolean error = false;
 		String message = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		// Regular text check: format □*
 		if (!(txtUsername.getText().length() >= 1)) {
 		  error = true;
-		  message += "The username field is empty." + "\n";
+		  message += "The user field is empty." + "\n";
 		}
 		// Email check: format □*@□*.□□*
 		if (!(txtMail.getText().contains("@") && txtMail.getText().contains(".") && txtMail.getText().length() >= 6)) {
 		  error = true;
 		  message += "The e-mail is not formatted correctly (□*@□*.□□*) or its field is empty." + "\n";
 		}
-		// Email check: must not exist already
-		if (Manager.emails.contains(txtMail.getText())) {
-		  error = true;
-		  message += "The input e-mail is already in use by another account." + "\n";
-		}
-		// Password check: format □*, must match
-		if (!(txtPassword.getText().length() >= 1 && txtPassword.getText().equals(txtConfirm.getText()))) {
-		  error = true;
-		  message += "The passwords do not match or their fields are empty." + "\n";
-		}
 		if (!error) {
-			User user = new User(txtUsername.getText(), txtPassword.getText(), sdf.format(new Date()), txtMail.getText());
-			try {
-			  App.setRoot("logIn");
-			  System.out.println(user.getUsername() + "\n" + user.getPassword() + "\n" + user.getSignDate() + "\n" + user.getMail());
-			} catch (IOException e) {
-			  // TODO Auto-generated catch block
-			  e.printStackTrace();
-			}
+		  if (Manager.userByMail.get(txtMail.getText()).getPassword().equals(Manager.userByName.get(txtUsername.getText()).getPassword())) {
+			txtPass.setText(Manager.userByMail.get(txtMail.getText()).getPassword());
+		  } else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Could not find a password for this username/e-mail combination.");
+			alert.showAndWait();
+		  }
 		} else {
 	      Alert alert = new Alert(AlertType.ERROR);
 	      alert.setTitle("Error");

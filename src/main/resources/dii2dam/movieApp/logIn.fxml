@@ -15,15 +15,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@styles/filmStripBG.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.LogIn">
-   <top>
-      <Pane maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="0.0" style="-fx-background-color: black;" BorderPane.alignment="TOP_CENTER" />
-   </top>
+<BorderPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.LogIn">
    <left>
-      <Pane maxHeight="1.7976931348623157E308" maxWidth="384.0" minWidth="64.0" style="-fx-background-color: rgb(121, 98, 63);" />
+      <Pane maxHeight="1.7976931348623157E308" maxWidth="384.0" minWidth="256.0" style="-fx-background-color: rgb(121, 98, 63);" />
    </left>
    <right>
-      <Pane maxHeight="1.7976931348623157E308" maxWidth="384.0" minWidth="64.0" style="-fx-background-color: rgb(177, 133, 66);" />
+      <Pane maxHeight="1.7976931348623157E308" maxWidth="384.0" minWidth="256.0" style="-fx-background-color: rgb(177, 133, 66);" />
    </right>
    <center>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
@@ -101,7 +98,10 @@
                                     <Font name="Reem Kufi Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Lucida Console" size="12.0" />
+                                 </font></TextField>
                               <GridPane hgap="16.0" GridPane.rowIndex="3">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
@@ -116,7 +116,7 @@
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="btnForgot" mnemonicParsing="false" text="Forgot password?" GridPane.columnIndex="1">
+                                    <Button fx:id="btnForgot" mnemonicParsing="false" onAction="#forgotPass" text="Forgot password?" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Reem Kufi Bold" size="10.0" />
                                        </font>
@@ -126,11 +126,17 @@
                                     <Insets />
                                  </GridPane.margin>
                               </GridPane>
-                              <PasswordField fx:id="txtPassword" style="-fx-background-color: rgb(199, 164, 113);" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                              <Button fx:id="btnContinue" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                              <PasswordField fx:id="txtPassword" style="-fx-background-color: rgb(199, 164, 113);" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font name="Lucida Console" size="12.0" />
+                                 </font></PasswordField>
+                              <Button fx:id="btnContinue" cache="true" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Reem Kufi Bold" size="12.0" />
                                  </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </Button>
                            </children>
                            <padding>
@@ -159,4 +165,37 @@
          </center>
       </BorderPane>
    </center>
+   <top>
+      <BorderPane maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" BorderPane.alignment="CENTER">
+         <left>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="0.0" prefWrapLength="240.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: black;" />
+                  <Pane maxHeight="80.0" maxWidth="160.0" minHeight="80.0" minWidth="160.0" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: lightGray;">
+                     <children>
+                        <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/icon/fs.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="23.0" layoutY="8.0" text="F">
+                           <font>
+                              <Font name="Reem Kufi Regular" size="42.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="112.0" layoutY="8.0" text="S">
+                           <font>
+                              <Font name="Reem Kufi Regular" size="42.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </FlowPane>
+         </left>
+         <center>
+            <Pane maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </top>
 </BorderPane>

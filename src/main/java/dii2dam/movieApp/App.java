@@ -21,7 +21,7 @@ public class App extends Application {
         scene = new Scene(loadFXML("signUp"), 1024, 1024);
         stage.setMinHeight(1024);
         stage.setMinWidth(1024);
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
         

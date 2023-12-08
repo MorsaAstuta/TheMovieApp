@@ -44,17 +44,17 @@ public class LogIn {
 	  User user = Manager.userByName.get(txtUsername.getText());
 	  if (user.getUsername().equals(txtUsername.getText())) {
 		if (user.getPassword().equals(txtPassword.getText())) {
-		  Alert alert = new Alert(AlertType.CONFIRMATION);
+		  Alert alert = new Alert(AlertType.INFORMATION);
 		  alert.setTitle("Error");
 		  alert.setHeaderText(null);
-		  alert.setContentText("Acceso permitido.");
+		  alert.setContentText("Access granted.");
 		  alert.showAndWait();
 		  Manager.logIn(user);
 		} else {
 		  Alert alert = new Alert(AlertType.ERROR);
 		  alert.setTitle("Error");
 		  alert.setHeaderText(null);
-		  alert.setContentText("Contraseña errónea.");
+		  alert.setContentText("Wrong password.");
 		  alert.showAndWait();
 		}
 	  }
@@ -62,7 +62,7 @@ public class LogIn {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("Error");
       alert.setHeaderText(null);
-      alert.setContentText("El usuario con el que intenta acceder no se encuentra en la base de datos.");
+      alert.setContentText("The input username is not associated with any account in our database.");
       alert.showAndWait();
 	}
   }
@@ -71,6 +71,21 @@ public class LogIn {
   void signUp(ActionEvent event) {
 	try {
 	  App.setRoot("signUp");
+	} catch (IOException e) {
+	  // TODO Auto-generated catch block
+	  e.printStackTrace();
+	}
+  }
+  
+  @FXML
+  void forgotPass(ActionEvent event) {
+	try {
+	  App.setRoot("forgotPass");
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Error");
+      alert.setHeaderText(null);
+      alert.setContentText("This section is still a WIP - the Account Recovery system will change to become more secure in future updates.");
+      alert.showAndWait();
 	} catch (IOException e) {
 	  // TODO Auto-generated catch block
 	  e.printStackTrace();
