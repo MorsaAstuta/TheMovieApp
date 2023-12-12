@@ -5,6 +5,8 @@ module dii2dam.movieApp {
 	requires java.desktop;
 	requires javafx.base;
 	requires javafx.graphics;
+	requires okhttp3;
+	requires com.google.gson;
 
     opens dii2dam.movieApp to javafx.fxml;
     opens dii2dam.movieApp.controller to javafx.fxml;
