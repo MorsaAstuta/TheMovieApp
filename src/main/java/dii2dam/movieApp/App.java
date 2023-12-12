@@ -15,10 +15,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+	private Stage stage;
     
 	@Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("signUp"), 1024, 1024);
+        this.stage = stage;
+		scene = new Scene(loadFXML("logIn"), 1024, 1024);
         stage.setMinHeight(1024);
         stage.setMinWidth(1024);
         stage.setMaximized(true);
