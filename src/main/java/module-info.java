@@ -10,6 +10,7 @@ module dii2dam.movieApp {
 
     opens dii2dam.movieApp to javafx.fxml;
     opens dii2dam.movieApp.controller to javafx.fxml;
+    opens dii2dam.movieApp.models to com.google.gson;
 
     exports dii2dam.movieApp.controller;
     exports dii2dam.movieApp;
