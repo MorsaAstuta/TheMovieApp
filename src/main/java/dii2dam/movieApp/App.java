@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import dii2dam.movieApp.utils.Connector;
 
 /**
  * JavaFX App
@@ -14,20 +13,14 @@ import dii2dam.movieApp.utils.Connector;
 public class App extends Application {
 
 	private static Scene scene;
-	private Stage stage;
 	
-	
-    @Override
+	@Override
     public void start(Stage stage) throws IOException {
-        this.stage = stage;
-        
-
         scene = new Scene(loadFXML("apiTest"), 1024, 1024);
         stage.setMinHeight(1024);
         stage.setMinWidth(1024);
         stage.setMaximized(true);
         stage.setScene(scene);
-        Connector.Connect(); 
         stage.show();
     }
 

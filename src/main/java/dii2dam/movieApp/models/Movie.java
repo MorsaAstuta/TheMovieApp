@@ -1,7 +1,6 @@
 package dii2dam.movieApp.models;
 
-import java.net.URL;
-import java.util.Date;
+import javafx.scene.image.Image;
 
 public class Movie {
 
@@ -22,13 +21,19 @@ public class Movie {
 	setTitle(title);
 	setCompany_id(company_id);
 	setRelease_date(release_date);
-	setSummary(overview);
-	setposter_path(poster_path);
+	setOverview(overview);
+	setPoster_path(poster_path);
 	setWatch_date(watch_date);
 	setRating_global(rating_global);
 	setRating_user(rating_user);
 	setReview(review);
 	setLocation_id(location_id);
+  }
+  
+  public Movie(String title, String release_date, String overview) {
+	setTitle(title);
+	setRelease_date(release_date);
+	setOverview(overview);
   }
   
   public String getTitle() {
@@ -63,11 +68,11 @@ public class Movie {
 	this.release_date = release_date;
   }
 
-  public String getSummary() {
+  public String getOverview() {
 	return overview;
   }
 
-  public void setSummary(String overview) {
+  public void setOverview(String overview) {
 	this.overview = overview;
   }
 
@@ -75,7 +80,7 @@ public class Movie {
 	return poster_path;
   }
 
-  public void setposter_path(String poster_url) {
+  public void setPoster_path(String poster_url) {
 	this.poster_path = poster_url;
   }
   
