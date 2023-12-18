@@ -9,21 +9,21 @@ public class Movie {
   private String title;
   private Integer company_id;
   private String release_date;
-  private String summary;
-  private URL poster_url;
+  private String overview;
+  private String poster_path;
   private String watch_date;
   private Double rating_global;
   private Double rating_user;
   private String review;
   private Integer location_id;
   
-  public Movie(Integer id, String title, Integer company_id, String release_date, String summary, URL poster_url, String watch_date, Double rating_global, Double rating_user, String review, Integer location_id) {
+  public Movie(Integer id, String title, Integer company_id, String release_date, String overview, String poster_path, String watch_date, Double rating_global, Double rating_user, String review, Integer location_id) {
 	setId(id);
 	setTitle(title);
 	setCompany_id(company_id);
 	setRelease_date(release_date);
-	setSummary(summary);
-	setPoster_url(poster_url);
+	setSummary(overview);
+	setposter_path(poster_path);
 	setWatch_date(watch_date);
 	setRating_global(rating_global);
 	setRating_user(rating_user);
@@ -64,19 +64,19 @@ public class Movie {
   }
 
   public String getSummary() {
-	return summary;
+	return overview;
   }
 
-  public void setSummary(String summary) {
-	this.summary = summary;
+  public void setSummary(String overview) {
+	this.overview = overview;
   }
 
-  public URL getPoster_url() {
-	return poster_url;
+  public String getPoster_url() {
+	return poster_path;
   }
 
-  public void setPoster_url(URL poster_url) {
-	this.poster_url = poster_url;
+  public void setposter_path(String poster_url) {
+	this.poster_path = poster_url;
   }
   
   public String getWatch_date() {
