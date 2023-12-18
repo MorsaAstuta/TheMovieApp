@@ -46,7 +46,6 @@
                      <columns>
                         <TableColumn fx:id="clmTitle" editable="false" prefWidth="128.0" text="Title" />
                         <TableColumn fx:id="clmRelease" editable="false" prefWidth="96.0" text="Release date" />
-                        <TableColumn fx:id="clmOverview1" editable="false" minWidth="0.0" prefWidth="64.0" text="Rating" />
                         <TableColumn fx:id="clmOverview" editable="false" prefWidth="256.0" text="Overview" />
                      </columns>
                      <columnResizePolicy>
