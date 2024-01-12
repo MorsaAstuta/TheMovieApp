@@ -16,7 +16,7 @@ public class App extends Application {
 	
 	@Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("apiTest"), 1024, 1024);
+        scene = new Scene(loadFXML("Account"), 1024, 1024);
         stage.setMinHeight(1024);
         stage.setMinWidth(1024);
         stage.setMaximized(true);
