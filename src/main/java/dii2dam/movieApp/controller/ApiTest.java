@@ -1,10 +1,6 @@
 package dii2dam.movieApp.controller;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +26,7 @@ public class ApiTest {
 
   @FXML
   private TableView<Movie> tblMovie;
+  
   private ObservableList<Movie> movieList = FXCollections.observableArrayList();
 
   @FXML
