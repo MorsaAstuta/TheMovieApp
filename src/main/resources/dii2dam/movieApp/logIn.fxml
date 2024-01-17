@@ -166,36 +166,36 @@
       </BorderPane>
    </center>
    <top>
-      <BorderPane maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" BorderPane.alignment="CENTER">
-         <left>
-            <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="0.0" prefWrapLength="240.0" BorderPane.alignment="CENTER">
+      <GridPane style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Pane prefHeight="69.0" prefWidth="125.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
                <children>
-                  <Pane maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" prefHeight="80.0" prefWidth="80.0" style="-fx-background-color: black;" />
-                  <Pane maxHeight="80.0" maxWidth="160.0" minHeight="80.0" minWidth="160.0" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: lightGray;">
-                     <children>
-                        <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/icon/fs.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="23.0" layoutY="8.0" text="F">
-                           <font>
-                              <Font name="Reem Kufi Regular" size="42.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="112.0" layoutY="8.0" text="S">
-                           <font>
-                              <Font name="Reem Kufi Regular" size="42.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0">
+                     <image>
+                        <Image url="@img/icon/fs.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="117.0" layoutY="9.0" prefHeight="22.0" prefWidth="8.0" text="S">
+                     <font>
+                        <Font name="Inder" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="9.0" text="F">
+                     <font>
+                        <Font name="Inder" size="48.0" />
+                     </font>
+                  </Label>
                </children>
-            </FlowPane>
-         </left>
-         <center>
-            <Pane maxHeight="80.0" maxWidth="1.7976931348623157E308" minHeight="80.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
+            </Pane>
+         </children>
+      </GridPane>
    </top>
 </BorderPane>
