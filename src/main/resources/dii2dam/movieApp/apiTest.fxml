@@ -40,7 +40,7 @@
             </BorderPane>
          </top>
          <center>
-            <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" prefWrapLength="0.0" BorderPane.alignment="CENTER">
+            <FlowPane fx:id="searchResults" alignment="TOP_CENTER" columnHalignment="CENTER" prefWrapLength="0.0" BorderPane.alignment="CENTER">
                <children>
                   <TableView fx:id="tblMovie" onMouseClicked="#selectMovie">
                      <columns>

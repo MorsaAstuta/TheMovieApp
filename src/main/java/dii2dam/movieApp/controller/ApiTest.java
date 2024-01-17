@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 
 import java.io.IOException;
 
@@ -45,6 +46,9 @@ public class ApiTest {
 
   @FXML
   private TextField txtSearch;
+
+  @FXML
+  private FlowPane searchResults;
 
   @FXML
   void searchByTitle(ActionEvent event) {
