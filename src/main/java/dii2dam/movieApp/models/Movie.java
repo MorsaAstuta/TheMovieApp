@@ -1,38 +1,81 @@
 package dii2dam.movieApp.models;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import javafx.scene.image.Image;
 
-public class Movie {
-
-  private Integer id;
-  private String title;
-  private Integer company_id;
-  private String release_date;
-  private String overview;
-  private String poster_path;
-  private String watch_date;
-  private Double rating_global;
-  private Double rating_user;
-  private String review;
-  private Integer location_id;
+public class Movie implements java.io.Serializable {
   
-  public Movie(Integer id, String title, Integer company_id, String release_date, String overview, String poster_path, String watch_date, Double rating_global, Double rating_user, String review, Integer location_id) {
+  @Id
+  @Column(name="id")
+  private Long id;
+  
+  @Column(name="title")
+  private String title;
+  
+  @Column(name="company_id")
+  private Long companyId;
+  
+  @Column(name="release_date")
+  private String releaseDate;
+  
+  @Column(name="overview")
+  private String overview;
+  
+  @Column(name="poster_path")
+  private String posterPath;
+  
+  @Column(name="watch_date")
+  private String watchDate;
+  
+  @Column(name="global_rating")
+  private Double globalRating;
+  
+  @Column(name="user_rating")
+  private Double userRating;
+  
+  @Column(name="review")
+  private String review;
+  
+  @Column(name="director")
+  private String director;
+  
+  @OneToMany(mappedBy="",cascade=CascadeType.ALL)
+  private Set<Review> reviews = new HashSet<Review>(0);
+
+  @Column(name="location_id")
+  private Long locationId;
+  
+  @OneToMany(mappedBy="",cascade=CascadeType.ALL)
+  private Set<Actor> actors = new HashSet<Actor>(0);
+  
+  
+  protected Movie() {
+  }
+
+  public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath, String watchDate, Double globalRating, Double userRating, String review, Long locationId) {
 	setId(id);
 	setTitle(title);
-	setCompany_id(company_id);
-	setRelease_date(release_date);
+	setCompanyId(companyId);
+	setReleaseDate(releaseDate);
 	setOverview(overview);
-	setPoster_path(poster_path);
-	setWatch_date(watch_date);
-	setRating_global(rating_global);
-	setRating_user(rating_user);
+	setPosterPath(posterPath);
+	setWatchDate(watchDate);
+	setRatingGlobal(globalRating);
+	setUserRating(userRating);
 	setReview(review);
-	setLocation_id(location_id);
+	setLocationId(locationId);
   }
   
-  public Movie(String title, String release_date, String overview) {
+  public Movie(String title, String releaseDate, String overview) {
 	setTitle(title);
-	setRelease_date(release_date);
+	setReleaseDate(releaseDate);
 	setOverview(overview);
   }
   
@@ -44,28 +87,28 @@ public class Movie {
 	this.title = title;
   }
   
-  public Integer getId() {
+  public Long getId() {
 	return id;
   }
   
-  public void setId(Integer id) {
+  public void setId(Long id) {
 	this.id = id;
   }
   
-  public Integer getCompany_id() {
-	return company_id;
+  public Long getCompanyId() {
+	return companyId;
   }
   
-  public void setCompany_id(Integer company_id) {
-	this.company_id = company_id;
+  public void setCompanyId(Long companyId) {
+	this.companyId = companyId;
   }
 
-  public String getRelease_date() {
-	return release_date;
+  public String getReleaseDate() {
+	return releaseDate;
   }
 
-  public void setRelease_date(String release_date) {
-	this.release_date = release_date;
+  public void setReleaseDate(String releaseDate) {
+	this.releaseDate = releaseDate;
   }
 
   public String getOverview() {
@@ -76,36 +119,36 @@ public class Movie {
 	this.overview = overview;
   }
 
-  public String getPoster_url() {
-	return poster_path;
+  public String getPosterPath() {
+	return posterPath;
   }
 
-  public void setPoster_path(String poster_url) {
-	this.poster_path = poster_url;
+  public void setPosterPath(String posterPath) {
+	this.posterPath = posterPath;
   }
   
-  public String getWatch_date() {
-	return watch_date;
+  public String getWatchDate() {
+	return watchDate;
   }
   
-  public void setWatch_date(String watch_date) {
-	this.watch_date = watch_date;
+  public void setWatchDate(String watchDate) {
+	this.watchDate = watchDate;
   }
   
-  public Double getRating_global() {
-	return rating_global;
+  public Double getRatingGlobal() {
+	return globalRating;
   }
   
-  public void setRating_global(Double rating_global) {
-	this.rating_global = rating_global;
+  public void setRatingGlobal(Double globalRating) {
+	this.globalRating = globalRating;
   }
 
-  public Double getRating_user() {
-	return rating_user;
+  public Double getUserRating() {
+	return userRating;
   }
   
-  public void setRating_user(Double rating_user) {
-	this.rating_user = rating_user;
+  public void setUserRating(Double userRating) {
+	this.userRating = userRating;
   }
 
   public String getReview() {
@@ -116,12 +159,12 @@ public class Movie {
 	this.review = review;
   }
 
-  public Integer getLocation_id() {
-	return location_id;
+  public Long getLocationId() {
+	return locationId;
   }
 
-  public void setLocation_id(Integer location_id) {
-	this.location_id = location_id;
+  public void setLocationId(Long locationId) {
+	this.locationId = locationId;
   }
 	
 }

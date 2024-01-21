@@ -1,13 +1,28 @@
 package dii2dam.movieApp.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 import dii2dam.movieApp.utils.Manager;
 
-public class User {
+@Entity
+public class User implements java.io.Serializable {
+
+  @Column(name="username")
   private String username;
+	
+  @Column(name="password")
   private String password;
+	
+  @Column(name="sign_date")
   private String signDate;
+	
+  @Column(name="mail")
   private String mail;
   
+  protected User() {
+  }
+
   public User(String username, String password, String signDate, String mail) {
 	setUsername(username);
 	setPassword(password);

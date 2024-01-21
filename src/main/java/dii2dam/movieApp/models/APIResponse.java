@@ -3,15 +3,18 @@ package dii2dam.movieApp.models;
 public class APIResponse {
   private Integer page;
   private Movie[] results;
-  private Integer total_pages;
-  private Integer total_results;
+  private Integer totalPages;
+  private Integer totalResults;
   
+  protected APIResponse() {
+  }
+
   public APIResponse(Integer page, Movie[] results, Integer total_pages, Integer total_results) {
 	super();
 	setPage(page);
 	setResults(results);
-	setTotal_pages(total_pages);
-	setTotal_results(total_results);
+	setTotalPages(total_pages);
+	setTotalResults(total_results);
   }
   
   public Integer getPage() {
@@ -30,19 +33,19 @@ public class APIResponse {
 	this.results = results;
   }
   
-  public Integer getTotal_pages() {
-	return total_pages;
+  public Integer getTotalPages() {
+	return totalPages;
   }
   
-  public void setTotal_pages(int total_pages) {
-	this.total_pages = total_pages;
+  public void setTotalPages(int total_pages) {
+	this.totalPages = total_pages;
   }
   
-  public Integer getTotal_results() {
-	return total_results;
+  public Integer getTotalResults() {
+	return totalResults;
   }
   
-  public void setTotal_results(int total_results) {
-	this.total_results = total_results;
+  public void setTotalResults(int total_results) {
+	this.totalResults = total_results;
   }
 }

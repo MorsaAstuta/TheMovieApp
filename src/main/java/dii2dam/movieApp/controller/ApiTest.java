@@ -58,7 +58,7 @@ public class ApiTest {
 		for (Movie movie: movies) {
 		  movieList.add(movie);
 		  clmTitle.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getTitle()));
-		  clmRelease.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getRelease_date()));
+		  clmRelease.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getReleaseDate()));
 		  clmOverview.setCellValueFactory(f -> new SimpleStringProperty(f.getValue().getOverview()));
 		}
 	  }
@@ -69,7 +69,7 @@ public class ApiTest {
 
   @FXML
   void selectMovie(MouseEvent event) {
-	String url = tblMovie.getSelectionModel().getSelectedItem().getPoster_url();
+	String url = tblMovie.getSelectionModel().getSelectedItem().getPosterPath();
 	String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
 	Image image = new Image(urlPoster);
 	idPoster.setImage(image);

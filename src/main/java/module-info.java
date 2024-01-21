@@ -7,6 +7,8 @@ module dii2dam.movieApp {
 	requires javafx.graphics;
 	requires okhttp3;
 	requires com.google.gson;
+	requires hibernate.core;
+	requires hibernate.jpa;
 
     opens dii2dam.movieApp to javafx.fxml;
     opens dii2dam.movieApp.controller to javafx.fxml;

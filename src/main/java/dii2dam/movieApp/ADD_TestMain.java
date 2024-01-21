@@ -1,0 +1,44 @@
+package dii2dam.movieApp;
+
+import org.hibernate.Session;
+
+import dii2dam.movieApp.dao.UserDaoImpl;
+import dii2dam.movieApp.dao.ActorDaoImpl;
+import dii2dam.movieApp.dao.ReviewDaoImpl;
+import dii2dam.movieApp.models.User;
+import dii2dam.movieApp.models.Actor;
+import dii2dam.movieApp.models.Review;
+import dii2dam.movieApp.utils.HibernateUtils;
+
+public class ADD_TestMain {
+  public static void main(String[] args) {
+	HibernateUtils.begin();
+	HibernateUtils.open();
+	try {
+	  
+	  // User insertion test
+	  System.out.println("\nINSERT TEST - User");
+	  UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
+	  userDao.insert(new User("whiteshark", "wh1t3sh4rk", "2024-01-01", "white@shark.sea"));
+	  userDao.insert(new User("dolphin", "d0lph1n", "2024-01-02", "dol@phin.sea"));
+	  
+	  // Actor insertion test
+	  System.out.println("\nINSERT TEST - Actor");
+	  ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);
+	  actorDao.insert(new Actor());
+	  
+	  // Review insertion test
+	  System.out.println("\nINSERT TEST - Review");
+	  ReviewDaoImpl reviewDao = new ReviewDaoImpl(HibernateUtils.session);
+	  reviewDao.insert(new Review(Long.parseLong("1"), "Me ha encantado esta peli o algo ns", "2024-01-10"));
+	  reviewDao.insert(new Review(Long.parseLong("1"), "Esta peli es mu mala", "2024-01-12"));
+	  reviewDao.insert(new Review(Long.parseLong("2"), "Tremenda peli honestamente", "2024-01-10"));
+	  
+	} catch (Exception e) {
+		System.out.println(e);
+	} finally {
+		HibernateUtils.close();
+	}
+  }
+
+}
