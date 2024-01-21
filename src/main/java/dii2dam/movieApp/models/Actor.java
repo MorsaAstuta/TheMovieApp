@@ -1,12 +1,11 @@
 package dii2dam.movieApp.models;
 
-import java.util.Date;
 
 import javax.persistence.Column;
 
 public class Actor {
 
-	@Column(name = "actor_id")
+	@Column(name = "id")
 	private int id;
 	@Column(name = "name")
 	private String name;

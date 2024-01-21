@@ -2,6 +2,9 @@ package dii2dam.movieApp;
 
 
 import dii2dam.movieApp.dao.UserDaoImpl;
+
+import java.util.List;
+
 import dii2dam.movieApp.dao.ActorDaoImpl;
 import dii2dam.movieApp.dao.ReviewDaoImpl;
 import dii2dam.movieApp.models.User;
@@ -34,7 +37,14 @@ public class ADD_TestMain {
 	  reviewDao.insert(new Review(Long.parseLong("2"), "Tremenda peli honestamente", "2024-01-10"));
 	  
 	  // test select
-	  
+	  List<Actor> actors = actorDao.searchByName("Thomas");
+
+	  for (Actor actor : actors) {
+		    System.out.println("Actor ID: " + actor.getId());
+		    System.out.println("First Name: " + actor.getName());
+		    System.out.println("Last Name: " + actor.getSurname());
+		    System.out.println("Birthdate: " + actor.getBirthdate());
+		}
 	  
 	} catch (Exception e) {
 		System.out.println(e);
