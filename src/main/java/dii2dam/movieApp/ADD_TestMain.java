@@ -1,6 +1,5 @@
 package dii2dam.movieApp;
 
-import org.hibernate.Session;
 
 import dii2dam.movieApp.dao.UserDaoImpl;
 import dii2dam.movieApp.dao.ActorDaoImpl;
@@ -25,14 +24,17 @@ public class ADD_TestMain {
 	  // Actor insertion test
 	  System.out.println("\nINSERT TEST - Actor");
 	  ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);
-	  actorDao.insert(new Actor());
-	  
+	  actorDao.insert(new Actor(1, "Thomas" , "Jeffrey Hanks", "9 de julio de 1956"));
+	  actorDao.insert(new Actor(2, "Christian", "Charles Philip Bale","30 de enero de 1974"));
 	  // Review insertion test
 	  System.out.println("\nINSERT TEST - Review");
 	  ReviewDaoImpl reviewDao = new ReviewDaoImpl(HibernateUtils.session);
 	  reviewDao.insert(new Review(Long.parseLong("1"), "Me ha encantado esta peli o algo ns", "2024-01-10"));
 	  reviewDao.insert(new Review(Long.parseLong("1"), "Esta peli es mu mala", "2024-01-12"));
 	  reviewDao.insert(new Review(Long.parseLong("2"), "Tremenda peli honestamente", "2024-01-10"));
+	  
+	  // test select
+	  
 	  
 	} catch (Exception e) {
 		System.out.println(e);
