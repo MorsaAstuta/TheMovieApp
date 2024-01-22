@@ -13,17 +13,18 @@ import dii2dam.movieApp.utils.HibernateUtils;
 
 public class ADD_TestMain {
   public static void main(String[] args) {
-	HibernateUtils.begin();
-	HibernateUtils.open();
+		HibernateUtils.open();
+
+	  HibernateUtils.begin();
 	try {
 	  
 	  // User insertion test
-	  System.out.println("\nINSERT TEST - User");
-	  UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
-	  userDao
-	  userDao.insert(new User("whiteshark", "wh1t3sh4rk", "2024-01-01", "white@shark.sea"));
-	  userDao.insert(new User("dolphin", "d0lph1n", "2024-01-02", "dol@phin.sea"));
-	  
+		  System.out.println("\nINSERT TEST - User");
+		  UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
+		  
+		  userDao.insert(new User("whiteshark", "wh1t3sh4rk", "2024-01-01", "white@shark.sea"));
+		  userDao.insert(new User("dolphin", "d0lph1n", "2024-01-02", "dol@phin.sea"));
+		  
 	  // Actor insertion test
 	  System.out.println("\nINSERT TEST - Actor");
 	  ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);

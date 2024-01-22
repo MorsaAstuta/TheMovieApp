@@ -31,7 +31,6 @@ public class HibernateUtils {
    * Comienzo de una transacción
    */
   public static void begin() {
-	open();
 	  session.getTransaction().begin();
   }
 	

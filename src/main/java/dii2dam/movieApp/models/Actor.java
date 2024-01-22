@@ -1,12 +1,12 @@
 package dii2dam.movieApp.models;
 
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+@Entity
 public class Actor {
-
+	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -14,7 +14,7 @@ public class Actor {
 	private String name;
 	@Column(name = "surname")
 	private String surname;
-	@Column(name = "birthdate")
+	@Column(name = "birth_date")
 	private String birthdate;
 
 	public Actor(Long id, String name, String surname, String birthdate) {
