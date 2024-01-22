@@ -17,7 +17,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Actor> searchByActorId(int id) {
+	public List<Actor> searchByActorId(Long id) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
@@ -46,7 +46,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
-			return session.createQuery("from actor where birthdate = '" + birthdate + "'").list();
+			return session.createQuery("from actor where birth_date = '" + birthdate + "'").list();
 		  }  
 
 }

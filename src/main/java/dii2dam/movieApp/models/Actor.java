@@ -6,7 +6,7 @@ import javax.persistence.Column;
 public class Actor {
 
 	@Column(name = "id")
-	private int id;
+	private Long id;
 	@Column(name = "name")
 	private String name;
 	@Column(name = "surname")
@@ -14,7 +14,7 @@ public class Actor {
 	@Column(name = "birthdate")
 	private String birthdate;
 
-	public Actor(int id, String name, String surname, String birthdate) {
+	public Actor(Long id, String name, String surname, String birthdate) {
 		super();
 		setId(id);
 		setName(name);
@@ -22,11 +22,11 @@ public class Actor {
 		setBirthdate(birthdate);
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

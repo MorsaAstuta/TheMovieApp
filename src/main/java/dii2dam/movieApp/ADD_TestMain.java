@@ -27,8 +27,8 @@ public class ADD_TestMain {
 	  // Actor insertion test
 	  System.out.println("\nINSERT TEST - Actor");
 	  ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);
-	  actorDao.insert(new Actor(1, "Thomas" , "Jeffrey Hanks", "9 de julio de 1956"));
-	  actorDao.insert(new Actor(2, "Christian", "Charles Philip Bale","30 de enero de 1974"));
+	  actorDao.insert(new Actor(Long.parseLong("1"), "Thomas" , "Jeffrey Hanks", "1956-07-09"));
+	  actorDao.insert(new Actor(Long.parseLong("1"), "Christian", "Charles Philip Bale","1974-01-30"));
 	  // Review insertion test
 	  System.out.println("\nINSERT TEST - Review");
 	  ReviewDaoImpl reviewDao = new ReviewDaoImpl(HibernateUtils.session);
@@ -39,12 +39,12 @@ public class ADD_TestMain {
 	  // test select
 	  List<Actor> actors = actorDao.searchByName("Thomas");
 
-	  for (Actor actor : actors) {
-		    System.out.println("Actor ID: " + actor.getId());
-		    System.out.println("First Name: " + actor.getName());
-		    System.out.println("Last Name: " + actor.getSurname());
-		    System.out.println("Birthdate: " + actor.getBirthdate());
-		}
+	  for(Actor actor: actors) {
+		System.out.println("Actor ID: " + actor.getId());
+		System.out.println("First Name: " + actor.getName());
+		System.out.println("Last Name: " + actor.getSurname());
+		System.out.println("Birthdate: " + actor.getBirthdate());
+	  }
 	  
 	} catch (Exception e) {
 		System.out.println(e);
