@@ -22,7 +22,7 @@ public class ReviewDaoImpl extends CommonDaoImpl<Review> implements ReviewDaoInt
 	if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 	  session.getTransaction().begin();
 	}
-	return session.createQuery("from review where user_id = '" + userId + "'").list();
+	return session.createQuery("from Review where user_id = '" + userId + "'").list();
   }
 
   @Override
@@ -31,7 +31,7 @@ public class ReviewDaoImpl extends CommonDaoImpl<Review> implements ReviewDaoInt
 	if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 	  session.getTransaction().begin();
 	}
-	return session.createQuery("from review inner join user on review.user_id = user.id where user.username = '" + username + "'").list();
+	return session.createQuery("from Review inner join user on review.user_id = user.id where user.username = '" + username + "'").list();
   }
 
   @Override
@@ -40,7 +40,7 @@ public class ReviewDaoImpl extends CommonDaoImpl<Review> implements ReviewDaoInt
 	if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 	  session.getTransaction().begin();
 	}
-	return session.createQuery("from review where content like '%" + content + "%'").list();
+	return session.createQuery("from Review where content like '%" + content + "%'").list();
   }
 
   @Override
@@ -49,7 +49,7 @@ public class ReviewDaoImpl extends CommonDaoImpl<Review> implements ReviewDaoInt
 	if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 	  session.getTransaction().begin();
 	}
-	return session.createQuery("from review where post_date = '" + postDate + "'").list();
+	return session.createQuery("from Review where post_date = '" + postDate + "'").list();
   }  
   
 }

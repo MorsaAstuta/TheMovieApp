@@ -21,7 +21,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
-			return session.createQuery("from actor where id = '" + id + "'").list();
+			return session.createQuery("from Actor where id = '" + id + "'").list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
-			return session.createQuery("from actor where name = '" + name + "'").list();	}
+			return session.createQuery("from Actor where name = '" + name + "'").list();	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -38,7 +38,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
-			return session.createQuery("from actor where surname = '" + surname + "'").list();	}	
+			return session.createQuery("from Actor where surname = '" + surname + "'").list();	}	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -46,7 +46,7 @@ public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoInt{
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			  session.getTransaction().begin();
 			}
-			return session.createQuery("from actor where birth_date = '" + birthdate + "'").list();
+			return session.createQuery("from Actor where birth_date = '" + birthdate + "'").list();
 		  }  
 
 }

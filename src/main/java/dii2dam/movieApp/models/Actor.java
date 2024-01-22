@@ -17,6 +17,10 @@ public class Actor {
 	@Column(name = "birth_date")
 	private String birthdate;
 
+	public Actor() {
+		
+	}
+	
 	public Actor(Long id, String name, String surname, String birthdate) {
 		super();
 		setId(id);
