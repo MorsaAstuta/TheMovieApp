@@ -1,6 +1,5 @@
 package dii2dam.movieApp;
 
-
 import dii2dam.movieApp.dao.UserDaoImpl;
 
 import java.util.List;

@@ -2,11 +2,16 @@ package dii2dam.movieApp.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import dii2dam.movieApp.utils.Manager;
 
 @Entity
 public class User implements java.io.Serializable {
+	
+  @Id
+  @Column(name="id")
+  private Long id;
 
   @Column(name="username")
   private String username;

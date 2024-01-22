@@ -1,8 +1,13 @@
 package dii2dam.movieApp.models;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 
 public class Review {
+	
+  @Id
+  @Column(name="id")
+  private Long id;
 
   @Column(name="user_id")
   private Long userId;
