@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,6 +16,7 @@ public class Movie implements java.io.Serializable {
   
   @Id
   @Column(name="id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   
   @Column(name="title")

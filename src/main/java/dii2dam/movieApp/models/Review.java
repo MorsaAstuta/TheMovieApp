@@ -1,12 +1,15 @@
 package dii2dam.movieApp.models;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 public class Review {
 	
   @Id
   @Column(name="id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name="user_id")

@@ -14,9 +14,9 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.validator.apply_to_ddl">false</property>
     
+    	<mapping class="dii2dam.movieApp.models.Actor"/>
     	<mapping class="dii2dam.movieApp.models.User"/>
     	<mapping class="dii2dam.movieApp.models.Movie"/>
-    	<mapping class="dii2dam.movieApp.models.Actor"/>
     	<mapping class="dii2dam.movieApp.models.Review"/>
     </session-factory>
 </hibernate-configuration>

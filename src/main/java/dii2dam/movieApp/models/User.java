@@ -2,6 +2,8 @@ package dii2dam.movieApp.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import dii2dam.movieApp.utils.Manager;
@@ -10,6 +12,7 @@ import dii2dam.movieApp.utils.Manager;
 public class User implements java.io.Serializable {
 	
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name="id")
   private Long id;
 

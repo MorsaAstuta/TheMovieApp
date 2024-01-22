@@ -2,10 +2,13 @@ package dii2dam.movieApp.models;
 
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 public class Actor {
 
 	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column(name = "name")
 	private String name;
