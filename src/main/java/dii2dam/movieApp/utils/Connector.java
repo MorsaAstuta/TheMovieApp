@@ -16,6 +16,7 @@ public class Connector {
 	OkHttpClient client = new OkHttpClient();
 	
 	String apiUrl = "https://api.themoviedb.org/3/search/movie?query=" + search + "&include_adult=true&api_key=c2c8d3abe04e48336f9ab967e975df53";
+	System.out.println(apiUrl);
 	Request request = new Request.Builder()
 		.url(apiUrl)
 		.get()

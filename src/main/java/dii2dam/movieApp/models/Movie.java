@@ -26,19 +26,19 @@ public class Movie implements java.io.Serializable {
   private Long companyId;
   
   @Column(name="release_date")
-  private String releaseDate;
+  private String release_date;
   
   @Column(name="overview")
   private String overview;
   
   @Column(name="poster_path")
-  private String posterPath;
+  private String poster_path;
   
   @Column(name="watch_date")
   private String watchDate;
   
   @Column(name="global_rating")
-  private Double globalRating;
+  private Double vote_average;
   
   @Column(name="user_rating")
   private Double userRating;
@@ -107,11 +107,11 @@ public class Movie implements java.io.Serializable {
   }
 
   public String getReleaseDate() {
-	return releaseDate;
+	return release_date;
   }
 
   public void setReleaseDate(String releaseDate) {
-	this.releaseDate = releaseDate;
+	this.release_date = releaseDate;
   }
 
   public String getOverview() {
@@ -123,11 +123,11 @@ public class Movie implements java.io.Serializable {
   }
 
   public String getPosterPath() {
-	return posterPath;
+	return poster_path;
   }
 
   public void setPosterPath(String posterPath) {
-	this.posterPath = posterPath;
+	this.poster_path = posterPath;
   }
   
   public String getWatchDate() {
@@ -139,11 +139,11 @@ public class Movie implements java.io.Serializable {
   }
   
   public Double getRatingGlobal() {
-	return globalRating;
+	return vote_average;
   }
   
   public void setRatingGlobal(Double globalRating) {
-	this.globalRating = globalRating;
+	this.vote_average = globalRating;
   }
 
   public Double getUserRating() {
