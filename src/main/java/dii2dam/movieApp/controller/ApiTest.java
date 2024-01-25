@@ -25,9 +25,6 @@ import dii2dam.movieApp.utils.Connector;
 public class ApiTest {
 
     @FXML
-    private ImageView idPoster;
-
-    @FXML
     private FlowPane movie00;
 
     @FXML
@@ -193,20 +190,6 @@ public class ApiTest {
   private Button btnSearch;
 
   @FXML
-  private TableView<Movie> tblMovie;
-  
-  private ObservableList<Movie> movieList = FXCollections.observableArrayList();
-
-  @FXML
-  private TableColumn<Movie, String> clmTitle;
-  @FXML
-  private TableColumn<Movie, String> clmRelease;
-  @FXML
-  private TableColumn<Movie, String> clmOverview;
-  @FXML
-  private TableColumn<Movie, String> clmRating;
-
-  @FXML
   private TextField txtSearch;
 
   @FXML
@@ -214,8 +197,6 @@ public class ApiTest {
 
   @FXML
   void searchByTitle(ActionEvent event) {
-	movieList.clear();
-	idPoster.setImage(null);
 	String query = txtSearch.getText();
 	try {
 	  Movie[] movies = Connector.connect(query);
@@ -236,18 +217,7 @@ public class ApiTest {
   }
 
   @FXML
-  void selectMovie(MouseEvent event) {
-	String url = tblMovie.getSelectionModel().getSelectedItem().getPosterPath();
-	System.out.println(url);
-	String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
-	Image image = new Image(urlPoster);
-	idPoster.setImage(image);
-  }
-
-  @FXML
   void initialize() {
-	
-	tblMovie.setItems(movieList);
 	
 	ImageView btnSearchIcon = new ImageView(getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
 	btnSearchIcon.setFitHeight(32);
