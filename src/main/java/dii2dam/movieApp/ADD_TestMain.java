@@ -45,8 +45,7 @@ public class ADD_TestMain {
 		System.out.println("First Name: " + actor.getName());
 		System.out.println("Last Name: " + actor.getSurname());
 		System.out.println("Birthdate: " + actor.getBirthdate());
-	  }
-	  
+	  }	  
 	  
 	} catch (Exception e) {
 		System.out.println(e);

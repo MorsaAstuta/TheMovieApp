@@ -2,7 +2,9 @@ package dii2dam.movieApp.controller;
 
 import java.io.IOException;
 import dii2dam.movieApp.App;
+import dii2dam.movieApp.dao.UserDaoImpl;
 import dii2dam.movieApp.models.User;
+import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,10 +40,14 @@ public class LogIn {
 
   @FXML
   void loadUser(ActionEvent event) {
-	// Comprobamos que el usuario existe y abrimos ventana
-	if(Manager.userByName.containsKey(txtUsername.getText())) {
+	
+	UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
+	if(userDao.isUsernameInUse(txtUsername.getText())) {
+	  System.out.println(txtUsername.getText());
+		
 	  // Si el usuario existe, iteramos para detectarlo y mostrar sus datos en la pantalla menú
-	  User user = Manager.userByName.get(txtUsername.getText());
+	  User user = userDao.searchByUsername(txtUsername.getText());
+	  //User user = Manager.userByName.get(txtUsername.getText());
 	  if (user.getUsername().equals(txtUsername.getText())) {
 		if (user.getPassword().equals(txtPassword.getText())) {
 		  Alert alert = new Alert(AlertType.INFORMATION);
@@ -49,7 +55,8 @@ public class LogIn {
 		  alert.setHeaderText(null);
 		  alert.setContentText("Access granted.");
 		  alert.showAndWait();
-		  Manager.logIn(user);
+		  
+		  
 		} else {
 		  Alert alert = new Alert(AlertType.ERROR);
 		  alert.setTitle("Error");
@@ -65,6 +72,7 @@ public class LogIn {
       alert.setContentText("The input username is not associated with any account in our database.");
       alert.showAndWait();
 	}
+	
   }
   
   @FXML

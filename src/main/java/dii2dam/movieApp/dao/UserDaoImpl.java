@@ -28,7 +28,7 @@ public class UserDaoImpl extends CommonDaoImpl<User> implements UserDaoInt {
 	if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 	  session.getTransaction().begin();
 	}
-	return (User)session.createQuery("from User where email='" + email + "'").uniqueResult();
+	return (User)session.createQuery("from User where mail='" + email + "'").uniqueResult();
   }
 
   @Override
@@ -38,5 +38,21 @@ public class UserDaoImpl extends CommonDaoImpl<User> implements UserDaoInt {
 	  session.getTransaction().begin();
 	}
 	return session.createQuery("from User where sign_date='" + signDate + "'").list();
+  }
+  public boolean isEmailInUse(String email) {
+      boolean inUse = false;
+      User user = searchByEmail(email);
+      if (user != null) {
+          inUse = true;
+      }
+      return inUse;
+  }
+  public boolean isUsernameInUse(String username) {
+      boolean inUse = false;
+      User user = searchByUsername(username);
+      if (user != null) {
+          inUse = true;
+      }
+      return inUse;
   }
 }
