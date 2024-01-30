@@ -58,6 +58,9 @@ public class Movie implements java.io.Serializable {
   @OneToMany(mappedBy="",cascade=CascadeType.ALL)
   private Set<Actor> actors = new HashSet<Actor>(0);
   
+  @OneToMany(mappedBy="",cascade=CascadeType.ALL)
+  private Set<Genre> genres = new HashSet<Genre>(0);
+  
   
   protected Movie() {
   }
@@ -168,6 +171,14 @@ public class Movie implements java.io.Serializable {
 
   public void setLocationId(Long locationId) {
 	this.locationId = locationId;
+  }
+
+  public String getGenre() {
+	String output = "";
+	for (Genre genre: genres) {
+	  output += genre.getName();
+	}
+	return output;
   }
 	
 }

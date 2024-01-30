@@ -3,7 +3,7 @@ package dii2dam.movieApp.models;
 public class APIResponse {
   private Integer page;
   private Movie[] results;
-  private Integer totalPages;
+  private Integer total_pages;
   private Integer totalResults;
   
   protected APIResponse() {
@@ -34,11 +34,11 @@ public class APIResponse {
   }
   
   public Integer getTotalPages() {
-	return totalPages;
+	return total_pages;
   }
   
   public void setTotalPages(int total_pages) {
-	this.totalPages = total_pages;
+	this.total_pages = total_pages;
   }
   
   public Integer getTotalResults() {

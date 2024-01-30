@@ -77,7 +77,7 @@
                       <RowConstraints vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster00" fitHeight="270.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster00" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails00" pickOnBounds="true" preserveRatio="true" />
                         <TextFlow fx:id="text00" prefHeight="270.0" prefWidth="360.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
@@ -305,6 +305,12 @@
                </children>
             </GridPane>
          </center>
+         <left>
+            <Button fx:id="btnPrevPage" mnemonicParsing="false" onAction="#prevPage" prefHeight="196.0" prefWidth="48.0" text="&lt;-" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button fx:id="btnNextPage" mnemonicParsing="false" onAction="#nextPage" prefHeight="196.0" prefWidth="48.0" text="-&gt;" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </center>
    <top>
