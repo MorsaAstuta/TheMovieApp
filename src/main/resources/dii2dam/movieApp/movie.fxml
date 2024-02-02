@@ -10,47 +10,90 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="835.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
  <top>
-      <GridPane prefHeight="80.0" prefWidth="1085.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <GridPane style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="106.0" prefWidth="185.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="596.0" minWidth="16.0" prefWidth="82.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="591.0" minWidth="94.0" prefWidth="97.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="596.0" minWidth="65.0" prefWidth="89.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="458.0" minWidth="94.0" prefWidth="110.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="458.0" minWidth="94.0" prefWidth="205.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane prefHeight="80.0" prefWidth="185.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
+            <Pane prefWidth="185.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="64.0" fitWidth="69.0" layoutX="54.0" layoutY="9.0">
+                  <ImageView fitHeight="64.0" fitWidth="69.0" layoutX="46.0" layoutY="10.0">
                      <image>
                         <Image url="@img/icon/fs.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="14.0" layoutY="10.0" text="F">
+                  <Label layoutX="8.0" layoutY="9.0" text="F">
                      <font>
                         <Font name="Inder" size="48.0" />
                      </font>
                   </Label>
-                  <Label layoutX="133.0" layoutY="9.0" text="S">
+                  <Label layoutX="123.0" layoutY="9.0" text="S">
                      <font>
                         <Font name="Inder" size="48.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3" />
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="5" />
+            <Pane prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
+                     <image>
+                        <Image url="@img/icon/list.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+            <Pane prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="5">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="57.0" layoutX="12.0" layoutY="12.0">
+                     <image>
+                        <Image url="@img/icon/import.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+            <Pane prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="7">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0">
+                     <image>
+                        <Image url="@img/icon/back.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="9">
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0">
+                     <image>
+                        <Image url="@img/icon/acc.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
       </GridPane>
    </top>
    <left>
-      <Pane prefHeight="514.0" prefWidth="413.0" style="-fx-background-color: brown;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="637.0" prefWidth="453.0" style="-fx-background-color: rgb(80,63,39);" BorderPane.alignment="CENTER" />
    </left>
+   <right>
+      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="637.0" prefWidth="278.0" BorderPane.alignment="CENTER">
+         <top>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(169,139,96);" BorderPane.alignment="CENTER" />
+         </top>
+      </BorderPane>
+   </right>
 </BorderPane>
