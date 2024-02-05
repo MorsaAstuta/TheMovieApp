@@ -20,7 +20,7 @@ public class App extends Application {
 	public void start(Stage stage) throws IOException {
 		HibernateUtils.open();
 		HibernateUtils.begin();
-		scene = new Scene(loadFXML("movie"), 1024, 1024);
+		scene = new Scene(loadFXML("searchTab"), 1024, 1024);
 		stage.setMinHeight(1024);
 		stage.setMinWidth(1024);
 		stage.setMaximized(true);

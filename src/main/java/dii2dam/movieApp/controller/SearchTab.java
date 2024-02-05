@@ -383,12 +383,36 @@ public class SearchTab {
 	movieInfo03.setVisible(false);
 	movieInfo04.setVisible(false);
 	movieInfo05.setVisible(false);
+	movieInfo06.setVisible(false);
+	movieInfo07.setVisible(false);
+	movieInfo08.setVisible(false);
+	movieInfo09.setVisible(false);
+	movieInfo10.setVisible(false);
+	movieInfo11.setVisible(false);
+	movieInfo12.setVisible(false);
+	movieInfo13.setVisible(false);
+	movieInfo14.setVisible(false);
+	movieInfo15.setVisible(false);
+	movieInfo16.setVisible(false);
+	movieInfo17.setVisible(false);
 	lblMovieDesc00.setWrapText(true);
 	lblMovieDesc01.setWrapText(true);
 	lblMovieDesc02.setWrapText(true);
 	lblMovieDesc03.setWrapText(true);
 	lblMovieDesc04.setWrapText(true);
 	lblMovieDesc05.setWrapText(true);
+	lblMovieDesc06.setWrapText(true);
+	lblMovieDesc07.setWrapText(true);
+	lblMovieDesc08.setWrapText(true);
+	lblMovieDesc09.setWrapText(true);
+	lblMovieDesc10.setWrapText(true);
+	lblMovieDesc11.setWrapText(true);
+	lblMovieDesc12.setWrapText(true);
+	lblMovieDesc13.setWrapText(true);
+	lblMovieDesc14.setWrapText(true);
+	lblMovieDesc15.setWrapText(true);
+	lblMovieDesc16.setWrapText(true);
+	lblMovieDesc17.setWrapText(true);
 	
 	posters.add(poster00); posters.add(poster01); posters.add(poster02); posters.add(poster03); posters.add(poster04); posters.add(poster05);
 	posters.add(poster06); posters.add(poster07); posters.add(poster08); posters.add(poster09); posters.add(poster10); posters.add(poster11);
@@ -442,6 +466,54 @@ public class SearchTab {
   @FXML
   void visitMoviePage05() {
   }
+
+  @FXML
+  void visitMoviePage06() {
+  }
+
+  @FXML
+  void visitMoviePage07() {
+  }
+
+  @FXML
+  void visitMoviePage08() {
+  }
+
+  @FXML
+  void visitMoviePage09() {
+  }
+
+  @FXML
+  void visitMoviePage10() {
+  }
+
+  @FXML
+  void visitMoviePage11() {
+  }
+
+  @FXML
+  void visitMoviePage12() {
+  }
+
+  @FXML
+  void visitMoviePage13() {
+  }
+
+  @FXML
+  void visitMoviePage14() {
+  }
+
+  @FXML
+  void visitMoviePage15() {
+  }
+
+  @FXML
+  void visitMoviePage16() {
+  }
+
+  @FXML
+  void visitMoviePage17() {
+  }
   
   void closeAllDetails() {
 	movieInfo00.setVisible(false);
@@ -450,7 +522,6 @@ public class SearchTab {
 	movieInfo03.setVisible(false);
 	movieInfo04.setVisible(false);
 	movieInfo05.setVisible(false);
-	/*
 	movieInfo06.setVisible(false);
 	movieInfo07.setVisible(false);
 	movieInfo08.setVisible(false);
@@ -463,7 +534,6 @@ public class SearchTab {
 	movieInfo15.setVisible(false);
 	movieInfo16.setVisible(false);
 	movieInfo17.setVisible(false);
-	*/
   }
   
   void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
