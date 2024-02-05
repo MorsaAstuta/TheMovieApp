@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -46,6 +47,8 @@ public class SearchTab {
     private Label lblMovieGenre00;
     @FXML
     private Label lblMovieDate00;
+    @FXML
+    private ColumnConstraints movieColumn00;
 
   	@FXML
   	private GridPane movie01;
@@ -61,6 +64,8 @@ public class SearchTab {
     private Label lblMovieGenre01;
     @FXML
     private Label lblMovieDate01;
+    @FXML
+    private ColumnConstraints movieColumn01;
 
   	@FXML
   	private GridPane movie02;
@@ -76,6 +81,8 @@ public class SearchTab {
     private Label lblMovieGenre02;
     @FXML
     private Label lblMovieDate02;
+    @FXML
+    private ColumnConstraints movieColumn02;
 
   	@FXML
   	private GridPane movie03;
@@ -91,6 +98,8 @@ public class SearchTab {
     private Label lblMovieGenre03;
     @FXML
     private Label lblMovieDate03;
+    @FXML
+    private ColumnConstraints movieColumn03;
 
   	@FXML
   	private GridPane movie04;
@@ -106,7 +115,9 @@ public class SearchTab {
     private Label lblMovieGenre04;
     @FXML
     private Label lblMovieDate04;
-
+    @FXML
+    private ColumnConstraints movieColumn04;
+    
   	@FXML
   	private GridPane movie05;
     @FXML
@@ -121,6 +132,8 @@ public class SearchTab {
     private Label lblMovieGenre05;
     @FXML
     private Label lblMovieDate05;
+    @FXML
+    private ColumnConstraints movieColumn05;
 
   	@FXML
   	private GridPane movie06;
@@ -136,6 +149,8 @@ public class SearchTab {
     private Label lblMovieGenre06;
     @FXML
     private Label lblMovieDate06;
+    @FXML
+    private ColumnConstraints movieColumn06;
 
   	@FXML
   	private GridPane movie07;
@@ -151,6 +166,8 @@ public class SearchTab {
     private Label lblMovieGenre07;
     @FXML
     private Label lblMovieDate07;
+    @FXML
+    private ColumnConstraints movieColumn07;
 
   	@FXML
   	private GridPane movie08;
@@ -166,6 +183,8 @@ public class SearchTab {
     private Label lblMovieGenre08;
     @FXML
     private Label lblMovieDate08;
+    @FXML
+    private ColumnConstraints movieColumn08;
 
   	@FXML
   	private GridPane movie09;
@@ -181,6 +200,8 @@ public class SearchTab {
     private Label lblMovieGenre09;
     @FXML
     private Label lblMovieDate09;
+    @FXML
+    private ColumnConstraints movieColumn09;
 
   	@FXML
   	private GridPane movie10;
@@ -196,6 +217,8 @@ public class SearchTab {
     private Label lblMovieGenre10;
     @FXML
     private Label lblMovieDate10;
+    @FXML
+    private ColumnConstraints movieColumn10;
 
   	@FXML
   	private GridPane movie11;
@@ -211,6 +234,8 @@ public class SearchTab {
     private Label lblMovieGenre11;
     @FXML
     private Label lblMovieDate11;
+    @FXML
+    private ColumnConstraints movieColumn11;
 
   	@FXML
   	private GridPane movie12;
@@ -226,6 +251,8 @@ public class SearchTab {
     private Label lblMovieGenre12;
     @FXML
     private Label lblMovieDate12;
+    @FXML
+    private ColumnConstraints movieColumn12;
 
   	@FXML
   	private GridPane movie13;
@@ -241,6 +268,8 @@ public class SearchTab {
     private Label lblMovieGenre13;
     @FXML
     private Label lblMovieDate13;
+    @FXML
+    private ColumnConstraints movieColumn13;
 
   	@FXML
   	private GridPane movie14;
@@ -256,6 +285,8 @@ public class SearchTab {
     private Label lblMovieGenre14;
     @FXML
     private Label lblMovieDate14;
+    @FXML
+    private ColumnConstraints movieColumn14;
 
   	@FXML
   	private GridPane movie15;
@@ -271,6 +302,8 @@ public class SearchTab {
     private Label lblMovieGenre15;
     @FXML
     private Label lblMovieDate15;
+    @FXML
+    private ColumnConstraints movieColumn15;
 
   	@FXML
   	private GridPane movie16;
@@ -286,6 +319,8 @@ public class SearchTab {
     private Label lblMovieGenre16;
     @FXML
     private Label lblMovieDate16;
+    @FXML
+    private ColumnConstraints movieColumn16;
 
   	@FXML
   	private GridPane movie17;
@@ -301,6 +336,17 @@ public class SearchTab {
     private Label lblMovieGenre17;
     @FXML
     private Label lblMovieDate17;
+    @FXML
+    private ColumnConstraints movieColumn17;
+    
+    @FXML
+    private Label lblPage;
+    @FXML
+    private Label lblCurrentPage;
+    @FXML
+    private Label lblBar;
+    @FXML
+    private Label lblTotalPages;
 
   @FXML
   private Button btnSearch;
@@ -327,7 +373,7 @@ public class SearchTab {
   
   private void query(String query) {
 	  try {
-		response = Connector.connect(query);
+		response = Connector.connect(query+"&page="+(currentPage+1));
 		totalPages = response.getTotalPages();
 		movies = response.getResults();
 	  } catch (IOException e) {
@@ -337,12 +383,14 @@ public class SearchTab {
 
   @FXML
   void searchByTitle(ActionEvent event) throws IOException {
+	currentPage = 0;
 	currentSearch = txtSearch.getText();
 	query(currentSearch);
 	loadPage();
   }
   
   void loadPage() {
+	query(currentSearch);
 	closeAllDetails();
 	btnPrevPage.setVisible(true);
 	btnNextPage.setVisible(true);
@@ -356,14 +404,20 @@ public class SearchTab {
 	// Reload
 	for (int i = 0; i < 18; i++) {
 	  try {
-		String url = movies[i+18*currentPage].getPosterPath();
+		String url = movies[i].getPosterPath();
 		String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
 		System.out.println(url);
 		Image image = new Image(urlPoster);
 		posters.get(i).setImage(image);
-		movieByPoster.put(posters.get(i), movies[i+18*currentPage]);
+		movieByPoster.put(posters.get(i), movies[i]);
+		
+		lblCurrentPage.setText(((Integer)(currentPage+1)).toString());
+		lblTotalPages.setText(((Integer)(totalPages+1)).toString());
 	  } catch (Exception e) {
+		e.printStackTrace();
 		totalPages = currentPage;
+		lblCurrentPage.setText(((Integer)(currentPage+1)).toString());
+		lblTotalPages.setText(((Integer)(totalPages+1)).toString());
 	  }
 	}
 	
@@ -376,25 +430,7 @@ public class SearchTab {
 
   @FXML
   void initialize() {
-	
-	movieInfo00.setVisible(false);
-	movieInfo01.setVisible(false);
-	movieInfo02.setVisible(false);
-	movieInfo03.setVisible(false);
-	movieInfo04.setVisible(false);
-	movieInfo05.setVisible(false);
-	movieInfo06.setVisible(false);
-	movieInfo07.setVisible(false);
-	movieInfo08.setVisible(false);
-	movieInfo09.setVisible(false);
-	movieInfo10.setVisible(false);
-	movieInfo11.setVisible(false);
-	movieInfo12.setVisible(false);
-	movieInfo13.setVisible(false);
-	movieInfo14.setVisible(false);
-	movieInfo15.setVisible(false);
-	movieInfo16.setVisible(false);
-	movieInfo17.setVisible(false);
+	closeAllDetails();
 	lblMovieDesc00.setWrapText(true);
 	lblMovieDesc01.setWrapText(true);
 	lblMovieDesc02.setWrapText(true);
@@ -516,130 +552,125 @@ public class SearchTab {
   }
   
   void closeAllDetails() {
-	movieInfo00.setVisible(false);
-	movieInfo01.setVisible(false);
-	movieInfo02.setVisible(false);
-	movieInfo03.setVisible(false);
-	movieInfo04.setVisible(false);
-	movieInfo05.setVisible(false);
-	movieInfo06.setVisible(false);
-	movieInfo07.setVisible(false);
-	movieInfo08.setVisible(false);
-	movieInfo09.setVisible(false);
-	movieInfo10.setVisible(false);
-	movieInfo11.setVisible(false);
-	movieInfo12.setVisible(false);
-	movieInfo13.setVisible(false);
-	movieInfo14.setVisible(false);
-	movieInfo15.setVisible(false);
-	movieInfo16.setVisible(false);
-	movieInfo17.setVisible(false);
+	movieColumn00.setMaxWidth(1); movieColumn01.setMaxWidth(1); movieColumn02.setMaxWidth(1);
+	movieColumn03.setMaxWidth(1); movieColumn04.setMaxWidth(1); movieColumn05.setMaxWidth(1);
+	movieColumn06.setMaxWidth(1); movieColumn07.setMaxWidth(1); movieColumn08.setMaxWidth(1);
+	movieColumn09.setMaxWidth(1); movieColumn10.setMaxWidth(1); movieColumn11.setMaxWidth(1);
+	movieColumn12.setMaxWidth(1); movieColumn13.setMaxWidth(1); movieColumn14.setMaxWidth(1);
+	movieColumn15.setMaxWidth(1); movieColumn16.setMaxWidth(1); movieColumn17.setMaxWidth(1);
+	movieInfo00.setVisible(false); movieInfo01.setVisible(false); movieInfo02.setVisible(false);
+	movieInfo03.setVisible(false); movieInfo04.setVisible(false); movieInfo05.setVisible(false);
+	movieInfo06.setVisible(false); movieInfo07.setVisible(false); movieInfo08.setVisible(false);
+	movieInfo09.setVisible(false); movieInfo10.setVisible(false); movieInfo11.setVisible(false);
+	movieInfo12.setVisible(false); movieInfo13.setVisible(false); movieInfo14.setVisible(false);
+	movieInfo15.setVisible(false); movieInfo16.setVisible(false); movieInfo17.setVisible(false);
+	movie02.toBack(); movie01.toBack(); movie00.toBack(); movie03.toBack(); movie04.toBack(); movie05.toBack();
+	movie08.toBack(); movie07.toBack(); movie06.toBack(); movie09.toBack(); movie10.toBack(); movie11.toBack();
+	movie14.toBack(); movie13.toBack(); movie12.toBack(); movie15.toBack(); movie16.toBack(); movie17.toBack();
   }
   
-  void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
+  void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate, ColumnConstraints movieColumn) {
 	Movie movie = movieByPoster.get(poster);
-	if (!movieInfo.isVisible()) {
+	if (movieColumn.getMaxWidth() != 400) {
 	  closeAllDetails();
+	  moviePane.toFront();
+	  movieColumn.setMaxWidth(400);
+	  movieInfo.setVisible(true);
 	  movieTitle.setText(movie.getTitle());
 	  movieDesc.setText(movie.getOverview());
 	  movieGenre.setText(movie.getGenre());
 	  movieDate.setText(movie.getReleaseDate());
-	  movieInfo.setVisible(true);
-	  moviePane.toFront();
-	} else {
-	  movieInfo.setVisible(false);
-	  moviePane.toBack();
-	}
+	} else closeAllDetails();
   }
   
   @FXML
   void movieDetails00() {
-	movieDetails(movie00, poster00, movieInfo00, lblMovieTitle00, lblMovieDesc00, lblMovieGenre00, lblMovieDate00);
+	movieDetails(movie00, poster00, movieInfo00, lblMovieTitle00, lblMovieDesc00, lblMovieGenre00, lblMovieDate00, movieColumn00);
   }
   
   @FXML
   void movieDetails01() {
-	movieDetails(movie01, poster01, movieInfo01, lblMovieTitle01, lblMovieDesc01, lblMovieGenre01, lblMovieDate01);
+	movieDetails(movie01, poster01, movieInfo01, lblMovieTitle01, lblMovieDesc01, lblMovieGenre01, lblMovieDate01, movieColumn01);
   }
   
   @FXML
   void movieDetails02() {
-	movieDetails(movie02, poster02, movieInfo02, lblMovieTitle02, lblMovieDesc02, lblMovieGenre02, lblMovieDate02);
+	movieDetails(movie02, poster02, movieInfo02, lblMovieTitle02, lblMovieDesc02, lblMovieGenre02, lblMovieDate02, movieColumn02);
   }
   
   @FXML
   void movieDetails03() {
-	movieDetails(movie03, poster03, movieInfo03, lblMovieTitle03, lblMovieDesc03, lblMovieGenre03, lblMovieDate03);
+	movieDetails(movie03, poster03, movieInfo03, lblMovieTitle03, lblMovieDesc03, lblMovieGenre03, lblMovieDate03, movieColumn03);
   }
   
   @FXML
   void movieDetails04() {
-	movieDetails(movie04, poster04, movieInfo04, lblMovieTitle04, lblMovieDesc04, lblMovieGenre04, lblMovieDate04);
+	movieDetails(movie04, poster04, movieInfo04, lblMovieTitle04, lblMovieDesc04, lblMovieGenre04, lblMovieDate04, movieColumn04);
   }
   
   @FXML
   void movieDetails05() {
-	movieDetails(movie05, poster05, movieInfo05, lblMovieTitle05, lblMovieDesc05, lblMovieGenre05, lblMovieDate05);
+	movieDetails(movie05, poster05, movieInfo05, lblMovieTitle05, lblMovieDesc05, lblMovieGenre05, lblMovieDate05, movieColumn05);
   }
   
   @FXML
   void movieDetails06() {
-	movieDetails(movie06, poster06, movieInfo06, lblMovieTitle06, lblMovieDesc06, lblMovieGenre06, lblMovieDate06);
+	movieDetails(movie06, poster06, movieInfo06, lblMovieTitle06, lblMovieDesc06, lblMovieGenre06, lblMovieDate06, movieColumn06);
   }
   
   @FXML
   void movieDetails07() {
-	movieDetails(movie07, poster07, movieInfo07, lblMovieTitle07, lblMovieDesc07, lblMovieGenre07, lblMovieDate07);
+	movieDetails(movie07, poster07, movieInfo07, lblMovieTitle07, lblMovieDesc07, lblMovieGenre07, lblMovieDate07, movieColumn07);
   }
   
   @FXML
   void movieDetails08() {
-	movieDetails(movie08, poster08, movieInfo08, lblMovieTitle08, lblMovieDesc08, lblMovieGenre08, lblMovieDate08);
+	movieDetails(movie08, poster08, movieInfo08, lblMovieTitle08, lblMovieDesc08, lblMovieGenre08, lblMovieDate08, movieColumn08);
   }
   
   @FXML
   void movieDetails09() {
-	movieDetails(movie09, poster09, movieInfo09, lblMovieTitle09, lblMovieDesc09, lblMovieGenre09, lblMovieDate09);
+	movieDetails(movie09, poster09, movieInfo09, lblMovieTitle09, lblMovieDesc09, lblMovieGenre09, lblMovieDate09, movieColumn09);
   }
   
   @FXML
   void movieDetails10() {
-	movieDetails(movie10, poster10, movieInfo10, lblMovieTitle10, lblMovieDesc10, lblMovieGenre10, lblMovieDate10);
+	movieDetails(movie10, poster10, movieInfo10, lblMovieTitle10, lblMovieDesc10, lblMovieGenre10, lblMovieDate10, movieColumn10);
   }
   
   @FXML
   void movieDetails11() {
-	movieDetails(movie11, poster11, movieInfo11, lblMovieTitle11, lblMovieDesc11, lblMovieGenre11, lblMovieDate11);
+	movieDetails(movie11, poster11, movieInfo11, lblMovieTitle11, lblMovieDesc11, lblMovieGenre11, lblMovieDate11, movieColumn11);
   }
   
   @FXML
   void movieDetails12() {
-	movieDetails(movie12, poster12, movieInfo12, lblMovieTitle12, lblMovieDesc12, lblMovieGenre12, lblMovieDate12);
+	movieDetails(movie12, poster12, movieInfo12, lblMovieTitle12, lblMovieDesc12, lblMovieGenre12, lblMovieDate12, movieColumn12);
   }
   
   @FXML
   void movieDetails13() {
-	movieDetails(movie13, poster13, movieInfo13, lblMovieTitle13, lblMovieDesc13, lblMovieGenre13, lblMovieDate13);
+	movieDetails(movie13, poster13, movieInfo13, lblMovieTitle13, lblMovieDesc13, lblMovieGenre13, lblMovieDate13, movieColumn13);
   }
   
   @FXML
   void movieDetails14() {
-	movieDetails(movie14, poster14, movieInfo14, lblMovieTitle14, lblMovieDesc14, lblMovieGenre14, lblMovieDate14);
+	movieDetails(movie14, poster14, movieInfo14, lblMovieTitle14, lblMovieDesc14, lblMovieGenre14, lblMovieDate14, movieColumn14);
   }
   
   @FXML
   void movieDetails15() {
-	movieDetails(movie15, poster15, movieInfo15, lblMovieTitle15, lblMovieDesc15, lblMovieGenre15, lblMovieDate15);
+	movieDetails(movie15, poster15, movieInfo15, lblMovieTitle15, lblMovieDesc15, lblMovieGenre15, lblMovieDate15, movieColumn15);
   }
   
   @FXML
   void movieDetails16() {
-	movieDetails(movie16, poster16, movieInfo16, lblMovieTitle16, lblMovieDesc16, lblMovieGenre16, lblMovieDate16);
+	movieDetails(movie16, poster16, movieInfo16, lblMovieTitle16, lblMovieDesc16, lblMovieGenre16, lblMovieDate16, movieColumn16);
   }
   
   @FXML
   void movieDetails17() {
-	movieDetails(movie17, poster17, movieInfo17, lblMovieTitle17, lblMovieDesc17, lblMovieGenre17, lblMovieDate17);
+	movieDetails(movie17, poster17, movieInfo17, lblMovieTitle17, lblMovieDesc17, lblMovieGenre17, lblMovieDate17, movieColumn17);
   }
 }
 

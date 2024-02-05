@@ -13,19 +13,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="944.0" prefWidth="662.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.SearchTab">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.SearchTab">
    <center>
       <BorderPane BorderPane.alignment="CENTER">
          <top>
             <BorderPane BorderPane.alignment="CENTER">
-               <center>
-                  <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
-                     <children>
-                        <TextField fx:id="txtSearch" prefHeight="48.0" prefWidth="400.0" />
-                        <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchByTitle" prefHeight="48.0" prefWidth="48.0" />
-                     </children>
-                  </FlowPane>
-               </center>
                <top>
                   <Pane prefHeight="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
                </top>
@@ -38,6 +30,52 @@
                <right>
                   <Pane prefWidth="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
                </right>
+               <center>
+                  <GridPane style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="2">
+                           <children>
+                              <TextField fx:id="txtSearch" prefHeight="48.0" prefWidth="400.0" />
+                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchByTitle" prefHeight="48.0" prefWidth="48.0" />
+                           </children>
+                        </FlowPane>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="lblPage" text="Page: ">
+                                 <font>
+                                    <Font name="Inder" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblCurrentPage" text="##">
+                                 <font>
+                                    <Font name="Inder" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblBar" text=" / ">
+                                 <font>
+                                    <Font name="Inder" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblTotalPages" text="##">
+                                 <font>
+                                    <Font name="Inder" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </FlowPane>
+                     </children>
+                  </GridPane>
+               </center>
             </BorderPane>
          </top>
          <left>
@@ -47,14 +85,16 @@
             <Button fx:id="btnNextPage" mnemonicParsing="false" onAction="#nextPage" prefHeight="196.0" prefWidth="48.0" text="-&gt;" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <GridPane BorderPane.alignment="CENTER">
+            <GridPane alignment="CENTER" hgap="48.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
+                  <ColumnConstraints halignment="LEFT" maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                  <ColumnConstraints maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                  <ColumnConstraints maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                  <ColumnConstraints halignment="RIGHT" maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                  <ColumnConstraints halignment="RIGHT" maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                <ColumnConstraints halignment="RIGHT" maxWidth="540.0" minWidth="180.0" prefWidth="180.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints vgrow="SOMETIMES" />
@@ -66,20 +106,20 @@
                   <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane fx:id="movie00" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie00" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                      <ColumnConstraints fx:id="movieColumn00" hgrow="SOMETIMES" maxWidth="360.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster00" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails00" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster00" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails00" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo00" alignment="CENTER" onMouseClicked="#visitMoviePage00" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                           </columnConstraints>
                           <rowConstraints>
@@ -128,20 +168,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie01" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie01" alignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn01" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster01" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails01" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster01" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails01" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo01" alignment="CENTER" onMouseClicked="#visitMoviePage01" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="384.0" prefWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -190,20 +230,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie02" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie02" alignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn02" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster02" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails02" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster02" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails02" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo02" alignment="CENTER" onMouseClicked="#visitMoviePage02" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="384.0" prefWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -252,10 +292,10 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie03" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie03" alignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn03" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
@@ -264,7 +304,7 @@
                         <GridPane fx:id="movieInfo03" alignment="CENTER" onMouseClicked="#visitMoviePage03" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="384.0" prefWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -311,23 +351,23 @@
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ImageView fx:id="poster03" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails03" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster03" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails03" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie04" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie04" alignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn04" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster04" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails04" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster04" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails04" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo04" alignment="CENTER" onMouseClicked="#visitMoviePage04" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" minWidth="384.0" prefWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -376,20 +416,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie05" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                  <GridPane fx:id="movie05" alignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn05" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster05" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails05" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster05" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails05" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo05" alignment="CENTER" onMouseClicked="#visitMoviePage05" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -438,20 +478,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie06" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie06" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn06" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster06" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails06" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster06" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails06" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo06" alignment="CENTER" onMouseClicked="#visitMoviePage06" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -500,20 +540,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie07" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie07" alignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn07" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster07" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails07" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster07" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails07" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo07" alignment="CENTER" onMouseClicked="#visitMoviePage07" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -562,20 +602,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie08" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie08" alignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn08" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster08" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails08" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster08" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails08" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo08" alignment="CENTER" onMouseClicked="#visitMoviePage08" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -624,20 +664,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie09" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie09" alignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn09" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster09" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails09" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster09" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails09" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo09" alignment="CENTER" onMouseClicked="#visitMoviePage09" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -686,20 +726,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie10" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie10" alignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn10" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster10" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails10" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster10" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails10" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo10" alignment="CENTER" onMouseClicked="#visitMoviePage10" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -748,20 +788,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie11" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                  <GridPane fx:id="movie11" alignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn11" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster11" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails11" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster11" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails11" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo11" alignment="CENTER" onMouseClicked="#visitMoviePage11" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -810,20 +850,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie12" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie12" alignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn12" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster12" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails12" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster12" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails12" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo12" alignment="CENTER" onMouseClicked="#visitMoviePage12" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -872,20 +912,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie13" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie13" alignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn13" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster13" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails13" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster13" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails13" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo13" alignment="CENTER" onMouseClicked="#visitMoviePage13" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -934,20 +974,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie14" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie14" alignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                        <ColumnConstraints fx:id="movieColumn14" hgrow="SOMETIMES" maxWidth="360.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster14" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails14" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="poster14" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails14" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo14" alignment="CENTER" onMouseClicked="#visitMoviePage14" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -996,20 +1036,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie15" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie15" alignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn15" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster15" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails15" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster15" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails15" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo15" alignment="CENTER" onMouseClicked="#visitMoviePage15" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -1058,20 +1098,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie16" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie16" alignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn16" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster16" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails16" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster16" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails16" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo16" alignment="CENTER" onMouseClicked="#visitMoviePage16" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>
@@ -1120,20 +1160,20 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie17" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                  <GridPane fx:id="movie17" alignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints fx:id="movieColumn17" hgrow="SOMETIMES" maxWidth="360.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster17" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails17" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="poster17" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#movieDetails17" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <GridPane fx:id="movieInfo17" alignment="CENTER" onMouseClicked="#visitMoviePage17" style="-fx-background-color: rgb(222,184,135);">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="384.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="328.0" minWidth="328.0" prefWidth="328.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                            </columnConstraints>
                            <rowConstraints>

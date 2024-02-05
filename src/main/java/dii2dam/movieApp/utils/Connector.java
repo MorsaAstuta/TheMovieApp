@@ -26,6 +26,7 @@ public class Connector {
 	String responseBody = response.body().string();
 	Gson gson = new Gson();
 	APIResponse api = gson.fromJson(responseBody, APIResponse.class);
+	System.out.println(api.getResults().length);
 	
 	return api;
   }
