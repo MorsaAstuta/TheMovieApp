@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -16,68 +18,6 @@
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.SearchTab">
    <center>
       <BorderPane BorderPane.alignment="CENTER">
-         <top>
-            <BorderPane BorderPane.alignment="CENTER">
-               <top>
-                  <Pane prefHeight="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
-               </top>
-               <left>
-                  <Pane prefWidth="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
-               </left>
-               <bottom>
-                  <Pane prefHeight="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
-               </bottom>
-               <right>
-                  <Pane prefWidth="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
-               </right>
-               <center>
-                  <GridPane style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="2">
-                           <children>
-                              <TextField fx:id="txtSearch" prefHeight="48.0" prefWidth="400.0" />
-                              <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchByTitle" prefHeight="48.0" prefWidth="48.0" />
-                           </children>
-                        </FlowPane>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="1">
-                           <children>
-                              <Label fx:id="lblPage" text="Page: ">
-                                 <font>
-                                    <Font name="Inder" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblCurrentPage" text="##">
-                                 <font>
-                                    <Font name="Inder" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblBar" text=" / ">
-                                 <font>
-                                    <Font name="Inder" size="12.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lblTotalPages" text="##">
-                                 <font>
-                                    <Font name="Inder" size="12.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </FlowPane>
-                     </children>
-                  </GridPane>
-               </center>
-            </BorderPane>
-         </top>
          <left>
             <Button fx:id="btnPrevPage" mnemonicParsing="false" onAction="#prevPage" prefHeight="196.0" prefWidth="48.0" text="&lt;-" BorderPane.alignment="CENTER" />
          </left>
@@ -1225,6 +1165,142 @@
                </children>
             </GridPane>
          </center>
+         <top>
+            <GridPane BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+                <RowConstraints vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <BorderPane>
+                     <top>
+                        <Pane prefHeight="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
+                     </top>
+                     <left>
+                        <Pane prefWidth="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
+                     </left>
+                     <bottom>
+                        <Pane prefHeight="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
+                     </bottom>
+                     <right>
+                        <Pane prefWidth="16.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER" />
+                     </right>
+                     <center>
+                        <GridPane style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="2">
+                                 <children>
+                                    <TextField fx:id="txtSearch" prefHeight="48.0" prefWidth="400.0" />
+                                    <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchByTitle" prefHeight="48.0" prefWidth="48.0" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER" columnHalignment="CENTER" prefWrapLength="0.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label fx:id="lblPage" text="Page: ">
+                                       <font>
+                                          <Font name="Inder" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblCurrentPage" text="##">
+                                       <font>
+                                          <Font name="Inder" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblBar" text=" / ">
+                                       <font>
+                                          <Font name="Inder" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTotalPages" text="##">
+                                       <font>
+                                          <Font name="Inder" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </FlowPane>
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+                  <BorderPane GridPane.rowIndex="1">
+                     <center>
+                        <GridPane alignment="CENTER" style="-fx-background-color: brown;" BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="192.0" prefWidth="192.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ComboBox prefWidth="150.0" />
+                              <ComboBox prefWidth="150.0" GridPane.rowIndex="1" />
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Movies" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="TV series" />
+                                 </children>
+                              </FlowPane>
+                              <Label text="Global score:" GridPane.columnIndex="2" />
+                              <Label text="Length:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="3" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="5" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <Label text="Order by:" GridPane.columnIndex="7" />
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Title" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Global score" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Length" />
+                                 </children>
+                              </FlowPane>
+                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="9" GridPane.rowIndex="1">
+                                 <children>
+                                    <CheckBox mnemonicParsing="false" text="Release" />
+                                 </children>
+                              </FlowPane>
+                           </children>
+                        </GridPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </GridPane>
+         </top>
       </BorderPane>
    </center>
    <top>
