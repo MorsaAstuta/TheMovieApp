@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dii2dam.movieApp.models.Movie;
+
 public class Manager {
+  public static Movie movie;
   
   // Movie genres
   public static HashMap<Integer, String> movieGenreById = new HashMap<>();
@@ -51,6 +54,9 @@ public class Manager {
 	for (int i = 0; i < genreIds.size(); i++) {
 	  movieGenreById.put(genreIds.get(i), genreNames.get(i));
 	}
+	
+	
+	
   }
   
 }

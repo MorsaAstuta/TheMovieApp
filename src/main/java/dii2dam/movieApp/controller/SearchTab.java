@@ -21,6 +21,7 @@ import dii2dam.movieApp.App;
 import dii2dam.movieApp.models.APIResponse;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Connector;
+import dii2dam.movieApp.utils.Manager;
 
 public class SearchTab {
 
@@ -492,13 +493,12 @@ public class SearchTab {
 		}
 	}
 
-	void visitMoviePageGeneral() {
+	void visitMoviePageGeneral(int id) {
 		try {
-
-			movieDetails(movie00, poster00, movieInfo00, lblMovieTitle00, lblMovieDesc00, lblMovieGenre00,
-					lblMovieDate00, movieColumn00);
-
+			Manager.movie = movies[id];
 			App.setRoot("movieRecord");
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -507,74 +507,92 @@ public class SearchTab {
 
 	@FXML
 	void visitMoviePage00() {
+		visitMoviePageGeneral(0);
 	}
 
 	@FXML
 	void visitMoviePage01() {
+		visitMoviePageGeneral(1);
 	}
 
 	@FXML
 	void visitMoviePage02() {
+		visitMoviePageGeneral(2);
 	}
 
 	@FXML
 	void visitMoviePage03() {
+		visitMoviePageGeneral(3);
 	}
 
 	@FXML
 	void visitMoviePage04() {
+		visitMoviePageGeneral(4);
 	}
 
 	@FXML
 	void visitMoviePage05() {
+		visitMoviePageGeneral(5);
 	}
 
 	@FXML
 	void visitMoviePage06() {
+		visitMoviePageGeneral(6);
 	}
 
 	@FXML
 	void visitMoviePage07() {
+		visitMoviePageGeneral(7);
 	}
 
 	@FXML
 	void visitMoviePage08() {
+		visitMoviePageGeneral(8);
 	}
 
 	@FXML
 	void visitMoviePage09() {
+		visitMoviePageGeneral(9);
 	}
 
 	@FXML
 	void visitMoviePage10() {
+		visitMoviePageGeneral(10);
 	}
 
 	@FXML
 	void visitMoviePage11() {
+		visitMoviePageGeneral(11);
 	}
 	
 	@FXML
 	void visitMoviePage12() {
+		visitMoviePageGeneral(12);
 	}
 
 	@FXML
 	void visitMoviePage13() {
+		visitMoviePageGeneral(13);
 	}
 
 	@FXML
 	void visitMoviePage14() {
+		visitMoviePageGeneral(14);
 	}
 
 	@FXML
 	void visitMoviePage15() {
+		visitMoviePageGeneral(15);
 	}
 
 	@FXML
 	void visitMoviePage16() {
+		visitMoviePageGeneral(16);
 	}
 
 	@FXML
 	void visitMoviePage17() {
+		visitMoviePageGeneral(17);
 	}
   
   void closeAllDetails() {
