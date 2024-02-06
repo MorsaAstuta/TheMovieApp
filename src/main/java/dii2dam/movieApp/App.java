@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import dii2dam.movieApp.utils.HibernateUtils;
+import dii2dam.movieApp.utils.Manager;
 
 /**
  * JavaFX App
@@ -20,7 +21,8 @@ public class App extends Application {
 	public void start(Stage stage) throws IOException {
 		HibernateUtils.open();
 		HibernateUtils.begin();
-		scene = new Scene(loadFXML("movieRecord"), 1024, 1024);
+		Manager.loadGenres();
+		scene = new Scene(loadFXML("searchTab"), 1024, 1024);
 		stage.setMinHeight(1024);
 		stage.setMinWidth(1024);
 		stage.setMaximized(true);

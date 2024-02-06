@@ -1,23 +1,15 @@
 package dii2dam.movieApp.controller;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -406,7 +398,6 @@ public class SearchTab {
 	  try {
 		String url = movies[i].getPosterPath();
 		String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
-		System.out.println(url);
 		Image image = new Image(urlPoster);
 		posters.get(i).setImage(image);
 		movieByPoster.put(posters.get(i), movies[i]);
@@ -576,6 +567,7 @@ public class SearchTab {
 	  moviePane.toFront();
 	  movieColumn.setMaxWidth(400);
 	  movieInfo.setVisible(true);
+	  
 	  movieTitle.setText(movie.getTitle());
 	  movieDesc.setText(movie.getOverview());
 	  movieGenre.setText(movie.getGenre());

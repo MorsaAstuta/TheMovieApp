@@ -2,7 +2,6 @@ package dii2dam.movieApp.models;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import dii2dam.movieApp.utils.Manager;
 import javafx.scene.image.Image;
 
 public class Movie implements java.io.Serializable {
@@ -22,11 +22,20 @@ public class Movie implements java.io.Serializable {
   @Column(name="title")
   private String title;
   
+  @Column(name="name")
+  private String name;
+  
   @Column(name="company_id")
   private Long companyId;
   
+  @Column(name="media_type")
+  private String media_type;
+  
   @Column(name="release_date")
   private String release_date;
+  
+  @Column(name="first_air_date")
+  private String first_air_date;
   
   @Column(name="overview")
   private String overview;
@@ -59,7 +68,7 @@ public class Movie implements java.io.Serializable {
   private Set<Actor> actors = new HashSet<Actor>(0);
   
   @OneToMany(mappedBy="",cascade=CascadeType.ALL)
-  private Set<Genre> genres = new HashSet<Genre>(0);
+  private Set<Integer> genre_ids = new HashSet<Integer>(0);
   
   
   protected Movie() {
@@ -86,6 +95,12 @@ public class Movie implements java.io.Serializable {
   }
   
   public String getTitle() {
+	switch(this.media_type) {
+	case "tv":
+	  return name;
+	case "movie":
+	  return title;
+	}
 	return title;
   }
   
@@ -110,6 +125,12 @@ public class Movie implements java.io.Serializable {
   }
 
   public String getReleaseDate() {
+	switch(this.media_type) {
+	case "tv":
+	  return first_air_date;
+	case "movie":
+	  return release_date;
+	}
 	return release_date;
   }
 
@@ -175,8 +196,11 @@ public class Movie implements java.io.Serializable {
 
   public String getGenre() {
 	String output = "";
-	for (Genre genre: genres) {
-	  output += genre.getName();
+	int item = 0;
+	for (Integer genre_id: genre_ids) {
+	  output += Manager.movieGenreById.get(genre_id);
+	  item++;
+	  if (item != genre_ids.size()) output += ", ";
 	}
 	return output;
   }

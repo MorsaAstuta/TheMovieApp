@@ -36,7 +36,6 @@ public class User implements java.io.Serializable {
 	setPassword(password);
 	setSignDate(signDate);
 	setMail(mail);
-	Manager.addUser(this);
   }
   
   public String getUsername() {

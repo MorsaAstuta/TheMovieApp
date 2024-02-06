@@ -15,7 +15,7 @@ public class Connector {
   public static APIResponse connect(String search) throws IOException {
 	OkHttpClient client = new OkHttpClient();
 	
-	String apiUrl = "https://api.themoviedb.org/3/search/movie?query=" + search + "&include_adult=true&api_key=c2c8d3abe04e48336f9ab967e975df53";
+	String apiUrl = "https://api.themoviedb.org/3/search/multi?query=" + search + "&include_adult=true&api_key=c2c8d3abe04e48336f9ab967e975df53";
 	System.out.println(apiUrl);
 	Request request = new Request.Builder()
 		.url(apiUrl)
@@ -26,8 +26,9 @@ public class Connector {
 	String responseBody = response.body().string();
 	Gson gson = new Gson();
 	APIResponse api = gson.fromJson(responseBody, APIResponse.class);
-	System.out.println(api.getResults().length);
-	
+	for (Movie movie: api.getResults()) {
+	  movie.getGenre();
+	}
 	return api;
   }
 
