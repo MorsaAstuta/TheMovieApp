@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.MovieRecord">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.MovieRecord">
  <top>
       <GridPane style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -97,20 +97,28 @@
         </rowConstraints>
          <children>
 <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(80,63,39);">               <center>
-                  <GridPane prefHeight="226.0" prefWidth="365.0" BorderPane.alignment="CENTER">
+                  <GridPane alignment="TOP_CENTER" prefHeight="217.0" prefWidth="365.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="178.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="187.0" minWidth="10.0" prefWidth="187.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="20.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="90.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="338.0" minWidth="10.0" prefWidth="338.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="191.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="219.0" minHeight="10.0" prefHeight="195.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="0.0" prefHeight="151.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <GridPane prefHeight="75.0" prefWidth="187.0" GridPane.columnIndex="1">
+                        <GridPane prefHeight="75.0" prefWidth="187.0" GridPane.columnIndex="2">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="24.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="163.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="104.0" minHeight="40.0" prefHeight="68.0" vgrow="SOMETIMES" />
@@ -120,38 +128,99 @@
                               <RowConstraints maxHeight="119.0" minHeight="40.0" prefHeight="82.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label prefHeight="17.0" prefWidth="128.0" text="TITULO" textFill="WHITE" GridPane.columnIndex="1" />
-                              <Label text="GENRE" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="DIRECTOR" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="DATE" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="textTittle" prefHeight="17.0" prefWidth="291.0" text="TITULO" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="7" />
+                              <Label fx:id="textGenre" prefHeight="17.0" prefWidth="294.0" text="GENRE" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="1" />
+                              <Label fx:id="textDirector" prefHeight="17.0" prefWidth="293.0" text="DIRECTOR" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="7" GridPane.rowIndex="2" />
+                              <Label fx:id="textDate" prefHeight="17.0" prefWidth="157.0" text="DATE" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+                              <Pane prefHeight="45.0" prefWidth="108.0" style="-fx-background-color: WHITE;" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4">
+                                 <children>
+                                    <ImageView fitHeight="28.0" fitWidth="92.0" layoutX="-38.0" layoutY="-52.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fitHeight="24.0" fitWidth="91.0" layoutX="16.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="40.0" prefWidth="63.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                 <children>
+                                    <ImageView fitHeight="39.0" fitWidth="38.0" layoutX="3.0" layoutY="3.0">
+                                       <image>
+                                          <Image url="@img/icon/rem.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Pane prefHeight="33.0" prefWidth="35.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                                 <children>
+                                    <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="2.0" layoutY="6.0">
+                                       <image>
+                                          <Image url="@img/icon/unbookmarked.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label fx:id="textTime" prefHeight="17.0" prefWidth="132.0" text="TIME" textFill="WHITE" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
-                        <ImageView fitHeight="192.0" fitWidth="172.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2" />
+                        <Label fx:id="textSinopsis" alignment="TOP_LEFT" prefHeight="154.0" prefWidth="413.0" text="SINOPSIS" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <ImageView fx:id="posterMovie" fitHeight="212.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </center>
                <bottom>
-                  <GridPane prefHeight="140.0" prefWidth="365.0" BorderPane.alignment="CENTER">
+                  <GridPane prefHeight="54.0" prefWidth="365.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="60.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="117.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="0.0" prefWidth="51.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="107.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="62.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="10.0" prefWidth="28.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="147.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="0.0" prefWidth="34.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="142.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="18.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="108.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="SINOPSIS" GridPane.columnIndex="1" GridPane.columnSpan="2" />
-                        <Pane prefHeight="61.0" prefWidth="184.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Pane prefHeight="61.0" prefWidth="184.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Pane prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="1">
+                           <children>
+                              <Pane layoutX="119.0" prefHeight="44.0" prefWidth="44.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);">
+                                 <children>
+                                    <ImageView fitHeight="37.0" fitWidth="41.0" layoutX="2.0" layoutY="4.0">
+                                       <image>
+                                          <Image url="@img/icon/watch.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                              <Label layoutX="14.0" layoutY="14.0" text="Label" />
+                           </children></Pane>
+                        <Pane prefHeight="61.0" prefWidth="184.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </bottom>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <top>
+                  <GridPane prefHeight="130.0" prefWidth="447.0" style="-fx-background-color: RGB(169,139,95);" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="58.0" minWidth="10.0" prefWidth="44.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="103.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="69.0" minWidth="10.0" prefWidth="28.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="10.0" prefWidth="29.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="109.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="14.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="38.0" minHeight="9.0" prefHeight="9.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="imgActor1" fitHeight="99.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ImageView fx:id="imgActor2" fitHeight="99.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <ImageView fx:id="imgActor3" fitHeight="99.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <ImageView fx:id="imgActor4" fitHeight="99.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </top>
             </BorderPane>
          </children>
       </GridPane>
