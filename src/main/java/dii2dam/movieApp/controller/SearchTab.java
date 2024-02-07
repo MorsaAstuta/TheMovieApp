@@ -3,13 +3,18 @@ package dii2dam.movieApp.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,340 +26,525 @@ import dii2dam.movieApp.App;
 import dii2dam.movieApp.models.APIResponse;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Connector;
+import dii2dam.movieApp.utils.Manager;
 
 public class SearchTab {
 
 	private APIResponse response;
 
-	@FXML
-	private GridPane movie00;
-	@FXML
-	private ImageView poster00;
-	@FXML
-	private GridPane movieInfo00;
-	@FXML
-	private Label lblMovieTitle00;
-	@FXML
-	private Label lblMovieDesc00;
-	@FXML
-	private Label lblMovieGenre00;
-	@FXML
-	private Label lblMovieDate00;
-	@FXML
-	private ColumnConstraints movieColumn00;
+	    @FXML
+	    private Pane btnAccount;
 
-	@FXML
-	private GridPane movie01;
-	@FXML
-	private ImageView poster01;
-	@FXML
-	private GridPane movieInfo01;
-	@FXML
-	private Label lblMovieTitle01;
-	@FXML
-	private Label lblMovieDesc01;
-	@FXML
-	private Label lblMovieGenre01;
-	@FXML
-	private Label lblMovieDate01;
-	@FXML
-	private ColumnConstraints movieColumn01;
+	    @FXML
+	    private Pane btnMyList;
 
-	@FXML
-	private GridPane movie02;
-	@FXML
-	private ImageView poster02;
-	@FXML
-	private GridPane movieInfo02;
-	@FXML
-	private Label lblMovieTitle02;
-	@FXML
-	private Label lblMovieDesc02;
-	@FXML
-	private Label lblMovieGenre02;
-	@FXML
-	private Label lblMovieDate02;
-	@FXML
-	private ColumnConstraints movieColumn02;
+	    @FXML
+	    private Pane btnMyListExp;
 
-	@FXML
-	private GridPane movie03;
-	@FXML
-	private ImageView poster03;
-	@FXML
-	private GridPane movieInfo03;
-	@FXML
-	private Label lblMovieTitle03;
-	@FXML
-	private Label lblMovieDesc03;
-	@FXML
-	private Label lblMovieGenre03;
-	@FXML
-	private Label lblMovieDate03;
-	@FXML
-	private ColumnConstraints movieColumn03;
+	    @FXML
+	    private Button btnNextPage;
 
-	@FXML
-	private GridPane movie04;
-	@FXML
-	private ImageView poster04;
-	@FXML
-	private GridPane movieInfo04;
-	@FXML
-	private Label lblMovieTitle04;
-	@FXML
-	private Label lblMovieDesc04;
-	@FXML
-	private Label lblMovieGenre04;
-	@FXML
-	private Label lblMovieDate04;
-	@FXML
-	private ColumnConstraints movieColumn04;
+	    @FXML
+	    private Button btnPrevPage;
 
-	@FXML
-	private GridPane movie05;
-	@FXML
-	private ImageView poster05;
-	@FXML
-	private GridPane movieInfo05;
-	@FXML
-	private Label lblMovieTitle05;
-	@FXML
-	private Label lblMovieDesc05;
-	@FXML
-	private Label lblMovieGenre05;
-	@FXML
-	private Label lblMovieDate05;
-	@FXML
-	private ColumnConstraints movieColumn05;
+	    @FXML
+	    private Button btnSearch;
 
-	@FXML
-	private GridPane movie06;
-	@FXML
-	private ImageView poster06;
-	@FXML
-	private GridPane movieInfo06;
-	@FXML
-	private Label lblMovieTitle06;
-	@FXML
-	private Label lblMovieDesc06;
-	@FXML
-	private Label lblMovieGenre06;
-	@FXML
-	private Label lblMovieDate06;
-	@FXML
-	private ColumnConstraints movieColumn06;
+	    @FXML
+	    private CheckBox chkLength;
 
-	@FXML
-	private GridPane movie07;
-	@FXML
-	private ImageView poster07;
-	@FXML
-	private GridPane movieInfo07;
-	@FXML
-	private Label lblMovieTitle07;
-	@FXML
-	private Label lblMovieDesc07;
-	@FXML
-	private Label lblMovieGenre07;
-	@FXML
-	private Label lblMovieDate07;
-	@FXML
-	private ColumnConstraints movieColumn07;
+	    @FXML
+	    private CheckBox chkMovies;
 
-	@FXML
-	private GridPane movie08;
-	@FXML
-	private ImageView poster08;
-	@FXML
-	private GridPane movieInfo08;
-	@FXML
-	private Label lblMovieTitle08;
-	@FXML
-	private Label lblMovieDesc08;
-	@FXML
-	private Label lblMovieGenre08;
-	@FXML
-	private Label lblMovieDate08;
-	@FXML
-	private ColumnConstraints movieColumn08;
+	    @FXML
+	    private CheckBox chkRelease;
 
-	@FXML
-	private GridPane movie09;
-	@FXML
-	private ImageView poster09;
-	@FXML
-	private GridPane movieInfo09;
-	@FXML
-	private Label lblMovieTitle09;
-	@FXML
-	private Label lblMovieDesc09;
-	@FXML
-	private Label lblMovieGenre09;
-	@FXML
-	private Label lblMovieDate09;
-	@FXML
-	private ColumnConstraints movieColumn09;
+	    @FXML
+	    private CheckBox chkScore;
 
-	@FXML
-	private GridPane movie10;
-	@FXML
-	private ImageView poster10;
-	@FXML
-	private GridPane movieInfo10;
-	@FXML
-	private Label lblMovieTitle10;
-	@FXML
-	private Label lblMovieDesc10;
-	@FXML
-	private Label lblMovieGenre10;
-	@FXML
-	private Label lblMovieDate10;
-	@FXML
-	private ColumnConstraints movieColumn10;
+	    @FXML
+	    private CheckBox chkSeries;
 
-	@FXML
-	private GridPane movie11;
-	@FXML
-	private ImageView poster11;
-	@FXML
-	private GridPane movieInfo11;
-	@FXML
-	private Label lblMovieTitle11;
-	@FXML
-	private Label lblMovieDesc11;
-	@FXML
-	private Label lblMovieGenre11;
-	@FXML
-	private Label lblMovieDate11;
-	@FXML
-	private ColumnConstraints movieColumn11;
+	    @FXML
+	    private CheckBox chkTitle;
 
-	@FXML
-	private GridPane movie12;
-	@FXML
-	private ImageView poster12;
-	@FXML
-	private GridPane movieInfo12;
-	@FXML
-	private Label lblMovieTitle12;
-	@FXML
-	private Label lblMovieDesc12;
-	@FXML
-	private Label lblMovieGenre12;
-	@FXML
-	private Label lblMovieDate12;
-	@FXML
-	private ColumnConstraints movieColumn12;
+	    @FXML
+	    private ComboBox<String> cmbGenre1;
 
-	@FXML
-	private GridPane movie13;
-	@FXML
-	private ImageView poster13;
-	@FXML
-	private GridPane movieInfo13;
-	@FXML
-	private Label lblMovieTitle13;
-	@FXML
-	private Label lblMovieDesc13;
-	@FXML
-	private Label lblMovieGenre13;
-	@FXML
-	private Label lblMovieDate13;
-	@FXML
-	private ColumnConstraints movieColumn13;
+	    @FXML
+	    private ComboBox<String> cmbGenre2;
 
-	@FXML
-	private GridPane movie14;
-	@FXML
-	private ImageView poster14;
-	@FXML
-	private GridPane movieInfo14;
-	@FXML
-	private Label lblMovieTitle14;
-	@FXML
-	private Label lblMovieDesc14;
-	@FXML
-	private Label lblMovieGenre14;
-	@FXML
-	private Label lblMovieDate14;
-	@FXML
-	private ColumnConstraints movieColumn14;
+	    @FXML
+	    private ComboBox<Integer> cmbLengthMax;
 
-	@FXML
-	private GridPane movie15;
-	@FXML
-	private ImageView poster15;
-	@FXML
-	private GridPane movieInfo15;
-	@FXML
-	private Label lblMovieTitle15;
-	@FXML
-	private Label lblMovieDesc15;
-	@FXML
-	private Label lblMovieGenre15;
-	@FXML
-	private Label lblMovieDate15;
-	@FXML
-	private ColumnConstraints movieColumn15;
+	    @FXML
+	    private ComboBox<Integer> cmbLengthMin;
 
-	@FXML
-	private GridPane movie16;
-	@FXML
-	private ImageView poster16;
-	@FXML
-	private GridPane movieInfo16;
-	@FXML
-	private Label lblMovieTitle16;
-	@FXML
-	private Label lblMovieDesc16;
-	@FXML
-	private Label lblMovieGenre16;
-	@FXML
-	private Label lblMovieDate16;
-	@FXML
-	private ColumnConstraints movieColumn16;
+	    @FXML
+	    private ComboBox<Double> cmbScoreMax;
 
-	@FXML
-	private GridPane movie17;
-	@FXML
-	private ImageView poster17;
-	@FXML
-	private GridPane movieInfo17;
-	@FXML
-	private Label lblMovieTitle17;
-	@FXML
-	private Label lblMovieDesc17;
-	@FXML
-	private Label lblMovieGenre17;
-	@FXML
-	private Label lblMovieDate17;
-	@FXML
-	private ColumnConstraints movieColumn17;
+	    @FXML
+	    private ComboBox<Double> cmbScoreMin;
 
-	@FXML
-	private Label lblPage;
-	@FXML
-	private Label lblCurrentPage;
-	@FXML
-	private Label lblBar;
-	@FXML
-	private Label lblTotalPages;
+	    @FXML
+	    private BorderPane filterTab;
 
-	@FXML
-	private Button btnSearch;
+	    @FXML
+	    private RowConstraints filterTabRow;
 
-	@FXML
-	private Button btnNextPage;
+	    @FXML
+	    private Label lblBar;
 
-	@FXML
-	private Button btnPrevPage;
+	    @FXML
+	    private Label lblCurrentPage;
 
-	@FXML
-	private TextField txtSearch;
+	    @FXML
+	    private Label lblMovieDate00;
 
-	@FXML
-	private FlowPane searchResults;
+	    @FXML
+	    private Label lblMovieDate01;
+
+	    @FXML
+	    private Label lblMovieDate02;
+
+	    @FXML
+	    private Label lblMovieDate03;
+
+	    @FXML
+	    private Label lblMovieDate04;
+
+	    @FXML
+	    private Label lblMovieDate05;
+
+	    @FXML
+	    private Label lblMovieDate06;
+
+	    @FXML
+	    private Label lblMovieDate07;
+
+	    @FXML
+	    private Label lblMovieDate08;
+
+	    @FXML
+	    private Label lblMovieDate09;
+
+	    @FXML
+	    private Label lblMovieDate10;
+
+	    @FXML
+	    private Label lblMovieDate11;
+
+	    @FXML
+	    private Label lblMovieDate12;
+
+	    @FXML
+	    private Label lblMovieDate13;
+
+	    @FXML
+	    private Label lblMovieDate14;
+
+	    @FXML
+	    private Label lblMovieDate15;
+
+	    @FXML
+	    private Label lblMovieDate16;
+
+	    @FXML
+	    private Label lblMovieDate17;
+
+	    @FXML
+	    private Label lblMovieDesc00;
+
+	    @FXML
+	    private Label lblMovieDesc01;
+
+	    @FXML
+	    private Label lblMovieDesc02;
+
+	    @FXML
+	    private Label lblMovieDesc03;
+
+	    @FXML
+	    private Label lblMovieDesc04;
+
+	    @FXML
+	    private Label lblMovieDesc05;
+
+	    @FXML
+	    private Label lblMovieDesc06;
+
+	    @FXML
+	    private Label lblMovieDesc07;
+
+	    @FXML
+	    private Label lblMovieDesc08;
+
+	    @FXML
+	    private Label lblMovieDesc09;
+
+	    @FXML
+	    private Label lblMovieDesc10;
+
+	    @FXML
+	    private Label lblMovieDesc11;
+
+	    @FXML
+	    private Label lblMovieDesc12;
+
+	    @FXML
+	    private Label lblMovieDesc13;
+
+	    @FXML
+	    private Label lblMovieDesc14;
+
+	    @FXML
+	    private Label lblMovieDesc15;
+
+	    @FXML
+	    private Label lblMovieDesc16;
+
+	    @FXML
+	    private Label lblMovieDesc17;
+
+	    @FXML
+	    private Label lblMovieGenre00;
+
+	    @FXML
+	    private Label lblMovieGenre01;
+
+	    @FXML
+	    private Label lblMovieGenre02;
+
+	    @FXML
+	    private Label lblMovieGenre03;
+
+	    @FXML
+	    private Label lblMovieGenre04;
+
+	    @FXML
+	    private Label lblMovieGenre05;
+
+	    @FXML
+	    private Label lblMovieGenre06;
+
+	    @FXML
+	    private Label lblMovieGenre07;
+
+	    @FXML
+	    private Label lblMovieGenre08;
+
+	    @FXML
+	    private Label lblMovieGenre09;
+
+	    @FXML
+	    private Label lblMovieGenre10;
+
+	    @FXML
+	    private Label lblMovieGenre11;
+
+	    @FXML
+	    private Label lblMovieGenre12;
+
+	    @FXML
+	    private Label lblMovieGenre13;
+
+	    @FXML
+	    private Label lblMovieGenre14;
+
+	    @FXML
+	    private Label lblMovieGenre15;
+
+	    @FXML
+	    private Label lblMovieGenre16;
+
+	    @FXML
+	    private Label lblMovieGenre17;
+
+	    @FXML
+	    private Label lblMovieTitle00;
+
+	    @FXML
+	    private Label lblMovieTitle01;
+
+	    @FXML
+	    private Label lblMovieTitle02;
+
+	    @FXML
+	    private Label lblMovieTitle03;
+
+	    @FXML
+	    private Label lblMovieTitle04;
+
+	    @FXML
+	    private Label lblMovieTitle05;
+
+	    @FXML
+	    private Label lblMovieTitle06;
+
+	    @FXML
+	    private Label lblMovieTitle07;
+
+	    @FXML
+	    private Label lblMovieTitle08;
+
+	    @FXML
+	    private Label lblMovieTitle09;
+
+	    @FXML
+	    private Label lblMovieTitle10;
+
+	    @FXML
+	    private Label lblMovieTitle11;
+
+	    @FXML
+	    private Label lblMovieTitle12;
+
+	    @FXML
+	    private Label lblMovieTitle13;
+
+	    @FXML
+	    private Label lblMovieTitle14;
+
+	    @FXML
+	    private Label lblMovieTitle15;
+
+	    @FXML
+	    private Label lblMovieTitle16;
+
+	    @FXML
+	    private Label lblMovieTitle17;
+
+	    @FXML
+	    private Label lblPage;
+
+	    @FXML
+	    private Label lblTotalPages;
+
+	    @FXML
+	    private GridPane movie00;
+
+	    @FXML
+	    private GridPane movie01;
+
+	    @FXML
+	    private GridPane movie02;
+
+	    @FXML
+	    private GridPane movie03;
+
+	    @FXML
+	    private GridPane movie04;
+
+	    @FXML
+	    private GridPane movie05;
+
+	    @FXML
+	    private GridPane movie06;
+
+	    @FXML
+	    private GridPane movie07;
+
+	    @FXML
+	    private GridPane movie08;
+
+	    @FXML
+	    private GridPane movie09;
+
+	    @FXML
+	    private GridPane movie10;
+
+	    @FXML
+	    private GridPane movie11;
+
+	    @FXML
+	    private GridPane movie12;
+
+	    @FXML
+	    private GridPane movie13;
+
+	    @FXML
+	    private GridPane movie14;
+
+	    @FXML
+	    private GridPane movie15;
+
+	    @FXML
+	    private GridPane movie16;
+
+	    @FXML
+	    private GridPane movie17;
+
+	    @FXML
+	    private ColumnConstraints movieColumn00;
+
+	    @FXML
+	    private ColumnConstraints movieColumn01;
+
+	    @FXML
+	    private ColumnConstraints movieColumn02;
+
+	    @FXML
+	    private ColumnConstraints movieColumn03;
+
+	    @FXML
+	    private ColumnConstraints movieColumn04;
+
+	    @FXML
+	    private ColumnConstraints movieColumn05;
+
+	    @FXML
+	    private ColumnConstraints movieColumn06;
+
+	    @FXML
+	    private ColumnConstraints movieColumn07;
+
+	    @FXML
+	    private ColumnConstraints movieColumn08;
+
+	    @FXML
+	    private ColumnConstraints movieColumn09;
+
+	    @FXML
+	    private ColumnConstraints movieColumn10;
+
+	    @FXML
+	    private ColumnConstraints movieColumn11;
+
+	    @FXML
+	    private ColumnConstraints movieColumn12;
+
+	    @FXML
+	    private ColumnConstraints movieColumn13;
+
+	    @FXML
+	    private ColumnConstraints movieColumn14;
+
+	    @FXML
+	    private ColumnConstraints movieColumn15;
+
+	    @FXML
+	    private ColumnConstraints movieColumn16;
+
+	    @FXML
+	    private ColumnConstraints movieColumn17;
+
+	    @FXML
+	    private GridPane movieInfo00;
+
+	    @FXML
+	    private GridPane movieInfo01;
+
+	    @FXML
+	    private GridPane movieInfo02;
+
+	    @FXML
+	    private GridPane movieInfo03;
+
+	    @FXML
+	    private GridPane movieInfo04;
+
+	    @FXML
+	    private GridPane movieInfo05;
+
+	    @FXML
+	    private GridPane movieInfo06;
+
+	    @FXML
+	    private GridPane movieInfo07;
+
+	    @FXML
+	    private GridPane movieInfo08;
+
+	    @FXML
+	    private GridPane movieInfo09;
+
+	    @FXML
+	    private GridPane movieInfo10;
+
+	    @FXML
+	    private GridPane movieInfo11;
+
+	    @FXML
+	    private GridPane movieInfo12;
+
+	    @FXML
+	    private GridPane movieInfo13;
+
+	    @FXML
+	    private GridPane movieInfo14;
+
+	    @FXML
+	    private GridPane movieInfo15;
+
+	    @FXML
+	    private GridPane movieInfo16;
+
+	    @FXML
+	    private GridPane movieInfo17;
+
+	    @FXML
+	    private ColumnConstraints myListExtension;
+
+	    @FXML
+	    private ImageView poster00;
+
+	    @FXML
+	    private ImageView poster01;
+
+	    @FXML
+	    private ImageView poster02;
+
+	    @FXML
+	    private ImageView poster03;
+
+	    @FXML
+	    private ImageView poster04;
+
+	    @FXML
+	    private ImageView poster05;
+
+	    @FXML
+	    private ImageView poster06;
+
+	    @FXML
+	    private ImageView poster07;
+
+	    @FXML
+	    private ImageView poster08;
+
+	    @FXML
+	    private ImageView poster09;
+
+	    @FXML
+	    private ImageView poster10;
+
+	    @FXML
+	    private ImageView poster11;
+
+	    @FXML
+	    private ImageView poster12;
+
+	    @FXML
+	    private ImageView poster13;
+
+	    @FXML
+	    private ImageView poster14;
+
+	    @FXML
+	    private ImageView poster15;
+
+	    @FXML
+	    private ImageView poster16;
+
+	    @FXML
+	    private ImageView poster17;
+
+	    @FXML
+	    private BorderPane searchBar;
+
+	    @FXML
+	    private TextField txtSearch;
+	
 
 	Map<ImageView, Movie> movieByPoster = new HashMap<>();
 	Movie[] movies = null;
@@ -365,21 +555,21 @@ public class SearchTab {
 	private Integer totalPages = 0;
 
 	private void query(String query) {
-		try {
-			response = Connector.connect(query + "&page=" + (currentPage + 1));
-			totalPages = response.getTotalPages();
-			movies = response.getResults();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	  try {
+		response = Connector.connect(query + "&page=" + (currentPage + 1));
+		totalPages = response.getTotalPages();
+		movies = response.getResults();
+	  } catch (IOException e) {
+		e.printStackTrace();
+	  }
 	}
 
 	@FXML
 	void searchByTitle(ActionEvent event) throws IOException {
-		currentPage = 0;
-		currentSearch = txtSearch.getText();
-		query(currentSearch);
-		loadPage();
+	  currentPage = 0;
+	  currentSearch = txtSearch.getText();
+	  query(currentSearch);
+	  loadPage();
 	}
 
 	void loadPage() {
@@ -396,84 +586,67 @@ public class SearchTab {
 
 		// Reload
 		for (int i = 0; i < 18; i++) {
-			try {
-				String url = movies[i].getPosterPath();
-				String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
-				System.out.println(url);
-				Image image = new Image(urlPoster);
-				posters.get(i).setImage(image);
-				movieByPoster.put(posters.get(i), movies[i]);
-
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
-			} catch (Exception e) {
-				e.printStackTrace();
-				totalPages = currentPage;
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
-			}
+		  try {
+			String url = movies[i].getPosterPath();
+			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
+			Image image = new Image(urlPoster);
+			posters.get(i).setImage(image);
+			movieByPoster.put(posters.get(i), movies[i]);
+			
+			lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
+			lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
+		  } catch (Exception e) {
+			e.printStackTrace();
+			totalPages = currentPage;
+			lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
+			lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
+		  }
 		}
 
-		if (currentPage == 0)
-			btnPrevPage.setVisible(false);
-		else if (!btnPrevPage.isVisible())
-			btnPrevPage.setVisible(true);
+		if (currentPage == 0) btnPrevPage.setVisible(false);
+		else if (!btnPrevPage.isVisible()) btnPrevPage.setVisible(true);
 
-		if (currentPage == totalPages)
-			btnNextPage.setVisible(false);
-		else if (btnNextPage.isVisible())
-			btnNextPage.setVisible(true);
+		if (currentPage == totalPages) btnNextPage.setVisible(false);
+		else if (btnNextPage.isVisible()) btnNextPage.setVisible(true);
 	}
 
 	@FXML
 	void initialize() {
-		closeAllDetails();
-		lblMovieDesc00.setWrapText(true);
-		lblMovieDesc01.setWrapText(true);
-		lblMovieDesc02.setWrapText(true);
-		lblMovieDesc03.setWrapText(true);
-		lblMovieDesc04.setWrapText(true);
-		lblMovieDesc05.setWrapText(true);
-		lblMovieDesc06.setWrapText(true);
-		lblMovieDesc07.setWrapText(true);
-		lblMovieDesc08.setWrapText(true);
-		lblMovieDesc09.setWrapText(true);
-		lblMovieDesc10.setWrapText(true);
-		lblMovieDesc11.setWrapText(true);
-		lblMovieDesc12.setWrapText(true);
-		lblMovieDesc13.setWrapText(true);
-		lblMovieDesc14.setWrapText(true);
-		lblMovieDesc15.setWrapText(true);
-		lblMovieDesc16.setWrapText(true);
-		lblMovieDesc17.setWrapText(true);
+	  closeAllDetails();
+	  lblMovieDesc00.setWrapText(true); lblMovieDesc01.setWrapText(true); lblMovieDesc02.setWrapText(true);
+	  lblMovieDesc03.setWrapText(true); lblMovieDesc04.setWrapText(true); lblMovieDesc05.setWrapText(true);
+	  lblMovieDesc06.setWrapText(true); lblMovieDesc07.setWrapText(true); lblMovieDesc08.setWrapText(true);
+	  lblMovieDesc09.setWrapText(true); lblMovieDesc10.setWrapText(true); lblMovieDesc11.setWrapText(true);
+	  lblMovieDesc12.setWrapText(true); lblMovieDesc13.setWrapText(true); lblMovieDesc14.setWrapText(true);
+	  lblMovieDesc15.setWrapText(true); lblMovieDesc16.setWrapText(true); lblMovieDesc17.setWrapText(true);
 
-		posters.add(poster00);
-		posters.add(poster01);
-		posters.add(poster02);
-		posters.add(poster03);
-		posters.add(poster04);
-		posters.add(poster05);
-		posters.add(poster06);
-		posters.add(poster07);
-		posters.add(poster08);
-		posters.add(poster09);
-		posters.add(poster10);
-		posters.add(poster11);
-		posters.add(poster12);
-		posters.add(poster13);
-		posters.add(poster14);
-		posters.add(poster15);
-		posters.add(poster16);
-		posters.add(poster17);
+	  posters.add(poster00); posters.add(poster01); posters.add(poster02); posters.add(poster03); posters.add(poster04); posters.add(poster05);
+	  posters.add(poster06); posters.add(poster07); posters.add(poster08); posters.add(poster09); posters.add(poster10); posters.add(poster11);
+	  posters.add(poster12); posters.add(poster13); posters.add(poster14); posters.add(poster15); posters.add(poster16); posters.add(poster17);
 
-		btnPrevPage.setVisible(false);
-		btnNextPage.setVisible(false);
+	  btnPrevPage.setVisible(false);
+	  btnNextPage.setVisible(false);
+	  filterTabRow.setMaxHeight(1);
+	  filterTab.setVisible(false);
+	  
+	  cmbGenre1.getItems().addAll(Manager.getGenreList());
+	  cmbGenre2.getItems().addAll(Manager.getGenreList());
 
-		ImageView btnSearchIcon = new ImageView(
-				getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
-		btnSearchIcon.setFitHeight(32);
-		btnSearchIcon.setFitWidth(32);
-		btnSearch.setGraphic(btnSearchIcon);
+	  ImageView btnSearchIcon = new ImageView(getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
+	  btnSearchIcon.setFitHeight(32);
+	  btnSearchIcon.setFitWidth(32);
+	  btnSearch.setGraphic(btnSearchIcon);
+	}
+
+	@FXML
+	void showFilterTab() {
+	  if (!filterTab.isVisible()) {
+		filterTab.setVisible(true);
+		filterTabRow.setMaxHeight(64);
+	  } else {
+		filterTab.setVisible(false);
+		filterTabRow.setMaxHeight(1);
+	  }
 	}
 
 	@FXML
@@ -492,92 +665,107 @@ public class SearchTab {
 		}
 	}
 
-	void visitMoviePageGeneral() {
-		try {
-
-			movieDetails(movie00, poster00, movieInfo00, lblMovieTitle00, lblMovieDesc00, lblMovieGenre00,
-					lblMovieDate00, movieColumn00);
-
-			App.setRoot("movieRecord");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	void visitMoviePageGeneral(Integer moviePos) {
+	  try {
+		//Manager.setMovie(movies[moviePos]);
+		App.setRoot("movieRecord");
+	  } catch (IOException e) {
+		e.printStackTrace();
+	  }
 	}
 
 	@FXML
 	void visitMoviePage00() {
+	  visitMoviePageGeneral(0);
 	}
 
 	@FXML
 	void visitMoviePage01() {
+	  visitMoviePageGeneral(1);
 	}
 
 	@FXML
 	void visitMoviePage02() {
+	  visitMoviePageGeneral(2);
 	}
 
 	@FXML
 	void visitMoviePage03() {
+	  visitMoviePageGeneral(3);
 	}
 
 	@FXML
 	void visitMoviePage04() {
+	  visitMoviePageGeneral(4);
 	}
 
 	@FXML
 	void visitMoviePage05() {
+	  visitMoviePageGeneral(5);
 	}
 
 	@FXML
 	void visitMoviePage06() {
+	  visitMoviePageGeneral(6);
 	}
 
 	@FXML
 	void visitMoviePage07() {
+	  visitMoviePageGeneral(7);
 	}
 
 	@FXML
 	void visitMoviePage08() {
+	  visitMoviePageGeneral(8);
 	}
 
 	@FXML
 	void visitMoviePage09() {
+	  visitMoviePageGeneral(9);
 	}
 
 	@FXML
 	void visitMoviePage10() {
+	  visitMoviePageGeneral(10);
 	}
 
 	@FXML
 	void visitMoviePage11() {
+	  visitMoviePageGeneral(11);
 	}
 	
 	@FXML
 	void visitMoviePage12() {
+	  visitMoviePageGeneral(12);
 	}
 
 	@FXML
 	void visitMoviePage13() {
+	  visitMoviePageGeneral(13);
 	}
 
 	@FXML
 	void visitMoviePage14() {
+	  visitMoviePageGeneral(14);
 	}
 
 	@FXML
 	void visitMoviePage15() {
+	  visitMoviePageGeneral(15);
 	}
 
 	@FXML
 	void visitMoviePage16() {
+	  visitMoviePageGeneral(16);
 	}
 
 	@FXML
 	void visitMoviePage17() {
+	  visitMoviePageGeneral(17);
 	}
   
   void closeAllDetails() {
+	filterTab.setVisible(false); filterTabRow.setMaxHeight(1);
 	movieColumn00.setMaxWidth(1); movieColumn01.setMaxWidth(1); movieColumn02.setMaxWidth(1);
 	movieColumn03.setMaxWidth(1); movieColumn04.setMaxWidth(1); movieColumn05.setMaxWidth(1);
 	movieColumn06.setMaxWidth(1); movieColumn07.setMaxWidth(1); movieColumn08.setMaxWidth(1);
