@@ -1,12 +1,12 @@
 package dii2dam.movieApp.controller;
 
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 public class MovieRecord {
-	private static Movie movie;
 	@FXML
     private ImageView imgActor1;
 
@@ -39,17 +39,18 @@ public class MovieRecord {
 
     @FXML
     private Label textTittle;
-
-	
-    
-    public static Movie getMovie() {
-		return movie;
-	}
-
-	public static void setMovie(Movie movie) {
-		MovieRecord.movie = movie;
-	}
-    
+    private Movie movie;
+   
+    public void initialize() {
+    	movie = Manager.movie;
+    	if (movie != null) {
+            textTittle.setText(movie.getTitle());
+            textDate.setText(movie.getReleaseDate());
+            textDirector.setText(movie.getDirector());
+            textGenre.setText(movie.getGenre());
+            textSinopsis.setText(movie.getOverview());
+        }
+    }
     
     
     

@@ -204,5 +204,16 @@ public class Movie implements java.io.Serializable {
 	}
 	return output;
   }
+
+public String getDirector() {
+	return director;
+}
+
+public void setDirector(String director) {
+	this.director = director;
+}
+
+
+
 	
 }

@@ -105,7 +105,8 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="219.0" minHeight="10.0" prefHeight="195.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="158.0" minHeight="0.0" prefHeight="151.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="275.0" minHeight="0.0" prefHeight="275.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <GridPane prefHeight="75.0" prefWidth="187.0" GridPane.columnIndex="2">
@@ -159,7 +160,7 @@
                               <Label fx:id="textTime" prefHeight="17.0" prefWidth="132.0" text="TIME" textFill="WHITE" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
-                        <Label fx:id="textSinopsis" alignment="TOP_LEFT" prefHeight="154.0" prefWidth="413.0" text="SINOPSIS" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label fx:id="textSinopsis" alignment="TOP_LEFT" prefHeight="230.0" prefWidth="417.0" text="SINOPSIS" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                         <ImageView fx:id="posterMovie" fitHeight="212.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>

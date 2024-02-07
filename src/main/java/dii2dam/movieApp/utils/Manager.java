@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dii2dam.movieApp.models.Movie;
+
 public class Manager {
+  public static Movie movie;
   
   // Movie genres
   public static HashMap<Integer, String> movieGenreById = new HashMap<>();
@@ -12,9 +15,10 @@ public class Manager {
   // TV genres
   public static HashMap<Integer, String> tvGenreById = new HashMap<>();
   
+  public static List<Integer> genreIds = new ArrayList<>();
+  public static List<String> genreNames = new ArrayList<>();
+  
   public static void loadGenres() {
-	List<Integer> genreIds = new ArrayList<>();
-	List<String> genreNames = new ArrayList<>();
 	genreIds.add(12); genreNames.add("Adventure");
 	genreIds.add(14); genreNames.add("Fantasy");
 	genreIds.add(16); genreNames.add("Animation");
@@ -52,5 +56,47 @@ public class Manager {
 	  movieGenreById.put(genreIds.get(i), genreNames.get(i));
 	}
   }
+
+  public static Movie getMovie() {
+    return movie;
+  }
+
+  public static void setMovie(Movie movie) {
+    Manager.movie = movie;
+  }
+
+  public static HashMap<Integer, String> getMovieGenreById() {
+    return movieGenreById;
+  }
+
+  public static void setMovieGenreById(HashMap<Integer, String> movieGenreById) {
+    Manager.movieGenreById = movieGenreById;
+  }
+
+  public static HashMap<Integer, String> getTvGenreById() {
+    return tvGenreById;
+  }
+
+  public static void setTvGenreById(HashMap<Integer, String> tvGenreById) {
+    Manager.tvGenreById = tvGenreById;
+  }
+
+  public static List<Integer> getGenreIds() {
+    return genreIds;
+  }
+
+  public static void setGenreIds(List<Integer> genreIds) {
+    Manager.genreIds = genreIds;
+  }
+
+  public static List<String> getGenreNames() {
+    return genreNames;
+  }
+
+  public static void setGenreNames(List<String> genreNames) {
+    Manager.genreNames = genreNames;
+  }
+  
+  
   
 }

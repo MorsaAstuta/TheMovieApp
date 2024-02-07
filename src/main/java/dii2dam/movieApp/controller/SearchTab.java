@@ -629,8 +629,8 @@ public class SearchTab {
 	  filterTabRow.setMaxHeight(1);
 	  filterTab.setVisible(false);
 	  
-	  cmbGenre1.getItems().addAll(Manager.getGenreList());
-	  cmbGenre2.getItems().addAll(Manager.getGenreList());
+	  cmbGenre1.getItems().addAll(Manager.getGenreNames());
+	  cmbGenre2.getItems().addAll(Manager.getGenreNames());
 
 	  ImageView btnSearchIcon = new ImageView(getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
 	  btnSearchIcon.setFitHeight(32);
@@ -664,14 +664,14 @@ public class SearchTab {
 			loadPage();
 		}
 	}
-
-	void visitMoviePageGeneral(Integer moviePos) {
-	  try {
-		//Manager.setMovie(movies[moviePos]);
-		App.setRoot("movieRecord");
-	  } catch (IOException e) {
-		e.printStackTrace();
-	  }
+	
+	void visitMoviePageGeneral(int id) {
+		try {
+			Manager.setMovie(movies[id]);;
+			App.setRoot("movieRecord");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
