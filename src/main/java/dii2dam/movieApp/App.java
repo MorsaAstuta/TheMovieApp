@@ -19,15 +19,18 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		HibernateUtils.open();
-		HibernateUtils.begin();
-		Manager.loadGenres();
-		scene = new Scene(loadFXML("searchTab"), 1024, 1024);
-		stage.setMinHeight(1024);
-		stage.setMinWidth(1024);
-		stage.setMaximized(true);
-		stage.setScene(scene);
-		stage.show();
+	  
+	  // Initialization
+	  HibernateUtils.open();
+	  HibernateUtils.begin();
+	  Manager.loadGenres();
+	  
+	  scene = new Scene(loadFXML("searchTab"), 1024, 1024);
+	  stage.setMinHeight(1024);
+	  stage.setMinWidth(1024);
+	  stage.setMaximized(true);
+	  stage.setScene(scene);
+	  stage.show();
 	}
 
 	public static void setRoot(String fxml) throws IOException {

@@ -1,5 +1,7 @@
 package dii2dam.movieApp.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -69,22 +71,22 @@ public class SearchTab {
 	    private CheckBox chkTitle;
 
 	    @FXML
-	    private ComboBox<String> cmbGenre1;
+	    private ComboBox<String> cmbGenre1 = new ComboBox<>();
 
 	    @FXML
-	    private ComboBox<String> cmbGenre2;
+	    private ComboBox<String> cmbGenre2 = new ComboBox<>();
 
 	    @FXML
-	    private ComboBox<Integer> cmbLengthMax;
+	    private ComboBox<Integer> cmbLengthMax = new ComboBox<>();
 
 	    @FXML
-	    private ComboBox<Integer> cmbLengthMin;
+	    private ComboBox<Integer> cmbLengthMin = new ComboBox<>();
 
 	    @FXML
-	    private ComboBox<Double> cmbScoreMax;
+	    private ComboBox<Double> cmbScoreMax = new ComboBox<>();
 
 	    @FXML
-	    private ComboBox<Double> cmbScoreMin;
+	    private ComboBox<Double> cmbScoreMin = new ComboBox<>();
 
 	    @FXML
 	    private BorderPane filterTab;
@@ -626,11 +628,22 @@ public class SearchTab {
 
 	  btnPrevPage.setVisible(false);
 	  btnNextPage.setVisible(false);
-	  filterTabRow.setMaxHeight(1);
-	  filterTab.setVisible(false);
 	  
-	  cmbGenre1.getItems().addAll(Manager.getGenreNames());
-	  cmbGenre2.getItems().addAll(Manager.getGenreNames());
+	  btnMyListExp.setVisible(false);
+	  
+	  ObservableList<String> genreNames = FXCollections.observableArrayList();
+	  
+	  cmbGenre1.setItems(genreNames);
+	  cmbGenre2.setItems(genreNames);
+	  
+	  for (String genre: Manager.getGenreNames()) {
+		System.out.println(genre);
+		genreNames.add(genre);
+	  }
+	  
+	  for (String genre: genreNames) {
+		System.out.println(genre);
+	  }
 
 	  ImageView btnSearchIcon = new ImageView(getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
 	  btnSearchIcon.setFitHeight(32);
@@ -664,14 +677,42 @@ public class SearchTab {
 			loadPage();
 		}
 	}
+
+	@FXML
+	void goToAccount() {
+	  try {
+		App.setRoot("accountPage");
+	  } catch (IOException e) {
+		e.printStackTrace();
+	  }
+	}
+
+	@FXML
+	void expandMyList() {
+	  btnMyListExp.setVisible(true);
+	}
+
+	@FXML
+	void retractMyList() {
+	  btnMyListExp.setVisible(false);
+	}
+
+	@FXML
+	void goToMyList() {
+	  try {
+		App.setRoot("searchTab");
+	  } catch (IOException e) {
+		e.printStackTrace();
+	  }
+	}
 	
 	void visitMoviePageGeneral(int id) {
-		try {
-			Manager.setMovie(movies[id]);;
-			App.setRoot("movieRecord");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	  try {
+		Manager.setMovie(movies[id]);;
+		App.setRoot("movieRecord");
+	  } catch (IOException e) {
+		e.printStackTrace();
+	  }
 	}
 
 	@FXML

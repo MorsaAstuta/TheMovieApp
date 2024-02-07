@@ -49,12 +49,6 @@ public class Manager {
 	for (int i = 0; i < genreIds.size(); i++) {
 	  movieGenreById.put(genreIds.get(i), genreNames.get(i));
 	}
-	
-	genreIds.clear();
-	genreNames.clear();
-	for (int i = 0; i < genreIds.size(); i++) {
-	  movieGenreById.put(genreIds.get(i), genreNames.get(i));
-	}
   }
 
   public static Movie getMovie() {
