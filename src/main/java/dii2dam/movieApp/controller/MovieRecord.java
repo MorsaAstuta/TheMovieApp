@@ -1,9 +1,13 @@
 package dii2dam.movieApp.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class MovieRecord {
@@ -39,6 +43,7 @@ public class MovieRecord {
 
     @FXML
     private Label textTittle;
+    
     private Movie movie;
    
     public void initialize() {
@@ -49,7 +54,14 @@ public class MovieRecord {
             textDirector.setText(movie.getDirector());
             textGenre.setText(movie.getGenre());
             textSinopsis.setText(movie.getOverview());
+            String url = movie.getPosterPath();
+			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
+			Image image = new Image(urlPoster);
+			posterMovie.setImage(image);
+			 
         }
+    	 
+         
     }
     
     

@@ -55,6 +55,9 @@ public class Movie implements java.io.Serializable {
   @Column(name="review")
   private String review;
   
+  @Column(name="time")
+  private int time;
+  
   @Column(name="director")
   private String director;
   
@@ -74,7 +77,7 @@ public class Movie implements java.io.Serializable {
   protected Movie() {
   }
 
-  public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath, String watchDate, Double globalRating, Double userRating, String review, Long locationId) {
+  public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath, String watchDate, Double globalRating, Double userRating, String review, Long locationId, String director, int time) {
 	setId(id);
 	setTitle(title);
 	setCompanyId(companyId);
@@ -86,9 +89,20 @@ public class Movie implements java.io.Serializable {
 	setUserRating(userRating);
 	setReview(review);
 	setLocationId(locationId);
+	setDirector(director);
+	setTime(time);
+	
   }
   
-  public Movie(String title, String releaseDate, String overview) {
+  public int getTime() {
+	return time;
+}
+
+public void setTime(int time) {
+	this.time = time;
+}
+
+public Movie(String title, String releaseDate, String overview) {
 	setTitle(title);
 	setReleaseDate(releaseDate);
 	setOverview(overview);
@@ -107,6 +121,7 @@ public class Movie implements java.io.Serializable {
   public void setTitle(String title) {
 	this.title = title;
   }
+  
   
   public Long getId() {
 	return id;
