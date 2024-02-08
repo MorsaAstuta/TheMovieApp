@@ -58,9 +58,6 @@ public class Movie implements java.io.Serializable {
   @Column(name="time")
   private int time;
   
-  @Column(name="director")
-  private String director;
-  
   @OneToMany(mappedBy="",cascade=CascadeType.ALL)
   private Set<Review> reviews = new HashSet<Review>(0);
 
@@ -72,12 +69,14 @@ public class Movie implements java.io.Serializable {
   
   @OneToMany(mappedBy="",cascade=CascadeType.ALL)
   private Set<Integer> genre_ids = new HashSet<Integer>(0);
-  
+ 
+  @Column
+  private Director director;
   
   protected Movie() {
   }
 
-  public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath, String watchDate, Double globalRating, Double userRating, String review, Long locationId, String director, int time) {
+  public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath, String watchDate, Double globalRating, Double userRating, String review, Long locationId,Director director) {
 	setId(id);
 	setTitle(title);
 	setCompanyId(companyId);
@@ -90,16 +89,17 @@ public class Movie implements java.io.Serializable {
 	setReview(review);
 	setLocationId(locationId);
 	setDirector(director);
-	setTime(time);
 	
   }
   
-  public int getTime() {
-	return time;
+
+
+public Director getDirector() {
+	return director;
 }
 
-public void setTime(int time) {
-	this.time = time;
+public void setDirector(Director director) {
+	this.director = director;
 }
 
 public Movie(String title, String releaseDate, String overview) {
@@ -220,13 +220,7 @@ public Movie(String title, String releaseDate, String overview) {
 	return output;
   }
 
-public String getDirector() {
-	return director;
-}
 
-public void setDirector(String director) {
-	this.director = director;
-}
 
 
 

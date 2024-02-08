@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import dii2dam.movieApp.App;
+import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
@@ -101,9 +102,14 @@ public class MovieRecord {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
 			textDate.setText(
 					movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
+			if (movie != null && movie.getDirector() != null) {
+			    textDirector.setText(movie.getDirector().getName());
+			} else {
+			    textDirector.setText("Director no disponible");
+			}
 			// No carga
-			textDirector.setText(movie.getDirector() != null ? movie.getDirector() : "Director no especificado");
-			textTime.setText(String.valueOf(movie.getTime()));
+
+			//textTime.setText(String.valueOf(movie.getTime()));
 
 			////////////
 			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");

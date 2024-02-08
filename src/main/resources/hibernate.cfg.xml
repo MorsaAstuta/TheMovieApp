@@ -18,5 +18,7 @@
     	<mapping class="dii2dam.movieApp.models.User"/>
     	<mapping class="dii2dam.movieApp.models.Movie"/>
     	<mapping class="dii2dam.movieApp.models.Review"/>
+    	    	<mapping class="dii2dam.movieApp.models.Director"/>
+    	
     </session-factory>
 </hibernate-configuration>
