@@ -204,6 +204,7 @@ public class SearchTab {
 
 	    @FXML
 	    private Label lblMovieDesc16;
+	    
 
 	    @FXML
 	    private Label lblMovieDesc17;
@@ -824,14 +825,13 @@ public class SearchTab {
 	movie14.toBack(); movie13.toBack(); movie12.toBack(); movie15.toBack(); movie16.toBack(); movie17.toBack();
   }
   
-  void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate, ColumnConstraints movieColumn) {
+  void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate, ColumnConstraints movieColumn ) {
 	Movie movie = movieByPoster.get(poster);
 	if (movieColumn.getMaxWidth() != 400) {
 	  closeAllDetails();
 	  moviePane.toFront();
 	  movieColumn.setMaxWidth(400);
 	  movieInfo.setVisible(true);
-	  
 	  movieTitle.setText(movie.getTitle());
 	  movieDesc.setText(movie.getOverview());
 	  movieGenre.setText(movie.getGenre());

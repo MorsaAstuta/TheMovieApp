@@ -1,5 +1,8 @@
 package dii2dam.movieApp.controller;
 
+import java.io.IOException;
+
+import dii2dam.movieApp.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +33,15 @@ public class AccountPage {
 
   @FXML
   private Label ifFullUsername;
+  @FXML
+  void loadHomePage(MouseEvent event) {
+	  try {
+		App.setRoot("SearchTab");
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+  }
 
   @FXML
   void addMovie(MouseEvent event) {

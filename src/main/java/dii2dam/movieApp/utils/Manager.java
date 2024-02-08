@@ -3,8 +3,14 @@ package dii2dam.movieApp.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.google.gson.Gson;
 
 import dii2dam.movieApp.models.Movie;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Manager {
   public static Movie movie;
@@ -17,6 +23,7 @@ public class Manager {
   
   public static List<Integer> genreIds = new ArrayList<>();
   public static List<String> genreNames = new ArrayList<>();
+  
   
   public static void loadGenres() {
 	genreIds.add(12); genreNames.add("Adventure");
