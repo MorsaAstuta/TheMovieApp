@@ -559,7 +559,7 @@ public class SearchTab {
 
 	private void query(String query) {
 	  try {
-		response = Connector.connect(query + "&page=" + (currentPage + 1));
+		response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
 		totalPages = response.getTotalPages();
 		movies = response.getResults();
 	  } catch (IOException e) {

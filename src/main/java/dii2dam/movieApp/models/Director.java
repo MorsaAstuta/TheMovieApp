@@ -1,7 +1,5 @@
 package dii2dam.movieApp.models;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,21 +14,20 @@ public class Director implements java.io.Serializable {
 	private int id;
 	@Column(name = "name")
 	private  String name;
-	@Column(name = "surname")
-	private String surname;
-	@Column(name = "birth_date")
-	private Date birth_date;
+	
+	private String known_for_department;
+	
+	
 
 	public Director() {
 
 	}
 
-	public Director(int id, String name, String surname, Date birth_date) {
+	public Director(int id, String name, String known_for_department) {
 		super();
 		setId(id);
 		setName(name);
-		setSurname(surname);
-		setBirth_date(birth_date);
+		setKnownForDepartment(known_for_department);
 	}
 
 	public int getId() {
@@ -49,20 +46,12 @@ public class Director implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getKnownForDepartment() {
+		return known_for_department;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public Date getBirth_date() {
-		return birth_date;
-	}
-
-	public void setBirth_date(Date birth_date) {
-		this.birth_date = birth_date;
+	public void setKnownForDepartment(String known_for_department) {
+		this.known_for_department = known_for_department;
 	}
 
 }

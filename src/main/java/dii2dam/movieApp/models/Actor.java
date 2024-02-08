@@ -10,35 +10,20 @@ public class Actor {
 	private Long id;
 	@Column(name = "name")
 	private String name;
-	@Column(name = "surname")
-	private String surname;
-	@Column(name = "birth_date")
-	private String birthdate;
-	 @Column(name="actor_path")
-	  private String actor_path;
-	 
-
+	@Column(name="profile_path")
+	private String profile_path;
 	
-
-	public String getActor_path() {
-		return actor_path;
-	}
-
-	public void setActor_path(String actor_path) {
-		this.actor_path = actor_path;
-	}
+	private String known_for_department;
 
 	public Actor() {
 		
 	}
 	
-	public Actor(Long id, String name, String surname, String birthdate) {
+	public Actor(Long id, String name, String profile_path) {
 		super();
 		setId(id);
 		setName(name);
-		setSurname(surname);
-		setBirthdate(birthdate);
-		setActor_path(actor_path);
+		setProfilePath(profile_path);
 	}
 
 	public Long getId() {
@@ -57,20 +42,21 @@ public class Actor {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getProfilePath() {
+		return profile_path;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setProfilePath(String profile_path) {
+		this.profile_path = profile_path;
 	}
 
-	public String getBirthdate() {
-		return birthdate;
+	public String getKnownForDepartment() {
+		return known_for_department;
 	}
 
-	public void setBirthdate(String birthdate) {
-		this.birthdate = birthdate;
+	public void setKnownForDepartment(String known_for_department) {
+		this.known_for_department = known_for_department;
 	}
+	
 
 }

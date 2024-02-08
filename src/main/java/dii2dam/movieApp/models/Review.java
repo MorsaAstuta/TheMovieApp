@@ -8,51 +8,69 @@ import javax.persistence.Id;
 
 @Entity
 public class Review {
-	
-  @Id
-  @Column(name="id")
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
 
-  @Column(name="user_id")
-  private Long userId;
+  @Id
+  @Column(name="username")
+  private String username;
 	
   @Column(name="content")
   private String content;
 	
-  @Column(name="post_date")
-  private String postDate;
+  @Column(name="avatar_path")
+  private String avatar_path;
+	
+  @Column(name="created_at")
+  private String created_at;
+	
+  @Column(name="movie_id")
+  private Long movie_id;
 
-  public Review(long userId, String content, String postDate) {
-	setUserId(userId);
-	setContent(content);
-	setPostDate(postDate);
+  public Review(String username, String content, String avatar_path, String created_at, Long movie_id) {
+  	setUsername(username);
+  	setContent(content);
+  	setAvatar_path(avatar_path);
+  	setCreated_at(created_at);
+  	setMovie_id(movie_id);
   }
 
-  public Long getUserId() {
-    return userId;
-  }
+	public String getUsername() {
+		return username;
+	}
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  public String getContent() {
-    return content;
-  }
+	public String getContent() {
+		return content;
+	}
 
-  public void setContent(String content) {
-    this.content = content;
-  }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-  public String getPostDate() {
-    return postDate;
-  }
+	public String getAvatar_path() {
+		return avatar_path;
+	}
 
-  public void setPostDate(String postDate) {
-    this.postDate = postDate;
-  }
+	public void setAvatar_path(String avatar_path) {
+		this.avatar_path = avatar_path;
+	}
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+	public Long getMovie_id() {
+		return movie_id;
+	}
+
+	public void setMovie_id(Long movie_id) {
+		this.movie_id = movie_id;
+	}
   
-  
-
 }

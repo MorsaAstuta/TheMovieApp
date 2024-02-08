@@ -93,11 +93,12 @@ public class Movie implements java.io.Serializable {
 		setDirector(director);
 
 	}
+	
 	private String getActorImageUrl(Set<Actor> actors) {
 	    String imageUrl = "";
 	    for (Actor actor : actors) {
 	        // Concatena las URL de las imágenes de los actores
-	        imageUrl += "https://image.tmdb.org/t/p/w500" + actor.getActor_path() + ", ";
+	        imageUrl += "https://image.tmdb.org/t/p/w500" + actor.getProfilePath() + ", ";
 	    }
 	    // Elimina la última coma y espacio
 	    if (!imageUrl.isEmpty()) {
@@ -232,5 +233,86 @@ public class Movie implements java.io.Serializable {
 		}
 		return output;
 	}
+
+	public String getName() {
+	  return name;
+	}
+
+	public void setName(String name) {
+	  this.name = name;
+	}
+
+	public String getMedia_type() {
+	  return media_type;
+	}
+
+	public void setMedia_type(String media_type) {
+	  this.media_type = media_type;
+	}
+
+	public String getRelease_date() {
+	  return release_date;
+	}
+
+	public void setRelease_date(String release_date) {
+	  this.release_date = release_date;
+	}
+
+	public String getFirst_air_date() {
+	  return first_air_date;
+	}
+
+	public void setFirst_air_date(String first_air_date) {
+	  this.first_air_date = first_air_date;
+	}
+
+	public String getPoster_path() {
+	  return poster_path;
+	}
+
+	public void setPoster_path(String poster_path) {
+	  this.poster_path = poster_path;
+	}
+
+	public Double getVote_average() {
+	  return vote_average;
+	}
+
+	public void setVote_average(Double vote_average) {
+	  this.vote_average = vote_average;
+	}
+
+	public int getTime() {
+	  return time;
+	}
+
+	public void setTime(int time) {
+	  this.time = time;
+	}
+
+	public Set<Review> getReviews() {
+	  return reviews;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+	  this.reviews = reviews;
+	}
+
+	public Set<Actor> getActors() {
+	  return actors;
+	}
+
+	public void setActors(Set<Actor> actors) {
+	  this.actors = actors;
+	}
+
+	public Set<Integer> getGenre_ids() {
+	  return genre_ids;
+	}
+
+	public void setGenre_ids(Set<Integer> genre_ids) {
+	  this.genre_ids = genre_ids;
+	}
+	
 
 }

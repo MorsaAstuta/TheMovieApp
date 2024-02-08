@@ -43,6 +43,7 @@ public class Manager {
 	genreIds.add(10402); genreNames.add("Music");
 	genreIds.add(10749); genreNames.add("Romance");
 	genreIds.add(10751); genreNames.add("Family");
+	genreIds.add(10752); genreNames.add("War");
 	genreIds.add(10759); genreNames.add("Action & Adventure");
 	genreIds.add(10762); genreNames.add("Kids");
 	genreIds.add(10763); genreNames.add("News");
@@ -52,7 +53,6 @@ public class Manager {
 	genreIds.add(10767); genreNames.add("Talk");
 	genreIds.add(10768); genreNames.add("War & Politics");
 	genreIds.add(10770); genreNames.add("TV Movie");
-	genreIds.add(10752); genreNames.add("War");
 	for (int i = 0; i < genreIds.size(); i++) {
 	  movieGenreById.put(genreIds.get(i), genreNames.get(i));
 	}
