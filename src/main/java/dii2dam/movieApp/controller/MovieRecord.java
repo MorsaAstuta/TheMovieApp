@@ -1,10 +1,12 @@
 package dii2dam.movieApp.controller;
 
-import java.io.File;
 import java.io.IOException;
 
+import java.util.Set;
+
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.models.Director;
+import dii2dam.movieApp.models.Actor;
+
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
@@ -47,14 +49,15 @@ public class MovieRecord {
 
 	@FXML
 	private Label textGenre;
+	private Actor actor;
 
 	@FXML
 	private Label textSinopsis;
 	@FXML
 	private Pane btnMyList;
-	
+
 	@FXML
-	private ImageView ratingMovie;
+	private Label rate;
 
 	@FXML
 	private Label textTime;
@@ -84,18 +87,18 @@ public class MovieRecord {
 			e.printStackTrace();
 		}
 	}
-		
-	 
 
-	 @FXML
-	    void retractMyList(MouseEvent event) {
-		 btnMyList.setVisible(false);
-	    }
-	  @FXML
-	    void expandMyList(MouseEvent event) {
+	@FXML
+	void retractMyList(MouseEvent event) {
+		btnMyList.setVisible(false);
+	}
+
+	@FXML
+	void expandMyList(MouseEvent event) {
 		btnMyList.setVisible(true);
 
-	    }
+	}
+
 	public void initialize() {
 		movie = Manager.movie;
 		if (movie != null) {
@@ -103,13 +106,14 @@ public class MovieRecord {
 			textDate.setText(
 					movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
 			if (movie != null && movie.getDirector() != null) {
-			    textDirector.setText(movie.getDirector().getName());
+				textDirector.setText(movie.getDirector().getName());
 			} else {
-			    textDirector.setText("Director no disponible");
+				textDirector.setText("Director no disponible");
 			}
+
 			// No carga
 
-			//textTime.setText(String.valueOf(movie.getTime()));
+			// textTime.setText(String.valueOf(movie.getTime()));
 
 			////////////
 			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
@@ -120,67 +124,39 @@ public class MovieRecord {
 			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
 			Image image = new Image(urlPoster);
 			posterMovie.setImage(image);
-			
+
+			rate.setText(movie.getRatingGlobal().toString() + " / 10");
 			btnMyList.setVisible(false);
-			
-			Double ratingGlobal = movie.getRatingGlobal();
-			// Cargar imagen del rating
-			if (ratingGlobal == 1.0) {
-				try {
-					File file = new File("");
-					String localUrl = file.toURI().toURL().toString();
-					Image image1 = new Image(localUrl);
-					ratingMovie.setImage(image1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if (ratingGlobal == 2.0) {
-				try {
-					File file = new File("");
-					String localUrl = file.toURI().toURL().toString();
-					Image image1 = new Image(localUrl);
-					ratingMovie.setImage(image1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if (ratingGlobal == 3.0) {
-				try {
-					File file = new File("");
-					String localUrl = file.toURI().toURL().toString();
-					Image image1 = new Image(localUrl);
-					ratingMovie.setImage(image1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if (ratingGlobal == 4.0) {
-				try {
-					File file = new File("");
-					String localUrl = file.toURI().toURL().toString();
 
-					Image image1 = new Image(localUrl);
-
-					ratingMovie.setImage(image1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			if (ratingGlobal == 5.0) {
-				try {
-					File file = new File("");
-					String localUrl = file.toURI().toURL().toString();
-
-					Image image1 = new Image(localUrl);
-
-					ratingMovie.setImage(image1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
 		}
-		 
+		Set<Actor> actors = movie.getActors();
+
+		int i = 1;
+		for (Actor actor : actors) {
+			String actorImageUrl = actor.getActor_path();
+			ImageView currentImageView = null;
+			switch (i) {
+			case 1:
+				currentImageView = imgActor1;
+				break;
+			case 2:
+				currentImageView = imgActor2;
+				break;
+			case 3:
+				currentImageView = imgActor3;
+				break;
+			case 4:
+				currentImageView = imgActor4;
+				break;
+			default:
+				break;
+			}
+			if (currentImageView != null) {
+				Image image = new Image(actorImageUrl);
+				currentImageView.setImage(image);
+			}
+			i++;
+		}
 
 	}
 

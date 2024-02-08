@@ -2,8 +2,6 @@ package dii2dam.movieApp.models;
 
 
 import javax.persistence.*;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 @Entity
 public class Actor {
 	@Id
@@ -16,6 +14,19 @@ public class Actor {
 	private String surname;
 	@Column(name = "birth_date")
 	private String birthdate;
+	 @Column(name="actor_path")
+	  private String actor_path;
+	 
+
+	
+
+	public String getActor_path() {
+		return actor_path;
+	}
+
+	public void setActor_path(String actor_path) {
+		this.actor_path = actor_path;
+	}
 
 	public Actor() {
 		
@@ -27,6 +38,7 @@ public class Actor {
 		setName(name);
 		setSurname(surname);
 		setBirthdate(birthdate);
+		setActor_path(actor_path);
 	}
 
 	public Long getId() {

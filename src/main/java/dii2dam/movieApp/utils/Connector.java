@@ -26,10 +26,14 @@ public class Connector {
 	String responseBody = response.body().string();
 	Gson gson = new Gson();
 	APIResponse api = gson.fromJson(responseBody, APIResponse.class);
+	
 	for (Movie movie: api.getResults()) {
 	  movie.getGenre();
+	  
+      
 	}
 	return api;
   }
+  
 
 }
