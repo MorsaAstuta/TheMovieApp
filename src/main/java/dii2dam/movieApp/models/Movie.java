@@ -226,7 +226,7 @@ public class Movie implements java.io.Serializable {
 		String output = "";
 		int item = 0;
 		for (Integer genre_id : genre_ids) {
-			output += Manager.movieGenreById.get(genre_id);
+			output += Manager.genreById.get(genre_id);
 			item++;
 			if (item != genre_ids.size())
 				output += ", ";

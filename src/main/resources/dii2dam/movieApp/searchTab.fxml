@@ -1166,7 +1166,7 @@
             </GridPane>
          </center>
          <top>
-            <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
+            <GridPane alignment="CENTER" style="-fx-background-color: rgb(245, 222, 179);" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
@@ -1175,7 +1175,7 @@
                 <RowConstraints fx:id="filterTabRow" maxHeight="64.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <BorderPane fx:id="searchBar" onMouseClicked="#showFilterTab" style="-fx-background-color: rgb(245, 222, 179);">
+                  <BorderPane fx:id="searchBar" onMouseClicked="#showFilterTab">
                      <top>
                         <Pane prefHeight="16.0" BorderPane.alignment="CENTER" />
                      </top>
@@ -1245,13 +1245,11 @@
                               <ColumnConstraints hgrow="SOMETIMES" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="192.0" prefWidth="192.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="192.0" prefWidth="192.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
                               <ColumnConstraints hgrow="SOMETIMES" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="168.0" prefWidth="168.0" />
                               <ColumnConstraints hgrow="SOMETIMES" />
                           </columnConstraints>
                           <rowConstraints>
@@ -1277,31 +1275,12 @@
                               <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="7" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                              <Label text="Order by:" GridPane.columnIndex="10" />
-                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="11">
-                                 <children>
-                                    <CheckBox fx:id="chkTitle" mnemonicParsing="false" text="Title" />
-                                 </children>
-                              </FlowPane>
-                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="11" GridPane.rowIndex="1">
-                                 <children>
-                                    <CheckBox fx:id="chkScore" mnemonicParsing="false" text="Global score" />
-                                 </children>
-                              </FlowPane>
-                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="12">
-                                 <children>
-                                    <CheckBox fx:id="chkLength" mnemonicParsing="false" text="Length" />
-                                 </children>
-                              </FlowPane>
-                              <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="12" GridPane.rowIndex="1">
-                                 <children>
-                                    <CheckBox fx:id="chkRelease" mnemonicParsing="false" text="Release" />
-                                 </children>
-                              </FlowPane>
+                              <Label text="Sort by:" GridPane.columnIndex="10" />
                               <ComboBox fx:id="cmbScoreMin" prefWidth="150.0" GridPane.columnIndex="6" />
                               <ComboBox fx:id="cmbLengthMin" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                               <ComboBox fx:id="cmbScoreMax" prefWidth="150.0" GridPane.columnIndex="8" />
                               <ComboBox fx:id="cmbLengthMax" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="cmbSorter" prefWidth="150.0" GridPane.columnIndex="10" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </center>
