@@ -147,11 +147,9 @@ public class MovieRecord {
 				textDirector.setText("Director no disponible");
 			}
 
-			// No carga
 
 			textTime.setText(movieInfoResponse.getRuntime().toString() + " min.");
 
-			////////////
 			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
 			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
 
