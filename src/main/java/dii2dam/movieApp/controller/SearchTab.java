@@ -68,6 +68,12 @@ public class SearchTab {
 	private ComboBox<String> cmbGenre2 = new ComboBox<>();
 
 	@FXML
+	private ComboBox<String> cmbGenre3 = new ComboBox<>();
+
+	@FXML
+	private ComboBox<String> cmbGenre4 = new ComboBox<>();
+
+	@FXML
 	private ComboBox<Integer> cmbLengthMax = new ComboBox<>();
 
 	@FXML
@@ -543,26 +549,33 @@ public class SearchTab {
 	List<ImageView> posters = new ArrayList<>();
 	String currentSearch = "";
 
+	List<ComboBox<String>> genreBoxes = new ArrayList<>();
+
 	private Integer currentPage = 0;
 	private Integer totalPages = 0;
+	
+	private String searchType = "";
 
 	private void query(String query) {
 		try {
 			if (!filter().isEmpty()) {
 				if (chkMovies.isSelected()) {
 					response = Connector.discoverMovie(filter() + "&page=" + (currentPage + 1));
+					searchType = "movie";
 				} else if (chkSeries.isSelected()) {
 					response = Connector.discoverSeries(filter() + "&page=" + (currentPage + 1));
+					searchType = "tv";
 				}
 			} else {
-				if (chkMovies.isSelected() && chkSeries.isSelected()) {
+				if ((chkMovies.isSelected() && chkSeries.isSelected())) {
 					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
+					searchType = "multi";
 				} else if (chkMovies.isSelected()) {
 					response = Connector.searchMovie(query + "&page=" + (currentPage + 1));
+					searchType = "movie";
 				} else if (chkSeries.isSelected()) {
 					response = Connector.searchSeries(query + "&page=" + (currentPage + 1));
-				} else {
-					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
+					searchType = "tv";
 				}
 			}
 			totalPages = response.getTotalPages();
@@ -576,13 +589,31 @@ public class SearchTab {
 		String modifiedQuery = "";
 
 		// Genre filters
-		if (cmbGenre1.getValue() != null && cmbGenre2.getValue() != null) {
-			modifiedQuery += "&with_genres=" + Manager.idByGenre.get(cmbGenre1.getValue()) + ","
-					+ Manager.idByGenre.get(cmbGenre2.getValue());
-		} else if (cmbGenre1.getValue() != null) {
-			modifiedQuery += "&with_genres=" + Manager.idByGenre.get(cmbGenre1.getValue());
-		} else if (cmbGenre2.getValue() != null) {
-			modifiedQuery += "&with_genres=" + Manager.idByGenre.get(cmbGenre2.getValue());
+		boolean firstItem = true;
+		for (ComboBox<String> cmbGenre : genreBoxes) {
+			if (cmbGenre.getValue() != null) {
+				if (firstItem) {
+					modifiedQuery += "&with_genres=";
+					firstItem = false;
+				} else {
+					modifiedQuery += ",";
+				}
+				modifiedQuery += Manager.idByGenre.get(cmbGenre.getValue());
+			}
+		}
+		
+		// Score/Runtime filters
+		if (cmbScoreMin.getValue() != null) {
+			modifiedQuery += "&vote_average.gte=" + cmbScoreMin.getValue();
+		}
+		if (cmbScoreMax.getValue() != null) {
+			modifiedQuery += "&vote_average.lte=" + cmbScoreMax.getValue();
+		}
+		if (cmbLengthMin.getValue() != null) {
+			modifiedQuery += "&with_runtime.gte=" + cmbLengthMin.getValue();
+		}
+		if (cmbLengthMax.getValue() != null) {
+			modifiedQuery += "&with_runtime.lte=" + cmbLengthMax.getValue();
 		}
 
 		// Sorter
@@ -655,7 +686,12 @@ public class SearchTab {
 		for (int i = 0; i < 18; i++) {
 			try {
 				String url = movies[i].getPosterPath();
-				String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
+				String urlPoster = "";
+				if (url != null && url != "null") {
+					urlPoster = "https://image.tmdb.org/t/p/w500" + url;
+				} else {
+					urlPoster = "/dii2dam/movieApp/img/background/x.png";
+				}
 				Image image = new Image(urlPoster);
 				posters.get(i).setImage(image);
 				movieByPoster.put(posters.get(i), movies[i]);
@@ -734,11 +770,18 @@ public class SearchTab {
 
 		cmbGenre1.setItems(genreNames);
 		cmbGenre2.setItems(genreNames);
+		cmbGenre3.setItems(genreNames);
+		cmbGenre4.setItems(genreNames);
 		cmbLengthMin.setItems(lengthRange);
 		cmbLengthMax.setItems(lengthRange);
 		cmbScoreMin.setItems(scoreRange);
 		cmbScoreMax.setItems(scoreRange);
 		cmbSorter.setItems(sortings);
+
+		genreBoxes.add(cmbGenre1);
+		genreBoxes.add(cmbGenre2);
+		genreBoxes.add(cmbGenre3);
+		genreBoxes.add(cmbGenre4);
 
 		genreNames.add(null);
 		for (String genre : Manager.getGenreNames()) {
@@ -760,8 +803,8 @@ public class SearchTab {
 		sortings.add("Title (Asc.)");
 		sortings.add("Score (Desc.)");
 		sortings.add("Score (Asc.)");
-		sortings.add("Length (Desc.)");
-		sortings.add("Length (Asc.)");
+		sortings.add("Release (Desc.)");
+		sortings.add("Release (Asc.)");
 
 		ImageView btnSearchIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
@@ -992,15 +1035,41 @@ public class SearchTab {
 		Movie movie = movieByPoster.get(poster);
 		if (movieColumn.getMaxWidth() != 400) {
 			closeAllDetails();
+			
 			moviePane.toFront();
 			movieColumn.setMaxWidth(400);
 			movieInfo.setVisible(true);
-			movieTitle.setText(movie.getTitle());
-			movieDesc.setText(movie.getOverview());
-			movieGenre.setText(movie.getGenre());
-			movieDate.setText(movie.getReleaseDate());
-		} else
+			
+			switch(searchType) {
+			case "movie":
+				movieTitle.setText(movie.getTitle());
+				movieDesc.setText(movie.getOverview());
+				movieGenre.setText(movie.getGenre());
+				movieDate.setText(movie.getReleaseDate());
+				break;
+			case "tv":
+				movieTitle.setText(movie.getName());
+				movieDesc.setText(movie.getOverview());
+				movieGenre.setText(movie.getGenre());
+				movieDate.setText(movie.getFirst_air_date());
+				break;
+			case "multi":
+				if (movie.getMedia_type().equals("movie")) {
+					movieTitle.setText(movie.getTitle());
+					movieDesc.setText(movie.getOverview());
+					movieGenre.setText(movie.getGenre());
+					movieDate.setText(movie.getReleaseDate());
+				} else if (movie.getMedia_type().equals("tv")) {
+					movieTitle.setText(movie.getName());
+					movieDesc.setText(movie.getOverview());
+					movieGenre.setText(movie.getGenre());
+					movieDate.setText(movie.getFirst_air_date());
+				}
+				break;
+			}
+		} else {
 			closeAllDetails();
+		}
 	}
 
 	@FXML
