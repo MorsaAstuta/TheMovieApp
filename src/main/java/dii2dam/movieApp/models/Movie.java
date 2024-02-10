@@ -123,12 +123,6 @@ public class Movie implements java.io.Serializable {
 	}
 
 	public String getTitle() {
-		switch (this.media_type) {
-		case "tv":
-			return name;
-		case "movie":
-			return title;
-		}
 		return title;
 	}
 
@@ -153,12 +147,6 @@ public class Movie implements java.io.Serializable {
 	}
 
 	public String getReleaseDate() {
-		switch (this.media_type) {
-		case "tv":
-			return first_air_date;
-		case "movie":
-			return release_date;
-		}
 		return release_date;
 	}
 
