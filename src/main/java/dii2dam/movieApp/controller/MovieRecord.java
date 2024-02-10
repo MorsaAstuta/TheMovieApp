@@ -14,6 +14,7 @@ import dii2dam.movieApp.models.ReviewResponse;
 import dii2dam.movieApp.utils.Connector;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,9 +28,9 @@ public class MovieRecord {
 
 	private List<Actor> actors = new ArrayList<>();
 	private Integer actorPage = 1;
-	
+
 	private List<Director> directors = new ArrayList<>();
-	
+
 	private List<Review> reviews = new ArrayList<>();
 	private Integer reviewPage = 1;
 
@@ -83,6 +84,33 @@ public class MovieRecord {
 	private Movie movie;
 
 	@FXML
+	private Button btnLeftActors;
+
+	@FXML
+	private Button btnRightActor;
+
+	@FXML
+	private Label labelNameAct1;
+
+	@FXML
+	private Label labelNameAct2;
+
+	@FXML
+	private Label labelNameAct3;
+
+	@FXML
+	private Label labelNameAct4;
+	
+	@FXML
+    private Label labelUsernameReview1;
+
+    @FXML
+    private Label labelUsernameReview2;
+
+    @FXML
+    private Label labelUsernameReview3;
+
+	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
 			App.setRoot("accountPage");
@@ -133,7 +161,8 @@ public class MovieRecord {
 		getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
+			textDate.setText(
+					movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
 			if (movie != null && !directors.isEmpty()) {
 				String output = "";
 				for (Director director : directors) {
@@ -146,7 +175,6 @@ public class MovieRecord {
 			} else {
 				textDirector.setText("Director no disponible");
 			}
-
 
 			textTime.setText(movieInfoResponse.getRuntime().toString() + " min.");
 
@@ -171,38 +199,66 @@ public class MovieRecord {
 			String url = actor.getProfilePath();
 			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
 			Image image = new Image(urlPoster);
-			if (actors.indexOf(actor) == (actorPage-1)*4+0) {
+			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 0) {
 				imgActor1.setImage(image);
+				labelNameAct1.setText(actor.getName());
 			}
-			if (actors.indexOf(actor) == (actorPage-1)*4+1) {
+			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 1) {
 				imgActor2.setImage(image);
+				labelNameAct2.setText(actor.getName());
+
 			}
-			if (actors.indexOf(actor) == (actorPage-1)*4+2) {
+			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 2) {
 				imgActor3.setImage(image);
+				labelNameAct3.setText(actor.getName());
+
 			}
-			if (actors.indexOf(actor) == (actorPage-1)*4+3) {
+			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 3) {
 				imgActor4.setImage(image);
+				labelNameAct4.setText(actor.getName());
+
 			}
 		}
 	}
 
 	private void loadReviews() {
 		reviews.clear();
-		
+
 		for (Review review : reviewResponse.getReviews()) {
 			reviews.add(review);
 		}
-		
+
 		for (Review review : reviews) {
-			if (reviews.indexOf(review) == (reviewResponse.getPage()-1)*3+0) {
+			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 0) {
+				labelUsernameReview1.setText(review.getUsername()); // Da null
 				textComment1.setText(review.getContent());
 			}
-			if (reviews.indexOf(review) == (reviewResponse.getPage()-1)*3+1) {
+			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 1) {
+				labelUsernameReview3.setText(review.getUsername());
+
 				textComment2.setText(review.getContent());
 			}
-			if (reviews.indexOf(review) == (reviewResponse.getPage()-1)*3+2) {
+			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 2) {
+				labelUsernameReview3.setText(review.getUsername());
+
 				textComment3.setText(review.getContent());
 			}
+		}
+	}
+
+	@FXML
+	void pressedActorsLeft(MouseEvent event) {
+		if (actorPage > 1) {
+			actorPage--;
+			loadActors();
+		}
+	}
+
+	@FXML
+	void pressedActorsRight(MouseEvent event) {
+		if (actorPage >= 1) {
+			actorPage++;
+			loadActors();
 		}
 	}
 
