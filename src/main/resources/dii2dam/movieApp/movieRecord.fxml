@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="937.0" prefWidth="1853.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.MovieRecord">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="967.0" prefWidth="1904.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.MovieRecord">
 	<top>
 		<GridPane style="-fx-background-color: black;" BorderPane.alignment="CENTER">
 			<columnConstraints>
@@ -111,7 +112,7 @@
 			<children>
 				<BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgb(80,63,39);">
 					<center>
-						<GridPane alignment="TOP_CENTER" prefHeight="696.0" prefWidth="720.0" BorderPane.alignment="CENTER">
+						<GridPane alignment="TOP_CENTER" prefHeight="618.0" prefWidth="927.0" BorderPane.alignment="CENTER">
 							<columnConstraints>
 								<ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="168.0" prefWidth="212.0" />
@@ -177,7 +178,7 @@
 										</Label>
 									</children>
 								</GridPane>
-								<Label fx:id="textSinopsis" alignment="TOP_LEFT" prefHeight="424.0" prefWidth="623.0" text="SINOPSIS" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+								<Label fx:id="textSinopsis" alignment="TOP_LEFT" prefHeight="368.0" prefWidth="623.0" text="SINOPSIS" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
 									<font>
 										<Font name="Inder" size="20.0" />
 									</font>
@@ -188,7 +189,7 @@
 						</GridPane>
 					</center>
 					<bottom>
-						<GridPane prefHeight="118.0" prefWidth="657.0" BorderPane.alignment="CENTER">
+						<GridPane prefHeight="85.0" prefWidth="927.0" BorderPane.alignment="CENTER">
 							<columnConstraints>
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="486.0" minWidth="10.0" prefWidth="372.0" />
 								<ColumnConstraints hgrow="SOMETIMES" maxWidth="186.0" minWidth="10.0" prefWidth="161.0" />
@@ -201,34 +202,17 @@
 								<RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
 							</rowConstraints>
 							<children>
-								<Pane prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="1">
+								<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="3">
 									<children>
-										<Pane layoutX="125.0" prefHeight="44.0" prefWidth="43.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);">
-											<children>
-												<ImageView fitHeight="37.0" fitWidth="41.0" layoutX="2.0" layoutY="4.0">
-													<image>
-														<Image url="@img/icon/watch.png" />
-													</image>
-												</ImageView>
-											</children>
-										</Pane>
-										<Label layoutX="26.0" layoutY="9.0" prefHeight="26.0" prefWidth="84.0" text="Watching">
+										<Pane layoutX="136.0" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);" />
+										<Label layoutX="24.0" layoutY="1.0" prefHeight="26.0" prefWidth="105.0" text="Living room">
 											<font>
-												<Font size="17.0" />
+												<Font size="16.0" />
 											</font>
 										</Label>
 									</children>
 								</Pane>
-								<Pane prefHeight="44.0" prefWidth="154.0" style="-fx-background-color: GRAY;" GridPane.columnIndex="3">
-									<children>
-										<Pane layoutX="132.0" prefHeight="44.0" prefWidth="42.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);" />
-										<Label layoutX="21.0" layoutY="9.0" prefHeight="26.0" prefWidth="105.0" text="Living room">
-											<font>
-												<Font size="17.0" />
-											</font>
-										</Label>
-									</children>
-								</Pane>
+                        <ComboBox fx:id="comboBoxStateMovie" onAction="#comboBoxGetItem" prefWidth="150.0" GridPane.columnIndex="1" />
 							</children>
 						</GridPane>
 					</bottom>
@@ -323,45 +307,48 @@
 							<children>
 								<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="894.0" style="-fx-background-color: rgb(95,82,64);" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
 									<children>
-										<Label fx:id="textComment1" layoutX="21.0" layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="871.0" text="Comment" textFill="WHITE" wrapText="true">
+										<Label fx:id="textComment1" layoutX="99.0" layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="793.0" text="Comment" textFill="WHITE" wrapText="true">
 											<font>
 												<Font name="Inder" size="12.0" />
 											</font>
 										</Label>
-                              <Label fx:id="labelUsernameReview1" layoutX="21.0" layoutY="1.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
+                              <Label fx:id="labelUsernameReview1" layoutX="99.0" layoutY="11.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgUserReview1" fitHeight="61.0" fitWidth="72.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
 											
 									</children>
 								</Pane>
 								<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="894.0" style="-fx-background-color: rgb(95,82,64);" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
 									<children>
-										<Label fx:id="textComment2" layoutX="24.0" layoutY="51.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="865.0" text="Comment" textFill="WHITE" wrapText="true">
+										<Label fx:id="textComment2" layoutX="94.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="707.0" text="Comment" textFill="WHITE" wrapText="true">
 											<font>
 												<Font name="Inder" size="12.0" />
 											</font>
 										</Label>
-                              <Label fx:id="labelUsernameReview2" layoutX="24.0" layoutY="1.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
+                              <Label fx:id="labelUsernameReview2" layoutX="96.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgUserReview2" fitHeight="61.0" fitWidth="72.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
 									</children>
 								</Pane>
 								<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefWidth="895.0" style="-fx-background-color: rgb(95,82,64);" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5">
 									<children>
-										<Label fx:id="textComment3" layoutX="22.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="871.0" text="Comment" textFill="WHITE" wrapText="true">
+										<Label fx:id="textComment3" layoutX="93.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="121.0" prefWidth="800.0" text="Comment" textFill="WHITE" wrapText="true">
 											<font>
 												<Font name="Inder" size="12.0" />
 											</font>
 										</Label>
-                              <Label fx:id="labelUsernameReview3" layoutX="22.0" layoutY="8.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
+                              <Label fx:id="labelUsernameReview3" layoutX="93.0" layoutY="14.0" prefHeight="52.0" prefWidth="274.0" text="Label" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
+                              <ImageView fx:id="imgUserReview3" fitHeight="61.0" fitWidth="72.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
 									</children>
 								</Pane>
 							</children>

@@ -8,12 +8,14 @@ import java.util.stream.Collectors;
 import com.google.gson.Gson;
 
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.models.Review;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class Manager {
 	public static Movie movie;
+	public static Review review;
 
 	// Movie genres
 	public static HashMap<Integer, String> genreById = new HashMap<>();

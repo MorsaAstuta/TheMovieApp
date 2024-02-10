@@ -13,8 +13,12 @@ import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.ReviewResponse;
 import dii2dam.movieApp.utils.Connector;
 import dii2dam.movieApp.utils.Manager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -83,6 +87,8 @@ public class MovieRecord {
 
 	private Movie movie;
 
+	private Review review;
+
 	@FXML
 	private Button btnLeftActors;
 
@@ -100,15 +106,27 @@ public class MovieRecord {
 
 	@FXML
 	private Label labelNameAct4;
-	
+
 	@FXML
-    private Label labelUsernameReview1;
+	private Label labelUsernameReview1;
 
-    @FXML
-    private Label labelUsernameReview2;
+	@FXML
+	private Label labelUsernameReview2;
 
-    @FXML
-    private Label labelUsernameReview3;
+	@FXML
+	private Label labelUsernameReview3;
+
+	@FXML
+	private ImageView imgUserReview1;
+
+	@FXML
+	private ImageView imgUserReview2;
+
+	@FXML
+	private ImageView imgUserReview3;
+
+	@FXML
+	private ComboBox<String> comboBoxStateMovie;
 
 	@FXML
 	void goToAccount(MouseEvent event) {
@@ -157,6 +175,7 @@ public class MovieRecord {
 
 	public void initialize() {
 		movie = Manager.movie;
+		review = Manager.review;
 		System.out.println(movie.getId());
 		getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
 		if (movie != null) {
@@ -189,6 +208,16 @@ public class MovieRecord {
 			rate.setText(movie.getRatingGlobal().toString() + " / 10");
 			btnMyList.setVisible(false);
 		}
+		ObservableList<String> items = FXCollections.observableArrayList();
+		items.add("State: ");
+		items.add("Watching");
+		items.add("Unwatched");
+		items.add("Drop");
+		items.add("On Hold");
+		comboBoxStateMovie.setItems(items);
+		comboBoxStateMovie.getSelectionModel().selectFirst();
+
+		visibleBtnLeft();
 		loadActors();
 		loadReviews();
 
@@ -218,6 +247,7 @@ public class MovieRecord {
 				labelNameAct4.setText(actor.getName());
 
 			}
+			visibleBtnLeft();
 		}
 	}
 
@@ -232,18 +262,41 @@ public class MovieRecord {
 			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 0) {
 				labelUsernameReview1.setText(review.getUsername()); // Da null
 				textComment1.setText(review.getContent());
+//				String url2 = review.getAvatar_path();
+//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//				Image image2 = new Image(urlAvatar);
+//				imgUserReview1.setImage(image2);
 			}
 			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 1) {
 				labelUsernameReview3.setText(review.getUsername());
-
 				textComment2.setText(review.getContent());
+//				String url2 = review.getAvatar_path();
+//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//				Image image2 = new Image(urlAvatar);
+//				imgUserReview2.setImage(image2);
 			}
 			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 2) {
 				labelUsernameReview3.setText(review.getUsername());
-
 				textComment3.setText(review.getContent());
+//				String url2 = review.getAvatar_path();
+//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//				Image image2 = new Image(urlAvatar);
+//				imgUserReview3.setImage(image2);
 			}
 		}
+	}
+
+	private void visibleBtnLeft() {
+		if (actorPage > 1)
+			btnLeftActors.setVisible(true);
+		else
+			btnLeftActors.setVisible(false);
+	}
+
+	@FXML
+	void comboBoxGetItem(ActionEvent event) {
+		String selectedItem = comboBoxStateMovie.getSelectionModel().getSelectedItem();
+		
 	}
 
 	@FXML
@@ -260,6 +313,7 @@ public class MovieRecord {
 			actorPage++;
 			loadActors();
 		}
+
 	}
 
 }
