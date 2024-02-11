@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
@@ -30,7 +29,7 @@ import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.Connector;
 import dii2dam.movieApp.utils.Manager;
 
-public class SearchTab {
+public class HomePage {
 
 	private APIResponse response;
 
@@ -44,13 +43,7 @@ public class SearchTab {
 	private Pane btnMyListExp;
 
 	@FXML
-	private Button btnNextPage;
-
-	@FXML
-	private Button btnPrevPage;
-
-	@FXML
-	private Button btnSearch;
+	private Button btnReload;
 
 	@FXML
 	private ComboBox<String> cmbSorter = new ComboBox<>();
@@ -84,12 +77,6 @@ public class SearchTab {
 
 	@FXML
 	private ComboBox<Integer> cmbScoreMin = new ComboBox<>();
-
-	@FXML
-	private BorderPane filterTab;
-
-	@FXML
-	private RowConstraints filterTabRow;
 
 	@FXML
 	private Label lblBar;
@@ -134,24 +121,6 @@ public class SearchTab {
 	private Label lblMovieDate11;
 
 	@FXML
-	private Label lblMovieDate12;
-
-	@FXML
-	private Label lblMovieDate13;
-
-	@FXML
-	private Label lblMovieDate14;
-
-	@FXML
-	private Label lblMovieDate15;
-
-	@FXML
-	private Label lblMovieDate16;
-
-	@FXML
-	private Label lblMovieDate17;
-
-	@FXML
 	private Label lblMovieDesc00;
 
 	@FXML
@@ -186,24 +155,6 @@ public class SearchTab {
 
 	@FXML
 	private Label lblMovieDesc11;
-
-	@FXML
-	private Label lblMovieDesc12;
-
-	@FXML
-	private Label lblMovieDesc13;
-
-	@FXML
-	private Label lblMovieDesc14;
-
-	@FXML
-	private Label lblMovieDesc15;
-
-	@FXML
-	private Label lblMovieDesc16;
-
-	@FXML
-	private Label lblMovieDesc17;
 
 	@FXML
 	private Label lblMovieGenre00;
@@ -242,24 +193,6 @@ public class SearchTab {
 	private Label lblMovieGenre11;
 
 	@FXML
-	private Label lblMovieGenre12;
-
-	@FXML
-	private Label lblMovieGenre13;
-
-	@FXML
-	private Label lblMovieGenre14;
-
-	@FXML
-	private Label lblMovieGenre15;
-
-	@FXML
-	private Label lblMovieGenre16;
-
-	@FXML
-	private Label lblMovieGenre17;
-
-	@FXML
 	private Label lblMovieTitle00;
 
 	@FXML
@@ -294,24 +227,6 @@ public class SearchTab {
 
 	@FXML
 	private Label lblMovieTitle11;
-
-	@FXML
-	private Label lblMovieTitle12;
-
-	@FXML
-	private Label lblMovieTitle13;
-
-	@FXML
-	private Label lblMovieTitle14;
-
-	@FXML
-	private Label lblMovieTitle15;
-
-	@FXML
-	private Label lblMovieTitle16;
-
-	@FXML
-	private Label lblMovieTitle17;
 
 	@FXML
 	private Label lblPage;
@@ -356,24 +271,6 @@ public class SearchTab {
 	private GridPane movie11;
 
 	@FXML
-	private GridPane movie12;
-
-	@FXML
-	private GridPane movie13;
-
-	@FXML
-	private GridPane movie14;
-
-	@FXML
-	private GridPane movie15;
-
-	@FXML
-	private GridPane movie16;
-
-	@FXML
-	private GridPane movie17;
-
-	@FXML
 	private ColumnConstraints movieColumn00;
 
 	@FXML
@@ -410,24 +307,6 @@ public class SearchTab {
 	private ColumnConstraints movieColumn11;
 
 	@FXML
-	private ColumnConstraints movieColumn12;
-
-	@FXML
-	private ColumnConstraints movieColumn13;
-
-	@FXML
-	private ColumnConstraints movieColumn14;
-
-	@FXML
-	private ColumnConstraints movieColumn15;
-
-	@FXML
-	private ColumnConstraints movieColumn16;
-
-	@FXML
-	private ColumnConstraints movieColumn17;
-
-	@FXML
 	private GridPane movieInfo00;
 
 	@FXML
@@ -462,24 +341,6 @@ public class SearchTab {
 
 	@FXML
 	private GridPane movieInfo11;
-
-	@FXML
-	private GridPane movieInfo12;
-
-	@FXML
-	private GridPane movieInfo13;
-
-	@FXML
-	private GridPane movieInfo14;
-
-	@FXML
-	private GridPane movieInfo15;
-
-	@FXML
-	private GridPane movieInfo16;
-
-	@FXML
-	private GridPane movieInfo17;
 
 	@FXML
 	private ColumnConstraints myListExtension;
@@ -521,24 +382,6 @@ public class SearchTab {
 	private ImageView poster11;
 
 	@FXML
-	private ImageView poster12;
-
-	@FXML
-	private ImageView poster13;
-
-	@FXML
-	private ImageView poster14;
-
-	@FXML
-	private ImageView poster15;
-
-	@FXML
-	private ImageView poster16;
-
-	@FXML
-	private ImageView poster17;
-
-	@FXML
 	private BorderPane searchBar;
 
 	@FXML
@@ -550,35 +393,18 @@ public class SearchTab {
 	String currentSearch = "";
 
 	List<ComboBox<String>> genreBoxes = new ArrayList<>();
-
-	private Integer currentPage = 0;
-	private Integer totalPages = 0;
 	
 	private String searchType = "";
 
-	private void query(String query) {
+	private void query() {
 		try {
-			if (!filter().isEmpty()) {
 				if (chkMovies.isSelected()) {
-					response = Connector.discoverMovie(filter() + "&page=" + (currentPage + 1));
+					response = Connector.discoverMovie(filter());
 					searchType = "movie";
 				} else if (chkSeries.isSelected()) {
-					response = Connector.discoverSeries(filter() + "&page=" + (currentPage + 1));
+					response = Connector.discoverSeries(filter());
 					searchType = "tv";
 				}
-			} else {
-				if ((chkMovies.isSelected() && chkSeries.isSelected())) {
-					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
-					searchType = "multi";
-				} else if (chkMovies.isSelected()) {
-					response = Connector.searchMovie(query + "&page=" + (currentPage + 1));
-					searchType = "movie";
-				} else if (chkSeries.isSelected()) {
-					response = Connector.searchSeries(query + "&page=" + (currentPage + 1));
-					searchType = "tv";
-				}
-			}
-			totalPages = response.getTotalPages();
 			movies = response.getResults();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -669,26 +495,22 @@ public class SearchTab {
 	}
 
 	@FXML
-	void searchByTitle(ActionEvent event) throws IOException {
-		currentPage = 0;
-		currentSearch = txtSearch.getText();
+	void reloadPage(ActionEvent event) throws IOException {
 		loadPage();
 	}
 
 	void loadPage() {
-		query(currentSearch);
+		query();
 		closeAllDetails();
-		btnPrevPage.setVisible(true);
-		btnNextPage.setVisible(true);
 
 		// Clean
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 12; i++) {
 			posters.get(i).setImage(null);
 			movieByPoster.clear();
 		}
 
 		// Reload
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 12; i++) {
 			try {
 				String url = movies[i].getPosterPath();
 				String urlPoster = "";
@@ -700,26 +522,10 @@ public class SearchTab {
 				Image image = new Image(urlPoster);
 				posters.get(i).setImage(image);
 				movieByPoster.put(posters.get(i), movies[i]);
-
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
 			} catch (Exception e) {
 				e.printStackTrace();
-				totalPages = currentPage;
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
 			}
 		}
-
-		if (currentPage == 0)
-			btnPrevPage.setVisible(false);
-		else if (!btnPrevPage.isVisible())
-			btnPrevPage.setVisible(true);
-
-		if (currentPage == totalPages)
-			btnNextPage.setVisible(false);
-		else if (btnNextPage.isVisible())
-			btnNextPage.setVisible(true);
 	}
 
 	@FXML
@@ -737,12 +543,6 @@ public class SearchTab {
 		lblMovieDesc09.setWrapText(true);
 		lblMovieDesc10.setWrapText(true);
 		lblMovieDesc11.setWrapText(true);
-		lblMovieDesc12.setWrapText(true);
-		lblMovieDesc13.setWrapText(true);
-		lblMovieDesc14.setWrapText(true);
-		lblMovieDesc15.setWrapText(true);
-		lblMovieDesc16.setWrapText(true);
-		lblMovieDesc17.setWrapText(true);
 
 		posters.add(poster00);
 		posters.add(poster01);
@@ -756,15 +556,6 @@ public class SearchTab {
 		posters.add(poster09);
 		posters.add(poster10);
 		posters.add(poster11);
-		posters.add(poster12);
-		posters.add(poster13);
-		posters.add(poster14);
-		posters.add(poster15);
-		posters.add(poster16);
-		posters.add(poster17);
-
-		btnPrevPage.setVisible(false);
-		btnNextPage.setVisible(false);
 
 		btnMyListExp.setVisible(false);
 
@@ -813,37 +604,22 @@ public class SearchTab {
 		sortings.add("Release (Desc.)");
 		sortings.add("Release (Asc.)");
 
-		ImageView btnSearchIcon = new ImageView(
-				getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
-		btnSearchIcon.setFitHeight(32);
-		btnSearchIcon.setFitWidth(32);
-		btnSearch.setGraphic(btnSearchIcon);
+		ImageView btnReloadIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/reload.png").toExternalForm());
+		btnReloadIcon.setFitHeight(32);
+		btnReloadIcon.setFitWidth(32);
+		btnReload.setGraphic(btnReloadIcon);
+		
+		cmbSorter.getSelectionModel().select(1);
+		loadPage();
 	}
 
 	@FXML
-	void showFilterTab() {
-		if (!filterTab.isVisible()) {
-			filterTab.setVisible(true);
-			filterTabRow.setMaxHeight(64);
-		} else {
-			filterTab.setVisible(false);
-			filterTabRow.setMaxHeight(1);
-		}
-	}
-
-	@FXML
-	void prevPage() {
-		if (currentPage > 0) {
-			currentPage--;
-			loadPage();
-		}
-	}
-
-	@FXML
-	void nextPage() {
-		if (currentPage < totalPages) {
-			currentPage++;
-			loadPage();
+	void goToSearch() {
+		try {
+			App.setRoot("searchTab");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -851,15 +627,6 @@ public class SearchTab {
 	void goToAccount() {
 		try {
 			App.setRoot("accountPage");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@FXML
-	void goToHome() {
-		try {
-			App.setRoot("homePage");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -887,7 +654,6 @@ public class SearchTab {
 	void visitMoviePageGeneral(int id) {
 		try {
 			Manager.setMovie(movies[id]);
-			;
 			App.setRoot("movieRecord");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -954,39 +720,7 @@ public class SearchTab {
 		visitMoviePageGeneral(11);
 	}
 
-	@FXML
-	void visitMoviePage12() {
-		visitMoviePageGeneral(12);
-	}
-
-	@FXML
-	void visitMoviePage13() {
-		visitMoviePageGeneral(13);
-	}
-
-	@FXML
-	void visitMoviePage14() {
-		visitMoviePageGeneral(14);
-	}
-
-	@FXML
-	void visitMoviePage15() {
-		visitMoviePageGeneral(15);
-	}
-
-	@FXML
-	void visitMoviePage16() {
-		visitMoviePageGeneral(16);
-	}
-
-	@FXML
-	void visitMoviePage17() {
-		visitMoviePageGeneral(17);
-	}
-
 	void closeAllDetails() {
-		filterTab.setVisible(false);
-		filterTabRow.setMaxHeight(1);
 
 		movieColumn00.setMaxWidth(1);
 		movieColumn01.setMaxWidth(1);
@@ -1000,12 +734,6 @@ public class SearchTab {
 		movieColumn09.setMaxWidth(1);
 		movieColumn10.setMaxWidth(1);
 		movieColumn11.setMaxWidth(1);
-		movieColumn12.setMaxWidth(1);
-		movieColumn13.setMaxWidth(1);
-		movieColumn14.setMaxWidth(1);
-		movieColumn15.setMaxWidth(1);
-		movieColumn16.setMaxWidth(1);
-		movieColumn17.setMaxWidth(1);
 
 		movieInfo00.setVisible(false);
 		movieInfo01.setVisible(false);
@@ -1019,12 +747,6 @@ public class SearchTab {
 		movieInfo09.setVisible(false);
 		movieInfo10.setVisible(false);
 		movieInfo11.setVisible(false);
-		movieInfo12.setVisible(false);
-		movieInfo13.setVisible(false);
-		movieInfo14.setVisible(false);
-		movieInfo15.setVisible(false);
-		movieInfo16.setVisible(false);
-		movieInfo17.setVisible(false);
 
 		movie02.toBack();
 		movie01.toBack();
@@ -1038,12 +760,6 @@ public class SearchTab {
 		movie09.toBack();
 		movie10.toBack();
 		movie11.toBack();
-		movie14.toBack();
-		movie13.toBack();
-		movie12.toBack();
-		movie15.toBack();
-		movie16.toBack();
-		movie17.toBack();
 	}
 
 	void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc,
@@ -1158,41 +874,5 @@ public class SearchTab {
 	void movieDetails11() {
 		movieDetails(movie11, poster11, movieInfo11, lblMovieTitle11, lblMovieDesc11, lblMovieGenre11, lblMovieDate11,
 				movieColumn11);
-	}
-
-	@FXML
-	void movieDetails12() {
-		movieDetails(movie12, poster12, movieInfo12, lblMovieTitle12, lblMovieDesc12, lblMovieGenre12, lblMovieDate12,
-				movieColumn12);
-	}
-
-	@FXML
-	void movieDetails13() {
-		movieDetails(movie13, poster13, movieInfo13, lblMovieTitle13, lblMovieDesc13, lblMovieGenre13, lblMovieDate13,
-				movieColumn13);
-	}
-
-	@FXML
-	void movieDetails14() {
-		movieDetails(movie14, poster14, movieInfo14, lblMovieTitle14, lblMovieDesc14, lblMovieGenre14, lblMovieDate14,
-				movieColumn14);
-	}
-
-	@FXML
-	void movieDetails15() {
-		movieDetails(movie15, poster15, movieInfo15, lblMovieTitle15, lblMovieDesc15, lblMovieGenre15, lblMovieDate15,
-				movieColumn15);
-	}
-
-	@FXML
-	void movieDetails16() {
-		movieDetails(movie16, poster16, movieInfo16, lblMovieTitle16, lblMovieDesc16, lblMovieGenre16, lblMovieDate16,
-				movieColumn16);
-	}
-
-	@FXML
-	void movieDetails17() {
-		movieDetails(movie17, poster17, movieInfo17, lblMovieTitle17, lblMovieDesc17, lblMovieGenre17, lblMovieDate17,
-				movieColumn17);
 	}
 }
