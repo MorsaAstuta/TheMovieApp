@@ -2,16 +2,14 @@ package dii2dam.movieApp.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Review {
 
   @Id
-  @Column(name="username")
-  private String username;
+  @Column(name="author")
+  private String author;
 	
   @Column(name="content")
   private String content;
@@ -24,9 +22,13 @@ public class Review {
 	
   @Column(name="movie_id")
   private Long movie_id;
+  
+  public Review() {
+  	
+  }
 
-  public Review(String username, String content, String avatar_path, String created_at, Long movie_id) {
-  	setUsername(username);
+  public Review(String author, String content, String avatar_path, String created_at, Long movie_id) {
+  	setUsername(author);
   	setContent(content);
   	setAvatar_path(avatar_path);
   	setCreated_at(created_at);
@@ -34,11 +36,11 @@ public class Review {
   }
 
 	public String getUsername() {
-		return username;
+		return author;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUsername(String author) {
+		this.author = author;
 	}
 
 	public String getContent() {

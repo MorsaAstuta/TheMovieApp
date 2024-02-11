@@ -816,7 +816,7 @@
                         <RowConstraints vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="fmPoster" fitHeight="270.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
+                        <ImageView fx:id="fmPoster" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#visitMoviePageFM" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
                         <Label fx:id="fmTitle" text="Title" textFill="WHITE" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1">
                            <font>
                               <Font name="Inder" size="36.0" />
@@ -825,11 +825,6 @@
                         <Label fx:id="fmOverview" text="Overview" textFill="WHITE" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="7">
                            <font>
                               <Font name="Inder" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="fmRuntime" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Runtime" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                           <font>
-                              <Font name="Inder" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="fmRelease" text="Release" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">

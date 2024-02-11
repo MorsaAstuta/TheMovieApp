@@ -87,8 +87,6 @@ public class MovieRecord {
 
 	private Movie movie;
 
-	private Review review;
-
 	@FXML
 	private Button btnLeftActors;
 
@@ -165,6 +163,11 @@ public class MovieRecord {
 			creditsResponse = Connector.getMovieCredits(type, id);
 			movieInfoResponse = Connector.getMovieInfo(type, id);
 			reviewResponse = Connector.getMovieReviews(type, id, page);
+
+			reviews.clear();
+			for (Review review : reviewResponse.getReviews()) {
+				reviews.add(review);
+			}
 			creditsResponse.revampArrays();
 			actors = creditsResponse.getActors();
 			directors = creditsResponse.getDirectors();
@@ -174,10 +177,12 @@ public class MovieRecord {
 	}
 
 	public void initialize() {
-		movie = Manager.movie;
-		review = Manager.review;
-		System.out.println(movie.getId());
-		getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
+		movie = Manager.getMovie();
+		if (Manager.getDiscoveryType() != "multi") {
+			getMovieDetails(Manager.getDiscoveryType(), Integer.parseInt(movie.getId().toString()), reviewPage);
+		} else {
+			getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
+		}
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
 			textDate.setText(
@@ -195,7 +200,7 @@ public class MovieRecord {
 				textDirector.setText("Director no disponible");
 			}
 
-			textTime.setText(movieInfoResponse.getRuntime().toString() + " min.");
+			textTime.setText(movieInfoResponse.getRuntime() + " min.");
 
 			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
 			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
@@ -252,39 +257,35 @@ public class MovieRecord {
 	}
 
 	private void loadReviews() {
-		reviews.clear();
 
-		for (Review review : reviewResponse.getReviews()) {
-			reviews.add(review);
-		}
-
-		for (Review review : reviews) {
-			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 0) {
-				labelUsernameReview1.setText(review.getUsername()); // Da null
-				textComment1.setText(review.getContent());
-//				String url2 = review.getAvatar_path();
-//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//				Image image2 = new Image(urlAvatar);
-//				imgUserReview1.setImage(image2);
-			}
-			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 1) {
-				labelUsernameReview3.setText(review.getUsername());
-				textComment2.setText(review.getContent());
-//				String url2 = review.getAvatar_path();
-//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//				Image image2 = new Image(urlAvatar);
-//				imgUserReview2.setImage(image2);
-			}
-			if (reviews.indexOf(review) == (reviewResponse.getPage() - 1) * 3 + 2) {
-				labelUsernameReview3.setText(review.getUsername());
-				textComment3.setText(review.getContent());
-//				String url2 = review.getAvatar_path();
-//				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//				Image image2 = new Image(urlAvatar);
-//				imgUserReview3.setImage(image2);
+			for (Review review : reviewResponse.getReviews()) {
+				System.out.println(review.getUsername());
+				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 0) {
+					labelUsernameReview1.setText(review.getUsername()); // Da null
+					textComment1.setText(review.getContent());
+//					String url2 = review.getAvatar_path();
+//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//					Image image2 = new Image(urlAvatar);
+//					imgUserReview1.setImage(image2);
+				}
+				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 1) {
+					labelUsernameReview2.setText(review.getUsername());
+					textComment2.setText(review.getContent());
+//					String url2 = review.getAvatar_path();
+//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//					Image image2 = new Image(urlAvatar);
+//					imgUserReview2.setImage(image2);
+				}
+				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 2) {
+					labelUsernameReview3.setText(review.getUsername());
+					textComment3.setText(review.getContent());
+//					String url2 = review.getAvatar_path();
+//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+//					Image image2 = new Image(urlAvatar);
+//					imgUserReview3.setImage(image2);
+				}
 			}
 		}
-	}
 
 	private void visibleBtnLeft() {
 		if (actorPage > 1)

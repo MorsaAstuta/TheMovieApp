@@ -15,7 +15,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +31,27 @@ import dii2dam.movieApp.utils.Manager;
 public class HomePage {
 
 	private APIResponse response;
+
+	@FXML
+	private ImageView fmPoster;
+
+	@FXML
+	private Label fmOverview;
+
+	@FXML
+	private Label fmGenre;
+
+	@FXML
+	private Label fmTitle;
+
+	@FXML
+	private Label fmRelease;
+
+	@FXML
+	private Label fmRuntime;
+
+	@FXML
+	private Label fmScore;
 
 	@FXML
 	private Pane btnAccount;
@@ -504,13 +524,13 @@ public class HomePage {
 		closeAllDetails();
 
 		// Clean
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 13; i++) {
 			posters.get(i).setImage(null);
 			movieByPoster.clear();
 		}
 
 		// Reload
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 13; i++) {
 			try {
 				String url = movies[i].getPosterPath();
 				String urlPoster = "";
@@ -526,11 +546,23 @@ public class HomePage {
 				e.printStackTrace();
 			}
 		}
+
+		fmScore.setText(movies[0].getVote_average().toString());
+		fmGenre.setText(movies[0].getGenre());
+		fmOverview.setText(movies[0].getOverview());
+		fmRelease.setText(movies[0].getRelease_date());
+		if (chkMovies.isSelected()) {
+			fmTitle.setText(movies[0].getTitle());
+		} else if (chkSeries.isSelected()) {
+			fmTitle.setText(movies[0].getName());
+		}
 	}
 
 	@FXML
 	void initialize() {
 		closeAllDetails();
+		
+		fmOverview.setWrapText(true);
 		lblMovieDesc00.setWrapText(true);
 		lblMovieDesc01.setWrapText(true);
 		lblMovieDesc02.setWrapText(true);
@@ -544,6 +576,7 @@ public class HomePage {
 		lblMovieDesc10.setWrapText(true);
 		lblMovieDesc11.setWrapText(true);
 
+		posters.add(fmPoster);
 		posters.add(poster00);
 		posters.add(poster01);
 		posters.add(poster02);
@@ -654,6 +687,7 @@ public class HomePage {
 	void visitMoviePageGeneral(int id) {
 		try {
 			Manager.setMovie(movies[id]);
+			Manager.setDiscoveryType(searchType);
 			App.setRoot("movieRecord");
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -661,63 +695,68 @@ public class HomePage {
 	}
 
 	@FXML
-	void visitMoviePage00() {
+	void visitMoviePageFM() {
 		visitMoviePageGeneral(0);
 	}
 
 	@FXML
-	void visitMoviePage01() {
+	void visitMoviePage00() {
 		visitMoviePageGeneral(1);
 	}
 
 	@FXML
-	void visitMoviePage02() {
+	void visitMoviePage01() {
 		visitMoviePageGeneral(2);
 	}
 
 	@FXML
-	void visitMoviePage03() {
+	void visitMoviePage02() {
 		visitMoviePageGeneral(3);
 	}
 
 	@FXML
-	void visitMoviePage04() {
+	void visitMoviePage03() {
 		visitMoviePageGeneral(4);
 	}
 
 	@FXML
-	void visitMoviePage05() {
+	void visitMoviePage04() {
 		visitMoviePageGeneral(5);
 	}
 
 	@FXML
-	void visitMoviePage06() {
+	void visitMoviePage05() {
 		visitMoviePageGeneral(6);
 	}
 
 	@FXML
-	void visitMoviePage07() {
+	void visitMoviePage06() {
 		visitMoviePageGeneral(7);
 	}
 
 	@FXML
-	void visitMoviePage08() {
+	void visitMoviePage07() {
 		visitMoviePageGeneral(8);
 	}
 
 	@FXML
-	void visitMoviePage09() {
+	void visitMoviePage08() {
 		visitMoviePageGeneral(9);
 	}
 
 	@FXML
-	void visitMoviePage10() {
+	void visitMoviePage09() {
 		visitMoviePageGeneral(10);
 	}
 
 	@FXML
-	void visitMoviePage11() {
+	void visitMoviePage10() {
 		visitMoviePageGeneral(11);
+	}
+
+	@FXML
+	void visitMoviePage11() {
+		visitMoviePageGeneral(12);
 	}
 
 	void closeAllDetails() {

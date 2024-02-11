@@ -3,19 +3,14 @@ package dii2dam.movieApp.utils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.google.gson.Gson;
 
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.Review;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class Manager {
 	public static Movie movie;
 	public static Review review;
+	public static String discoveryType;
 
 	// Movie genres
 	public static HashMap<Integer, String> genreById = new HashMap<>();
@@ -115,6 +110,22 @@ public class Manager {
 
 	public static void setGenreNames(List<String> genreNames) {
 		Manager.genreNames = genreNames;
+	}
+
+	public static Review getReview() {
+		return review;
+	}
+
+	public static void setReview(Review review) {
+		Manager.review = review;
+	}
+
+	public static String getDiscoveryType() {
+		return discoveryType;
+	}
+
+	public static void setDiscoveryType(String discoveryType) {
+		Manager.discoveryType = discoveryType;
 	}
 
 }

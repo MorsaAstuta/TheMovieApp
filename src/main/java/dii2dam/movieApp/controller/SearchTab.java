@@ -887,7 +887,7 @@ public class SearchTab {
 	void visitMoviePageGeneral(int id) {
 		try {
 			Manager.setMovie(movies[id]);
-			;
+			Manager.setDiscoveryType(searchType);
 			App.setRoot("movieRecord");
 		} catch (IOException e) {
 			e.printStackTrace();
