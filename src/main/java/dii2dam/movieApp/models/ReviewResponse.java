@@ -37,5 +37,13 @@ public class ReviewResponse {
 	public void setPage(Integer page) {
 		this.page = page;
 	}
+
+	public Review[] getResults() {
+		return results;
+	}
+
+	public void setResults(Review[] results) {
+		this.results = results;
+	}
 	
 }

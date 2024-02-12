@@ -201,8 +201,7 @@ public class MovieRecord {
 		}
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(
-					movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
+			textDate.setText(movie.getReleaseDate() != null ? movie.getReleaseDate() : "Fecha de estreno no especificada");
 			if (movie != null && !directors.isEmpty()) {
 				String output = "";
 				for (Director director : directors) {
@@ -269,45 +268,57 @@ public class MovieRecord {
 
 			}
 			visibleBtnLeft();
+			visibleBtnRight();
 		}
 	}
 
 	private void loadReviews() {
 
-			for (Review review : reviewResponse.getReviews()) {
-				System.out.println(review.getUsername());
-				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 0) {
-					labelUsernameReview1.setText(review.getUsername()); // Da null
-					textComment1.setText(review.getContent());
-//					String url2 = review.getAvatar_path();
-//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//					Image image2 = new Image(urlAvatar);
-//					imgUserReview1.setImage(image2);
-				}
-				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 1) {
-					labelUsernameReview2.setText(review.getUsername());
-					textComment2.setText(review.getContent());
-//					String url2 = review.getAvatar_path();
-//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//					Image image2 = new Image(urlAvatar);
-//					imgUserReview2.setImage(image2);
-				}
-				if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 2) {
-					labelUsernameReview3.setText(review.getUsername());
-					textComment3.setText(review.getContent());
-//					String url2 = review.getAvatar_path();
-//					String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-//					Image image2 = new Image(urlAvatar);
-//					imgUserReview3.setImage(image2);
-				}
+		for (Review review : reviewResponse.getReviews()) {
+			System.out.println(review.getUsername());
+			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 0) {
+				labelUsernameReview1.setText(review.getUsername());
+				textComment1.setText(review.getContent());
+				String url1 = review.getAvatar_path();
+				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url1;
+				Image image1 = new Image(urlAvatar);
+				imgUserReview1.setImage(image1);
+			}
+			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 1) {
+				labelUsernameReview2.setText(review.getUsername());
+				textComment2.setText(review.getContent());
+				String url2 = review.getAvatar_path();
+				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
+				Image image2 = new Image(urlAvatar);
+				imgUserReview2.setImage(image2);
+			}
+			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 2) {
+				labelUsernameReview3.setText(review.getUsername());
+				textComment3.setText(review.getContent());
+				String url3 = review.getAvatar_path();
+				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url3;
+				Image image3 = new Image(urlAvatar);
+				imgUserReview3.setImage(image3);
 			}
 		}
+	}
 
 	private void visibleBtnLeft() {
 		if (actorPage > 1)
 			btnLeftActors.setVisible(true);
 		else
 			btnLeftActors.setVisible(false);
+	}
+
+	private void visibleBtnRight() {
+		Integer actorTotalPages = actors.size() / 4;
+		if (actors.size() % 4 != 0) {
+			actorTotalPages++;
+		}
+		if (actorPage < actorTotalPages)
+			btnRightActor.setVisible(true);
+		else
+			btnRightActor.setVisible(false);
 	}
 
 	@FXML
