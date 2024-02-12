@@ -195,7 +195,7 @@ public class MovieRecord {
 	public void initialize() {
 		movie = Manager.getMovie();
 		if (Manager.getDiscoveryType() != "multi") {
-			getMovieDetails(Manager.getDiscoveryType(), Integer.parseInt(movie.getId().toString()), reviewPage);
+		//	getMovieDetails(Manager.getDiscoveryType(), Integer.parseInt(movie.getId().toString()), reviewPage);
 		} else {
 			getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
 		}
