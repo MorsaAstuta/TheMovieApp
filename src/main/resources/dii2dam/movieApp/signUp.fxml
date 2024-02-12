@@ -77,21 +77,21 @@
                      </top>
                      <center>
                         <GridPane hgap="16.0" style="-fx-background-color: rgb(121, 98, 63);" vgap="16.0" BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" />
-                          </columnConstraints>
-                          <rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                           </columnConstraints>
+                           <rowConstraints>
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
-                            <RowConstraints vgrow="SOMETIMES" />
-                            <RowConstraints vgrow="SOMETIMES" />
-                            <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints />
                               <RowConstraints />
-                          </rowConstraints>
+                           </rowConstraints>
                            <children>
                               <Label fx:id="lblMail" text="e-Mail" textFill="WHITE" GridPane.rowIndex="3">
                                  <font>
@@ -101,7 +101,8 @@
                               <TextField fx:id="txtMail" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="Lucida Console" size="12.0" />
-                                 </font></TextField>
+                                 </font>
+                              </TextField>
                               <GridPane hgap="16.0" prefHeight="2.0" prefWidth="314.0" vgap="16.0" GridPane.rowIndex="6">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="118.0" prefWidth="147.0" />
@@ -135,11 +136,13 @@
                                     <PasswordField fx:id="txtPassword" style="-fx-background-color: rgb(199, 164, 113);">
                                        <font>
                                           <Font name="Lucida Console" size="12.0" />
-                                       </font></PasswordField>
+                                       </font>
+                                    </PasswordField>
                                     <PasswordField fx:id="txtConfirm" style="-fx-background-color: rgb(199, 164, 113);" GridPane.columnIndex="1">
                                        <font>
                                           <Font name="Lucida Console" size="12.0" />
-                                       </font></PasswordField>
+                                       </font>
+                                    </PasswordField>
                                  </children>
                               </GridPane>
                               <Button fx:id="btnContinue" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER">
@@ -155,7 +158,8 @@
                               <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Lucida Console" size="12.0" />
-                                 </font></TextField>
+                                 </font>
+                              </TextField>
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -168,7 +172,8 @@
                               <Label text="Already have an account?" textFill="WHITE">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="12.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                               <Button fx:id="btnLogIn" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#logIn" prefHeight="5.0" prefWidth="71.0" text="LOG IN" textAlignment="CENTER">
                                  <font>
                                     <Font name="Reem Kufi Bold" size="12.0" />

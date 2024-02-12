@@ -1,16 +1,24 @@
 package dii2dam.movieApp.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import dii2dam.movieApp.App;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.Review;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Manager {
 	public static Movie movie;
 	public static Review review;
 	public static String discoveryType;
+	
+	public static List<Parent>parentval = new ArrayList<Parent>();
 
 	// Movie genres
 	public static HashMap<Integer, String> genreById = new HashMap<>();
@@ -126,6 +134,22 @@ public class Manager {
 
 	public static void setDiscoveryType(String discoveryType) {
 		Manager.discoveryType = discoveryType;
+	}
+	
+	public void goToLastPage() {
+    try {
+			back(parentval.get(parentval.size() - 1));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    parentval.remove(parentval.size() - 1);
+}
+	public void back(Parent parent) throws IOException{
+		try {
+	    App.loadLast(parent);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -101,7 +101,8 @@
                               <TextField fx:id="txtUsername" style="-fx-background-color: rgb(199, 164, 113);" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Lucida Console" size="12.0" />
-                                 </font></TextField>
+                                 </font>
+                              </TextField>
                               <GridPane hgap="16.0" GridPane.rowIndex="3">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" />
@@ -129,7 +130,8 @@
                               <PasswordField fx:id="txtPassword" style="-fx-background-color: rgb(199, 164, 113);" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Lucida Console" size="12.0" />
-                                 </font></PasswordField>
+                                 </font>
+                              </PasswordField>
                               <Button fx:id="btnContinue" cache="true" mnemonicParsing="false" onAction="#loadUser" text="CONTINUE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                  <font>
                                     <Font name="Reem Kufi Bold" size="12.0" />
@@ -150,7 +152,8 @@
                               <Label text="Don't have an account?" textFill="WHITE">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="12.0" />
-                                 </font></Label>
+                                 </font>
+                              </Label>
                               <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#signUp" prefHeight="5.0" prefWidth="71.0" text="SIGN UP">
                                  <font>
                                     <Font name="Reem Kufi Bold" size="12.0" />

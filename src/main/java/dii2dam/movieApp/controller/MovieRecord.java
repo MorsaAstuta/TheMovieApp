@@ -131,20 +131,36 @@ public class MovieRecord {
 		try {
 			App.setRoot("accountPage");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
 	void goToHomePage(MouseEvent event) {
-
 		try {
-			App.setRoot("SearchTab");
+			App.setRoot("homePage");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	void goToMyList(MouseEvent event) {
+		try {
+			App.setRoot("");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	void goBack(MouseEvent event) {
+		Manager manager = new Manager();
+		manager.goToLastPage();
+	}
+
+	@FXML
+	void exportAsCSV(MouseEvent event) {
 	}
 
 	@FXML
@@ -292,12 +308,6 @@ public class MovieRecord {
 			btnLeftActors.setVisible(true);
 		else
 			btnLeftActors.setVisible(false);
-	}
-
-	@FXML
-	void comboBoxGetItem(ActionEvent event) {
-		String selectedItem = comboBoxStateMovie.getSelectionModel().getSelectedItem();
-		
 	}
 
 	@FXML

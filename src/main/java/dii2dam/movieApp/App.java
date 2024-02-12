@@ -34,7 +34,12 @@ public class App extends Application {
 	}
 
 	public static void setRoot(String fxml) throws IOException {
+		Manager.parentval.add(scene.getRoot());
 		scene.setRoot(loadFXML(fxml));
+	}
+
+	public static void loadLast(Parent parent) throws IOException {
+		scene.setRoot(parent);
 	}
 
 	private static Parent loadFXML(String fxml) throws IOException {

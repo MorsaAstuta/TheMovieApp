@@ -13,40 +13,40 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dii2dam.movieApp.controller.AccountPage">
    <center>
-          <BorderPane prefHeight="555.0" prefWidth="1095.0" style="-fx-background-color: rgb(207, 177, 85);" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="555.0" prefWidth="1095.0" style="-fx-background-color: rgb(207, 177, 85);" BorderPane.alignment="CENTER">
          <center>
-                  <GridPane alignment="BOTTOM_CENTER" style="-fx-background-color: rgb(207,177,133);" BorderPane.alignment="CENTER">
-                      <columnConstraints>
-                          <ColumnConstraints hgrow="SOMETIMES" />
-                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                          <ColumnConstraints hgrow="SOMETIMES" />
-                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                          <ColumnConstraints hgrow="SOMETIMES" />
-                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                          <ColumnConstraints hgrow="SOMETIMES" />
-                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                          <ColumnConstraints hgrow="SOMETIMES" />
-                      </columnConstraints>
-                      <rowConstraints>
-                          <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
+            <GridPane alignment="BOTTOM_CENTER" style="-fx-background-color: rgb(207,177,133);" BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
                   <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
-                          <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" vgrow="SOMETIMES" />
-                          <RowConstraints maxHeight="32.0" minHeight="32.0" prefHeight="32.0" vgrow="SOMETIMES" />
-                          <RowConstraints maxHeight="174.0" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
-                      </rowConstraints>
-                      <children>
-                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                          <Pane prefHeight="279.0" prefWidth="166.0" style="-fx-background-color: green;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                          <Pane prefHeight="139.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                          <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                          <Label prefHeight="36.0" prefWidth="156.0" text="Recently watched:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                              <font>
-                                  <Font name="Inder" size="18.0" />
-                              </font>
-                          </Label>
-                      </children>
-                  </GridPane>
+                  <RowConstraints maxHeight="32.0" minHeight="32.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="174.0" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+                  <Pane prefHeight="279.0" prefWidth="166.0" style="-fx-background-color: green;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Pane prefHeight="139.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Label prefHeight="36.0" prefWidth="156.0" text="Recently watched:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="Inder" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
          </center>
          <top>
             <BorderPane style="-fx-background-color: rgb(177,133,66);" BorderPane.alignment="CENTER">
@@ -86,7 +86,7 @@
                            </font>
                         </Label>
                         <Label fx:id="idLastConnect" layoutX="76.0" layoutY="158.0" textFill="WHITE">
-                        <font>
+                           <font>
                               <Font name="Inder" size="12.0" />
                            </font>
                         </Label>
@@ -95,7 +95,7 @@
                </center>
             </BorderPane>
          </top>
-          </BorderPane>
+      </BorderPane>
    </center>
    <left>
       <Pane maxWidth="50.0" minWidth="50.0" prefWidth="50.0" style="-fx-background-color: rgb(177,133,66);" BorderPane.alignment="CENTER" />
@@ -105,7 +105,7 @@
    </right>
    <top>
       <GridPane style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-        <columnConstraints>
+         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
@@ -113,34 +113,34 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-                <Pane onMouseClicked="#loadHomePage" prefHeight="69.0" prefWidth="125.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
-                    <children>
-                        <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0">
-                            <image>
-                                <Image url="@img/icon/fs.png" />
-                            </image>
-                        </ImageView>
-                        <Label layoutX="117.0" layoutY="9.0" prefHeight="22.0" prefWidth="8.0" text="S">
-                            <font>
-                                <Font name="Inder" size="48.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="14.0" layoutY="9.0" text="F">
-                            <font>
-                                <Font name="Inder" size="48.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
+            <Pane onMouseClicked="#loadHomePage" prefHeight="69.0" prefWidth="125.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0">
+                     <image>
+                        <Image url="@img/icon/fs.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="117.0" layoutY="9.0" prefHeight="22.0" prefWidth="8.0" text="S">
+                     <font>
+                        <Font name="Inder" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="9.0" text="F">
+                     <font>
+                        <Font name="Inder" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="btnMyList" onMouseClicked="#myList" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
