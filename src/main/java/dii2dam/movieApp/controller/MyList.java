@@ -551,7 +551,7 @@ public class MyList {
 
 	private Integer currentPage = 0;
 	private Integer totalPages = 0;
-	
+
 	private String searchType = "";
 
 	private void query(String query) {
@@ -599,7 +599,7 @@ public class MyList {
 				modifiedQuery += Manager.idByGenre.get(cmbGenre.getValue());
 			}
 		}
-		
+
 		// Score/Runtime filters
 		if (cmbScoreMin.getValue() != null) {
 			modifiedQuery += "&vote_average.gte=" + cmbScoreMin.getValue();
@@ -688,7 +688,7 @@ public class MyList {
 		// Reload
 		for (int i = 0; i < 18; i++) {
 			try {
-				String url = movies[i].getPosterPath();
+				String url = movies[i].getPoster_path();
 				String urlPoster = "";
 				if (url != null && url != "null") {
 					urlPoster = "https://image.tmdb.org/t/p/w500" + url;
@@ -823,6 +823,15 @@ public class MyList {
 	}
 
 	@FXML
+	void goToAddMovie() {
+		try {
+			App.setRoot("addMovie");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
 	void goToSearchTab() {
 		try {
 			App.setRoot("searchTab");
@@ -880,17 +889,17 @@ public class MyList {
 		Movie movie = movieByPoster.get(poster);
 		if (movieColumn.getMaxWidth() != 400) {
 			closeAllDetails();
-			
+
 			moviePane.toFront();
 			movieColumn.setMaxWidth(400);
 			movieInfo.setVisible(true);
-			
-			switch(searchType) {
+
+			switch (searchType) {
 			case "movie":
 				movieTitle.setText(movie.getTitle());
 				movieDesc.setText(movie.getOverview());
 				movieGenre.setText(movie.getGenre());
-				movieDate.setText(movie.getReleaseDate());
+				movieDate.setText(movie.getRelease_date());
 				break;
 			case "tv":
 				movieTitle.setText(movie.getName());
@@ -903,7 +912,7 @@ public class MyList {
 					movieTitle.setText(movie.getTitle());
 					movieDesc.setText(movie.getOverview());
 					movieGenre.setText(movie.getGenre());
-					movieDate.setText(movie.getReleaseDate());
+					movieDate.setText(movie.getRelease_date());
 				} else if (movie.getMedia_type().equals("tv")) {
 					movieTitle.setText(movie.getName());
 					movieDesc.setText(movie.getOverview());

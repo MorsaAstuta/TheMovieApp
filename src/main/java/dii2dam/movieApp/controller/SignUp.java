@@ -50,11 +50,11 @@ public class SignUp {
 
 	@FXML
 	void loadUser(ActionEvent event) {
-		
+
 		UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
 		boolean error = false;
 		String message = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		// Regular text check: format □*
 		if (!(txtUsername.getText().length() >= 1)) {
 			error = true;
@@ -77,17 +77,14 @@ public class SignUp {
 			message += "The passwords do not match or their fields are empty." + "\n";
 		}
 		if (!error) {
-			User user = new User(txtUsername.getText(), txtPassword.getText(), sdf.format(new Date()),
-					txtMail.getText());
+			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText(), sdf.format(new Date()));
 			userDao.insert(user);
-			
 
 			try {
 				App.setRoot("logIn");
-				System.out.println(user.getUsername() + "\n" + user.getPassword() + "\n" + user.getSignDate() + "\n"
-						+ user.getMail());
+				System.out.println(
+						user.getUsername() + "\n" + user.getPassword() + "\n" + user.getRegister_date() + "\n" + user.getMail());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -104,7 +101,6 @@ public class SignUp {
 		try {
 			App.setRoot("logIn");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

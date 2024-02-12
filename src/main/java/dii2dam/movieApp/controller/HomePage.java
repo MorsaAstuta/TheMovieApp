@@ -532,7 +532,7 @@ public class HomePage {
 		// Reload
 		for (int i = 0; i < 13; i++) {
 			try {
-				String url = movies[i].getPosterPath();
+				String url = movies[i].getPoster_path();
 				String urlPoster = "";
 				if (url != null && url != "null") {
 					urlPoster = "https://image.tmdb.org/t/p/w500" + url;
@@ -816,7 +816,7 @@ public class HomePage {
 				movieTitle.setText(movie.getTitle());
 				movieDesc.setText(movie.getOverview());
 				movieGenre.setText(movie.getGenre());
-				movieDate.setText(movie.getReleaseDate());
+				movieDate.setText(movie.getRelease_date());
 				break;
 			case "tv":
 				movieTitle.setText(movie.getName());
@@ -829,7 +829,7 @@ public class HomePage {
 					movieTitle.setText(movie.getTitle());
 					movieDesc.setText(movie.getOverview());
 					movieGenre.setText(movie.getGenre());
-					movieDate.setText(movie.getReleaseDate());
+					movieDate.setText(movie.getRelease_date());
 				} else if (movie.getMedia_type().equals("tv")) {
 					movieTitle.setText(movie.getName());
 					movieDesc.setText(movie.getOverview());

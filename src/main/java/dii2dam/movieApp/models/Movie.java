@@ -2,16 +2,16 @@ package dii2dam.movieApp.models;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import dii2dam.movieApp.utils.Manager;
-import javafx.scene.image.Image;
 
+@Entity
 public class Movie implements java.io.Serializable {
 
 	@Id
@@ -22,19 +22,16 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "title")
 	private String title;
 
-	@Column(name = "name")
+  @Transient
 	private String name;
 
-	@Column(name = "company_id")
-	private Long companyId;
-
-	@Column(name = "media_type")
+  @Transient
 	private String media_type;
 
 	@Column(name = "release_date")
 	private String release_date;
 
-	@Column(name = "first_air_date")
+  @Transient
 	private String first_air_date;
 
 	@Column(name = "overview")
@@ -43,169 +40,52 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "poster_path")
 	private String poster_path;
 
-	@Column(name = "watch_date")
-	private String watchDate;
-
-	@Column(name = "global_rating")
-	private Double vote_average;
-
-	@Column(name = "user_rating")
-	private Double userRating;
+	@Column(name = "rating")
+	private Double rating;
 
 	@Column(name = "review")
 	private String review;
 
-	@Column(name = "time")
-	private int time;
+	@Column(name = "runtime")
+	private Integer runtime;
 
-	@OneToMany(mappedBy = "", cascade = CascadeType.ALL)
-	private Set<Review> reviews = new HashSet<Review>(0);
+	@Column(name = "user_id")
+	private Long user_id;
 
 	@Column(name = "location_id")
-	private Long locationId;
+	private Long location_id;
 
-	@OneToMany(mappedBy = "", cascade = CascadeType.ALL)
-	private Set<Actor> actors = new HashSet<Actor>(0);
+	@Column(name = "status")
+	private String status;
 
-	@OneToMany(mappedBy = "", cascade = CascadeType.ALL)
+  @Transient
 	private Set<Integer> genre_ids = new HashSet<Integer>(0);
 
-	@Column
-	private Director director;
+  @Transient
+	private Double vote_average;
 
 	protected Movie() {
 	}
 
-	public Movie(Long id, String title, Long companyId, String releaseDate, String overview, String posterPath,
-			String watchDate, Double globalRating, Double userRating, String review, Long locationId, Director director) {
+	public Movie(Long id, String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id, Long location_id) {
 		setId(id);
 		setTitle(title);
-		setCompanyId(companyId);
-		setReleaseDate(releaseDate);
+		setRelease_date(release_date);
 		setOverview(overview);
-		setPosterPath(posterPath);
-		setWatchDate(watchDate);
-		setRatingGlobal(globalRating);
-		setUserRating(userRating);
-		setReview(review);
-		setLocationId(locationId);
-		setDirector(director);
-
+		setRuntime(runtime);
+		setPoster_path(poster_path);
+		setUser_id(user_id);
+		setLocation_id(location_id);
 	}
 
-	private String getActorImageUrl(Set<Actor> actors) {
-		String imageUrl = "";
-		for (Actor actor : actors) {
-			// Concatena las URL de las imágenes de los actores
-			imageUrl += "https://image.tmdb.org/t/p/w500" + actor.getProfilePath() + ", ";
-		}
-		// Elimina la última coma y espacio
-		if (!imageUrl.isEmpty()) {
-			imageUrl = imageUrl.substring(0, imageUrl.length() - 2);
-		}
-		return imageUrl;
-	}
-
-	public Director getDirector() {
-		return director;
-	}
-
-	public void setDirector(Director director) {
-		this.director = director;
-	}
-
-	public Movie(String title, String releaseDate, String overview) {
+	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id, Long location_id) {
 		setTitle(title);
-		setReleaseDate(releaseDate);
+		setRelease_date(release_date);
 		setOverview(overview);
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
-	public String getReleaseDate() {
-		return release_date;
-	}
-
-	public void setReleaseDate(String releaseDate) {
-		this.release_date = releaseDate;
-	}
-
-	public String getOverview() {
-		return overview;
-	}
-
-	public void setOverview(String overview) {
-		this.overview = overview;
-	}
-
-	public String getPosterPath() {
-		return poster_path;
-	}
-
-	public void setPosterPath(String posterPath) {
-		this.poster_path = posterPath;
-	}
-
-	public String getWatchDate() {
-		return watchDate;
-	}
-
-	public void setWatchDate(String watchDate) {
-		this.watchDate = watchDate;
-	}
-
-	public Double getRatingGlobal() {
-		return vote_average;
-	}
-
-	public void setRatingGlobal(Double globalRating) {
-		this.vote_average = globalRating;
-	}
-
-	public Double getUserRating() {
-		return userRating;
-	}
-
-	public void setUserRating(Double userRating) {
-		this.userRating = userRating;
-	}
-
-	public String getReview() {
-		return review;
-	}
-
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-	public Long getLocationId() {
-		return locationId;
-	}
-
-	public void setLocationId(Long locationId) {
-		this.locationId = locationId;
+		setRuntime(runtime);
+		setPoster_path(poster_path);
+		setUser_id(user_id);
+		setLocation_id(location_id);
 	}
 
 	public String getGenre() {
@@ -218,6 +98,22 @@ public class Movie implements java.io.Serializable {
 				output += ", ";
 		}
 		return output;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getName() {
@@ -252,12 +148,68 @@ public class Movie implements java.io.Serializable {
 		this.first_air_date = first_air_date;
 	}
 
+	public String getOverview() {
+		return overview;
+	}
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+
 	public String getPoster_path() {
 		return poster_path;
 	}
 
 	public void setPoster_path(String poster_path) {
 		this.poster_path = poster_path;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public Integer getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(Integer runtime) {
+		this.runtime = runtime;
+	}
+
+	public Long getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Long user_id) {
+		this.user_id = user_id;
+	}
+
+	public Long getLocation_id() {
+		return location_id;
+	}
+
+	public void setLocation_id(Long location_id) {
+		this.location_id = location_id;
+	}
+
+	public Set<Integer> getGenre_ids() {
+		return genre_ids;
+	}
+
+	public void setGenre_ids(Set<Integer> genre_ids) {
+		this.genre_ids = genre_ids;
 	}
 
 	public Double getVote_average() {
@@ -268,36 +220,12 @@ public class Movie implements java.io.Serializable {
 		this.vote_average = vote_average;
 	}
 
-	public int getTime() {
-		return time;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setTime(int time) {
-		this.time = time;
-	}
-
-	public Set<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public Set<Actor> getActors() {
-		return actors;
-	}
-
-	public void setActors(Set<Actor> actors) {
-		this.actors = actors;
-	}
-
-	public Set<Integer> getGenre_ids() {
-		return genre_ids;
-	}
-
-	public void setGenre_ids(Set<Integer> genre_ids) {
-		this.genre_ids = genre_ids;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

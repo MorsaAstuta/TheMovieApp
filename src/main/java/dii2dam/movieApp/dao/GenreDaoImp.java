@@ -17,33 +17,30 @@ public class GenreDaoImp extends CommonDaoImpl<Genre> implements GenreDaoInt {
 		this.session = session;
 	}
 
-
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Genre> searchByGenreId(long id) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM genre INNER JOIN moviegenre ON "+id+ 
-				"= moviegenre.movie_id").list();
+		return session.createQuery("FROM genre INNER JOIN moviegenre ON " + id + "= moviegenre.movie_id").list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Genre> searchByGenreName(String name) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM genre where name ="+name).list();
+		return session.createQuery("FROM genre where name =" + name).list();
 	}
 
-
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Genre> searchGenresByMovieId(long idMovie) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("select genre.name from genre inner"
-				+ "join moviegenre on"+idMovie+"= moviegenre.movie_id").list();
+		return session.createQuery("from genre inner join moviegenre on" + idMovie + "= moviegenre.movie_id").list();
 	}
 }

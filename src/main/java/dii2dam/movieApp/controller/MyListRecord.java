@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import dii2dam.movieApp.App;
+import dii2dam.movieApp.dao.ActorDaoImp;
 import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Movie;
@@ -11,11 +12,9 @@ import dii2dam.movieApp.models.MovieInfoResponse;
 import dii2dam.movieApp.models.CreditsResponse;
 import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.ReviewResponse;
-import dii2dam.movieApp.utils.Connector;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,7 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
-public class MovieRecord {
+public class MyListRecord {
 	private CreditsResponse creditsResponse;
 	private MovieInfoResponse movieInfoResponse;
 	private ReviewResponse reviewResponse;
@@ -126,6 +125,8 @@ public class MovieRecord {
 	@FXML
 	private ComboBox<String> comboBoxStateMovie;
 
+	private ActorDaoImp actorDaoImpl;
+
 	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
@@ -173,60 +174,11 @@ public class MovieRecord {
 
 	}
 
-	public void getMovieDetails(String type, Integer id, Integer page) {
-		try {
-			creditsResponse = Connector.getMovieCredits(type, id);
-			movieInfoResponse = Connector.getMovieInfo(type, id);
-			reviewResponse = Connector.getMovieReviews(type, id, page);
-
-			reviews.clear();
-			for (Review review : reviewResponse.getReviews()) {
-				reviews.add(review);
-			}
-			creditsResponse.revampArrays();
-			actors = creditsResponse.getActors();
-			directors = creditsResponse.getDirectors();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void initialize() {
 		movie = Manager.getMovie();
-		if (Manager.getDiscoveryType() != "multi") {
-			getMovieDetails(Manager.getDiscoveryType(), Integer.parseInt(movie.getId().toString()), reviewPage);
-		} else {
-			getMovieDetails(movie.getMedia_type(), Integer.parseInt(movie.getId().toString()), reviewPage);
-		}
-		if (movie != null) {
-			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
-			if (movie != null && !directors.isEmpty()) {
-				String output = "";
-				for (Director director : directors) {
-					output += director.getName();
-					if (directors.indexOf(director) != directors.size() - 1) {
-						output += ", ";
-					}
-				}
-				textDirector.setText(output);
-			} else {
-				textDirector.setText("Director no disponible");
-			}
 
-			textTime.setText(movieInfoResponse.getRuntime() + " min.");
+		actors = actorDaoImpl.searchByMovieId(movie.getId());
 
-			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
-			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
-
-			String url = movie.getPoster_path();
-			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
-			Image image = new Image(urlPoster);
-			posterMovie.setImage(image);
-
-			rate.setText(movie.getRating().toString() + " / 10");
-			btnMyList.setVisible(false);
-		}
 		ObservableList<String> items = FXCollections.observableArrayList();
 		items.add("State: ");
 		items.add("Watching");
@@ -235,10 +187,10 @@ public class MovieRecord {
 		items.add("On Hold");
 		comboBoxStateMovie.setItems(items);
 		comboBoxStateMovie.getSelectionModel().selectFirst();
+		textComment1.setText(movie.getReview());
 
 		visibleBtnLeft();
 		loadActors();
-		loadReviews();
 
 	}
 
@@ -268,37 +220,6 @@ public class MovieRecord {
 			}
 			visibleBtnLeft();
 			visibleBtnRight();
-		}
-	}
-
-	private void loadReviews() {
-
-		for (Review review : reviewResponse.getReviews()) {
-			System.out.println(review.getUsername());
-			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 0) {
-				labelUsernameReview1.setText(review.getUsername());
-				textComment1.setText(review.getContent());
-				String url1 = review.getAvatar_path();
-				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url1;
-				Image image1 = new Image(urlAvatar);
-				imgUserReview1.setImage(image1);
-			}
-			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 1) {
-				labelUsernameReview2.setText(review.getUsername());
-				textComment2.setText(review.getContent());
-				String url2 = review.getAvatar_path();
-				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url2;
-				Image image2 = new Image(urlAvatar);
-				imgUserReview2.setImage(image2);
-			}
-			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 2) {
-				labelUsernameReview3.setText(review.getUsername());
-				textComment3.setText(review.getContent());
-				String url3 = review.getAvatar_path();
-				String urlAvatar = "https://image.tmdb.org/t/p/w500" + url3;
-				Image image3 = new Image(urlAvatar);
-				imgUserReview3.setImage(image3);
-			}
 		}
 	}
 

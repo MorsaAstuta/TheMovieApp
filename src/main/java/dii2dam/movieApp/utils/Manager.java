@@ -17,8 +17,9 @@ public class Manager {
 	public static Movie movie;
 	public static Review review;
 	public static String discoveryType;
-	
-	public static List<Parent>parentval = new ArrayList<Parent>();
+	public static Long currentUser = Long.parseLong("1");
+
+	public static List<Parent> parentval = new ArrayList<Parent>();
 
 	// Movie genres
 	public static HashMap<Integer, String> genreById = new HashMap<>();
@@ -135,21 +136,54 @@ public class Manager {
 	public static void setDiscoveryType(String discoveryType) {
 		Manager.discoveryType = discoveryType;
 	}
-	
+
 	public static void goToLastPage() {
-    try {
+		try {
 			back(parentval.get(parentval.size() - 1));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    parentval.remove(parentval.size() - 1);
-}
-	public static void back(Parent parent) throws IOException{
+		parentval.remove(parentval.size() - 1);
+	}
+
+	public static void back(Parent parent) throws IOException {
 		try {
-	    App.loadLast(parent);
+			App.loadLast(parent);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static Long getCurrentUser() {
+		return currentUser;
+	}
+
+	public static void setCurrentUser(Long currentUser) {
+		Manager.currentUser = currentUser;
+	}
+
+	public static List<Parent> getParentval() {
+		return parentval;
+	}
+
+	public static void setParentval(List<Parent> parentval) {
+		Manager.parentval = parentval;
+	}
+
+	public static HashMap<Integer, String> getGenreById() {
+		return genreById;
+	}
+
+	public static void setGenreById(HashMap<Integer, String> genreById) {
+		Manager.genreById = genreById;
+	}
+
+	public static HashMap<String, Integer> getIdByGenre() {
+		return idByGenre;
+	}
+
+	public static void setIdByGenre(HashMap<String, Integer> idByGenre) {
+		Manager.idByGenre = idByGenre;
 	}
 
 }

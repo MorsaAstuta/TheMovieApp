@@ -25,7 +25,7 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+            <ColumnConstraints fx:id="clmMyList" hgrow="SOMETIMES" maxWidth="160.0" prefWidth="160.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
@@ -70,7 +70,7 @@
                </children></Pane>
             <Pane onMouseClicked="#goBack" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="10">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/back.png" />
                      </image>
@@ -79,7 +79,7 @@
             </Pane>
             <Pane onMouseClicked="#goToAccount" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="12">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/acc.png" />
                      </image>
@@ -175,8 +175,8 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </TextField>
-                              <ComboBox fx:id="cmbLocation" promptText="Location.." GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button fx:id="btnSave" mnemonicParsing="false" prefHeight="64.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbLocation" editable="true" focusTraversable="false" promptText="Location" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveMovie" prefHeight="64.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="  minutes" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Inder" size="12.0" />
@@ -210,9 +210,9 @@
                 <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="cmbGenres" promptText="Genre(s)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="cmbDirectors" promptText="Director(s)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="cmbActors" promptText="Actor(s)" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="cmbGenres" editable="true" promptText="Select" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="cmbDirectors" editable="true" promptText="Select" GridPane.rowIndex="3" />
+                  <ComboBox fx:id="cmbActors" editable="true" promptText="Select" GridPane.rowIndex="5" />
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" GridPane.columnSpan="2" GridPane.rowIndex="2">
                      <content>
                         <TableView fx:id="tblGenres">
@@ -249,6 +249,9 @@
                         </TableView>
                      </content>
                   </ScrollPane>
+                  <Button fx:id="btnAddGenre" mnemonicParsing="false" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button fx:id="btnAddActor" mnemonicParsing="false" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Button fx:id="btnAddDirector" mnemonicParsing="false" text="Add" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </children>

@@ -1,24 +1,31 @@
 package dii2dam.movieApp.models;
 
-
 import javax.persistence.*;
+
 @Entity
 public class Actor {
+	
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column(name = "name")
 	private String name;
-	@Column(name="profile_path")
-	private String profile_path;
+
+  @Column(name="register_date")
+  private String register_date;
 	
+  @Transient
+	private String profile_path;
+
+  @Transient
 	private String known_for_department;
 
 	public Actor() {
-		
+
 	}
-	
+
 	public Actor(Long id, String name, String profile_path) {
 		super();
 		setId(id);
@@ -57,6 +64,5 @@ public class Actor {
 	public void setKnownForDepartment(String known_for_department) {
 		this.known_for_department = known_for_department;
 	}
-	
 
 }

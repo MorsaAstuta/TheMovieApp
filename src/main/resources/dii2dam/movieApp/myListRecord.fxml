@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -63,7 +64,7 @@
             </Pane>
             <Pane onMouseClicked="#exportAsCSV" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="6">
                <children>
-                  <ImageView fitHeight="57.0" fitWidth="57.0" layoutX="12.0" layoutY="12.0">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/import.png" />
                      </image>
@@ -81,7 +82,7 @@
             </Pane>
             <Pane onMouseClicked="#goToAccount" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="10">
                <children>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="10.0" layoutY="10.0">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/acc.png" />
                      </image>
@@ -169,7 +170,7 @@
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="textTime" textFill="WHITE" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                              <Label fx:id="textTime" textFill="WHITE" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
@@ -179,32 +180,32 @@
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="50.0" prefWidth="115.0" text="Genre:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label text="Genre:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="54.0" prefWidth="101.0" text="Director:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label text="Director:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="48.0" prefWidth="100.0" text="Release:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label text="Release:" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="61.0" prefWidth="95.0" text="Score:" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                              <Label text="Score:" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="59.0" prefWidth="103.0" text="Runtime:" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                              <Label text="Runtime:" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Inder" size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="btnAdd" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <Button fx:id="btnRemove" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
                         <Label fx:id="textSinopsis" alignment="TOP_LEFT" text="SINOPSIS" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
@@ -216,6 +217,57 @@
                      </children>
                   </GridPane>
                </center>
+               <bottom>
+                  <GridPane BorderPane.alignment="CENTER">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane alignment="CENTER" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="comboBoxStateMovie" maxHeight="40.0" maxWidth="160.0" minHeight="40.0" minWidth="160.0" prefHeight="40.0" prefWidth="160.0" promptText="Seen status" />
+                              <ImageView fitHeight="40.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                 <image>
+                                    <Image url="@img/icon/watch.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                        <GridPane style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="cmbLocation" maxHeight="40.0" maxWidth="160.0" minHeight="40.0" minWidth="160.0" prefHeight="40.0" prefWidth="160.0" promptText="Physical location" />
+                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                 <image>
+                                    <Image url="@img/icon/dots.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </GridPane>
+               </bottom>
             </BorderPane>
             <BorderPane GridPane.columnIndex="1">
                <top>
