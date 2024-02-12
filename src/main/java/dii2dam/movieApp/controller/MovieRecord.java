@@ -155,8 +155,7 @@ public class MovieRecord {
 
 	@FXML
 	void goBack(MouseEvent event) {
-		Manager manager = new Manager();
-		manager.goToLastPage();
+		Manager.goToLastPage();
 	}
 
 	@FXML

@@ -875,6 +875,11 @@ public class SearchTab {
 	}
 
 	@FXML
+	void goBack() {
+		Manager.goToLastPage();
+	}
+
+	@FXML
 	void expandMyList() {
 		btnMyListExp.setVisible(true);
 	}

@@ -382,6 +382,10 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
@@ -410,7 +414,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="btnReturn" onMouseClicked="#goBack" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
+            <Pane onMouseClicked="#goBack" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="7">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -419,11 +423,29 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane fx:id="btnAccount" onMouseClicked="#goToAccount" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="5">
+            <Pane onMouseClicked="#goToAccount" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="9">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/acc.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane onMouseClicked="#goToSearchTab" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/icon/lens.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane onMouseClicked="#goToAddMovie" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="5">
+               <children>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
+                     <image>
+                        <Image url="@img/icon/add.png" />
                      </image>
                   </ImageView>
                </children>

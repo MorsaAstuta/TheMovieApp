@@ -823,6 +823,15 @@ public class MyList {
 	}
 
 	@FXML
+	void goToSearchTab() {
+		try {
+			App.setRoot("searchTab");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
 	void goToHome() {
 		try {
 			App.setRoot("homePage");
@@ -833,8 +842,7 @@ public class MyList {
 
 	@FXML
 	void goBack(MouseEvent event) {
-		Manager manager = new Manager();
-		manager.goToLastPage();
+		Manager.goToLastPage();
 	}
 
 	void visitMoviePageGeneral(int id) {

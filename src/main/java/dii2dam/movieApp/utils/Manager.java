@@ -136,7 +136,7 @@ public class Manager {
 		Manager.discoveryType = discoveryType;
 	}
 	
-	public void goToLastPage() {
+	public static void goToLastPage() {
     try {
 			back(parentval.get(parentval.size() - 1));
 		} catch (IOException e) {
@@ -144,7 +144,7 @@ public class Manager {
 		}
     parentval.remove(parentval.size() - 1);
 }
-	public void back(Parent parent) throws IOException{
+	public static void back(Parent parent) throws IOException{
 		try {
 	    App.loadLast(parent);
 		} catch (IOException e) {
