@@ -124,9 +124,6 @@ public class MovieRecord {
 	private ImageView imgUserReview3;
 
 	@FXML
-	private ComboBox<String> comboBoxStateMovie;
-
-	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
 			App.setRoot("accountPage");
@@ -224,17 +221,9 @@ public class MovieRecord {
 			Image image = new Image(urlPoster);
 			posterMovie.setImage(image);
 
-			rate.setText(movie.getRating().toString() + " / 10");
+			rate.setText(movie.getVote_average().toString() + " / 10");
 			btnMyList.setVisible(false);
 		}
-		ObservableList<String> items = FXCollections.observableArrayList();
-		items.add("State: ");
-		items.add("Watching");
-		items.add("Unwatched");
-		items.add("Drop");
-		items.add("On Hold");
-		comboBoxStateMovie.setItems(items);
-		comboBoxStateMovie.getSelectionModel().selectFirst();
 
 		visibleBtnLeft();
 		loadActors();

@@ -1,12 +1,15 @@
 package dii2dam.movieApp.models;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import dii2dam.movieApp.utils.Manager;
 
 @Entity
 public class User implements java.io.Serializable {
@@ -33,11 +36,11 @@ public class User implements java.io.Serializable {
 	protected User() {
 	}
 
-	public User(String username, String password, String mail, String register_date) {
+	public User(String username, String password, String mail) {
 		setUsername(username);
 		setPassword(password);
 		setMail(mail);
-		setRegister_date(register_date);
+		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
 	public String getUsername() {

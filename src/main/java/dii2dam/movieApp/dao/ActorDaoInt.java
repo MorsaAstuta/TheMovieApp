@@ -9,5 +9,7 @@ public interface ActorDaoInt extends CommonDaoInt<Actor>{
   
   public List<Actor> searchByMovieId(final Long id);
   
+  public Actor searchByName(String name);
+  
  
 }

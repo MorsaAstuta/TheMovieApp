@@ -180,7 +180,7 @@ public class MyListRecord {
 		actors = actorDaoImpl.searchByMovieId(movie.getId());
 
 		ObservableList<String> items = FXCollections.observableArrayList();
-		items.add("State: ");
+		items.add(null);
 		items.add("Watching");
 		items.add("Unwatched");
 		items.add("Drop");

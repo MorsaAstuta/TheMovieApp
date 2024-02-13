@@ -22,7 +22,7 @@ public class ActorDaoImp extends CommonDaoImpl<Actor> implements ActorDaoInt {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM cast INNER JOIN actor ON " + id + "= actor.id").list();
+		return session.createQuery("FROM Actor INNER JOIN Cast ON Actor.id = " + id).list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -31,7 +31,15 @@ public class ActorDaoImp extends CommonDaoImpl<Actor> implements ActorDaoInt {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM cast INNER JOIN movie ON " + id + "= movie.id").list();
+		return session.createQuery("FROM Actor INNER JOIN Cast ON Cast.movie_id = '" + id + "'").list();
+	}
+
+	@Override
+	public Actor searchByName(String name) {
+		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
+			session.getTransaction().begin();
+		}
+		return (Actor) session.createQuery("FROM Actor where name = '" + name + "'").uniqueResult();
 	}
 
 }

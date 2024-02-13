@@ -13,11 +13,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,12 +31,6 @@ import dii2dam.movieApp.utils.Manager;
 public class SearchTab {
 
 	private APIResponse response;
-
-	@FXML
-	private Pane btnAccount;
-
-	@FXML
-	private Pane btnMyList;
 
 	@FXML
 	private Pane btnMyListExp;
@@ -551,9 +543,14 @@ public class SearchTab {
 
 	List<ComboBox<String>> genreBoxes = new ArrayList<>();
 
+	ObservableList<String> genreNames = FXCollections.observableArrayList();
+	ObservableList<Integer> lengthRange = FXCollections.observableArrayList();
+	ObservableList<Integer> scoreRange = FXCollections.observableArrayList();
+	ObservableList<String> sortings = FXCollections.observableArrayList();
+
 	private Integer currentPage = 0;
 	private Integer totalPages = 0;
-	
+
 	private String searchType = "";
 
 	private void query(String query) {
@@ -601,7 +598,7 @@ public class SearchTab {
 				modifiedQuery += Manager.idByGenre.get(cmbGenre.getValue());
 			}
 		}
-		
+
 		// Score/Runtime filters
 		if (cmbScoreMin.getValue() != null) {
 			modifiedQuery += "&vote_average.gte=" + cmbScoreMin.getValue();
@@ -768,11 +765,6 @@ public class SearchTab {
 
 		btnMyListExp.setVisible(false);
 
-		ObservableList<String> genreNames = FXCollections.observableArrayList();
-		ObservableList<Integer> lengthRange = FXCollections.observableArrayList();
-		ObservableList<Integer> scoreRange = FXCollections.observableArrayList();
-		ObservableList<String> sortings = FXCollections.observableArrayList();
-
 		cmbGenre1.setItems(genreNames);
 		cmbGenre2.setItems(genreNames);
 		cmbGenre3.setItems(genreNames);
@@ -857,6 +849,11 @@ public class SearchTab {
 	}
 
 	@FXML
+	void goBack() {
+		Manager.goToLastPage();
+	}
+
+	@FXML
 	void goToHome() {
 		try {
 			App.setRoot("homePage");
@@ -872,11 +869,6 @@ public class SearchTab {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@FXML
-	void goBack() {
-		Manager.goToLastPage();
 	}
 
 	@FXML
@@ -1056,12 +1048,12 @@ public class SearchTab {
 		Movie movie = movieByPoster.get(poster);
 		if (movieColumn.getMaxWidth() != 400) {
 			closeAllDetails();
-			
+
 			moviePane.toFront();
 			movieColumn.setMaxWidth(400);
 			movieInfo.setVisible(true);
-			
-			switch(searchType) {
+
+			switch (searchType) {
 			case "movie":
 				movieTitle.setText(movie.getTitle());
 				movieDesc.setText(movie.getOverview());

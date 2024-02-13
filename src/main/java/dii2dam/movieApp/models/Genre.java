@@ -1,10 +1,10 @@
 package dii2dam.movieApp.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.Date;
+
+import javax.persistence.*;
+
+import dii2dam.movieApp.utils.Manager;
 
 @Entity
 public class Genre {
@@ -19,6 +19,14 @@ public class Genre {
 
   @Column(name="register_date")
   private String register_date;
+  
+  public Genre() {
+  }
+  
+  public Genre(String name) {
+  	setName(name);
+		setRegister_date(Manager.getSdf().format(new Date()));
+  }
 
   public Long getId() {
     return id;
@@ -35,5 +43,13 @@ public class Genre {
   public void setName(String name) {
     this.name = name;
   }
+
+	public String getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
+	}
   
 }

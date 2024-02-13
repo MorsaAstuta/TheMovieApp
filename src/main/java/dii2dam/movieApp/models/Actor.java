@@ -1,36 +1,37 @@
 package dii2dam.movieApp.models;
 
+import java.util.Date;
+
 import javax.persistence.*;
+
+import dii2dam.movieApp.utils.Manager;
 
 @Entity
 public class Actor {
-	
+
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
 
-  @Column(name="register_date")
-  private String register_date;
-	
-  @Transient
+	@Column(name = "register_date")
+	private String register_date;
+
+	@Transient
 	private String profile_path;
 
-  @Transient
+	@Transient
 	private String known_for_department;
 
 	public Actor() {
-
 	}
 
-	public Actor(Long id, String name, String profile_path) {
-		super();
-		setId(id);
+	public Actor(String name) {
 		setName(name);
-		setProfilePath(profile_path);
+		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
 	public Long getId() {
@@ -62,6 +63,30 @@ public class Actor {
 	}
 
 	public void setKnownForDepartment(String known_for_department) {
+		this.known_for_department = known_for_department;
+	}
+
+	public String getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
+	}
+
+	public String getProfile_path() {
+		return profile_path;
+	}
+
+	public void setProfile_path(String profile_path) {
+		this.profile_path = profile_path;
+	}
+
+	public String getKnown_for_department() {
+		return known_for_department;
+	}
+
+	public void setKnown_for_department(String known_for_department) {
 		this.known_for_department = known_for_department;
 	}
 

@@ -66,12 +66,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle00" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc00" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -86,12 +86,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre00" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate00" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -128,12 +128,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle01" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc01" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -148,12 +148,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre01" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate01" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -190,12 +190,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle02" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc02" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -210,12 +210,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre02" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate02" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -251,12 +251,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle03" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc03" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -271,12 +271,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre03" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate03" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -314,12 +314,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle04" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc04" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -334,12 +334,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre04" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate04" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -376,12 +376,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle05" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc05" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -396,12 +396,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre05" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate05" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -438,12 +438,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle06" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc06" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -458,12 +458,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre06" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate06" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -500,12 +500,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle07" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc07" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -520,12 +520,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre07" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate07" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -562,12 +562,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle08" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc08" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -582,12 +582,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre08" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate08" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -624,12 +624,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle09" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc09" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -644,12 +644,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre09" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate09" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -686,12 +686,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle10" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc10" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -706,12 +706,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre10" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate10" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -748,12 +748,12 @@
                            <children>
                               <Label fx:id="lblMovieTitle11" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Inder" size="24.0" />
+                                    <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
                               <Label fx:id="lblMovieDesc11" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
-                                    <Font name="Inder" size="14.0" />
+                                    <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
                               </Label>
                               <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">
@@ -768,12 +768,12 @@
                                  <children>
                                     <Label fx:id="lblMovieGenre11" text="genre">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                     <Label fx:id="lblMovieDate11" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
-                                          <Font name="Inder" size="18.0" />
+                                          <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -800,8 +800,8 @@
                         <ColumnConstraints hgrow="SOMETIMES" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="256.0" prefWidth="256.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="32.0" minWidth="32.0" prefWidth="32.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="128.0" prefWidth="128.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="196.0" minWidth="196.0" prefWidth="196.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
                         <ColumnConstraints hgrow="SOMETIMES" />
                      </columnConstraints>
                      <rowConstraints>
@@ -819,27 +819,27 @@
                         <ImageView fx:id="fmPoster" fitHeight="270.0" fitWidth="180.0" onMouseClicked="#visitMoviePageFM" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowSpan="2147483647" />
                         <Label fx:id="fmTitle" text="Title" textFill="WHITE" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1">
                            <font>
-                              <Font name="Inder" size="36.0" />
+                              <Font name="Reem Kufi Regular" size="36.0" />
                            </font>
                         </Label>
                         <Label fx:id="fmOverview" text="Overview" textFill="WHITE" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="7">
                            <font>
-                              <Font name="Inder" size="14.0" />
+                              <Font name="Reem Kufi Regular" size="14.0" />
                            </font>
                         </Label>
                         <Label fx:id="fmRelease" text="Release" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <font>
-                              <Font name="Inder" size="18.0" />
+                              <Font name="Reem Kufi Regular" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="fmGenre" text="Genre" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <font>
-                              <Font name="Inder" size="18.0" />
+                              <Font name="Reem Kufi Regular" size="18.0" />
                            </font>
                         </Label>
                         <Label fx:id="fmScore" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Score" textAlignment="RIGHT" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3">
                            <font>
-                              <Font name="Inder" size="24.0" />
+                              <Font name="Reem Kufi Regular" size="24.0" />
                            </font>
                         </Label>
                      </children>
@@ -875,22 +875,52 @@
                               <ComboBox fx:id="cmbGenre4" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                               <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                               <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="Global score:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Label text="Runtime:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="4" />
-                              <Label text="Sort by:" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+                              <Label text="Global score:" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label text="Runtime:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="From" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text="to" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
+                              <Label text="Sort by:" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
                               <ComboBox fx:id="cmbScoreMin" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                               <ComboBox fx:id="cmbLengthMin" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                               <ComboBox fx:id="cmbScoreMax" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
                               <ComboBox fx:id="cmbLengthMax" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
                               <ComboBox fx:id="cmbSorter" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                              <Label text="Genre filter:" GridPane.columnIndex="4" />
+                              <Label text="Genre filter:" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></Label>
                               <Button fx:id="btnReload" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#reloadPage" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.rowSpan="2" />
-                              <CheckBox fx:id="chkMovies" mnemonicParsing="false" selected="true" text="Movies" GridPane.columnIndex="2" />
-                              <CheckBox fx:id="chkSeries" mnemonicParsing="false" selected="true" text="TV series" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <CheckBox fx:id="chkMovies" mnemonicParsing="false" selected="true" text="Movies" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></CheckBox>
+                              <CheckBox fx:id="chkSeries" mnemonicParsing="false" selected="true" text="TV series" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font></CheckBox>
                            </children>
                         </GridPane>
                      </center>
@@ -925,14 +955,14 @@
                         <Image url="@img/icon/fs.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="117.0" layoutY="9.0" prefHeight="22.0" prefWidth="8.0" text="S">
+                  <Label layoutX="112.0" layoutY="4.0" text="S">
                      <font>
-                        <Font name="Inder" size="48.0" />
+                        <Font name="Reem Kufi Regular" size="48.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="9.0" text="F">
+                  <Label layoutX="19.0" layoutY="4.0" text="F">
                      <font>
-                        <Font name="Inder" size="48.0" />
+                        <Font name="Reem Kufi Regular" size="48.0" />
                      </font>
                   </Label>
                </children>
@@ -957,9 +987,9 @@
             </Pane>
             <Pane fx:id="btnMyListExp" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
                <children>
-                  <Label alignment="CENTER" layoutX="21.0" layoutY="17.0" text="My List" textAlignment="CENTER">
+                  <Label alignment="CENTER" layoutX="22.0" layoutY="12.0" text="My List" textAlignment="CENTER">
                      <font>
-                        <Font name="Inder" size="36.0" />
+                        <Font name="Reem Kufi Regular" size="36.0" />
                      </font>
                   </Label>
                </children>

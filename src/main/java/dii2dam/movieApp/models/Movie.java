@@ -1,5 +1,6 @@
 package dii2dam.movieApp.models;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -37,7 +38,10 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "overview")
 	private String overview;
 
-	@Column(name = "poster_path")
+	@Column(name = "poster_url")
+	private String poster_url;
+	
+  @Transient
 	private String poster_path;
 
 	@Column(name = "rating")
@@ -58,6 +62,9 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "status")
 	private String status;
 
+	@Column(name = "register_date")
+	private String register_date;
+
   @Transient
 	private Set<Integer> genre_ids = new HashSet<Integer>(0);
 
@@ -76,6 +83,7 @@ public class Movie implements java.io.Serializable {
 		setPoster_path(poster_path);
 		setUser_id(user_id);
 		setLocation_id(location_id);
+		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
 	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id, Long location_id) {
@@ -86,6 +94,17 @@ public class Movie implements java.io.Serializable {
 		setPoster_path(poster_path);
 		setUser_id(user_id);
 		setLocation_id(location_id);
+		setRegister_date(Manager.getSdf().format(new Date()));
+	}
+
+	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id) {
+		setTitle(title);
+		setRelease_date(release_date);
+		setOverview(overview);
+		setRuntime(runtime);
+		setPoster_path(poster_path);
+		setUser_id(user_id);
+		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
 	public String getGenre() {
@@ -226,6 +245,22 @@ public class Movie implements java.io.Serializable {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
+	}
+
+	public String getPoster_url() {
+		return poster_url;
+	}
+
+	public void setPoster_url(String poster_url) {
+		this.poster_url = poster_url;
 	}
 
 }

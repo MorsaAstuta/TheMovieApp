@@ -54,7 +54,6 @@ public class SignUp {
 		UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
 		boolean error = false;
 		String message = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		// Regular text check: format □*
 		if (!(txtUsername.getText().length() >= 1)) {
 			error = true;
@@ -77,7 +76,7 @@ public class SignUp {
 			message += "The passwords do not match or their fields are empty." + "\n";
 		}
 		if (!error) {
-			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText(), sdf.format(new Date()));
+			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText());
 			userDao.insert(user);
 
 			try {

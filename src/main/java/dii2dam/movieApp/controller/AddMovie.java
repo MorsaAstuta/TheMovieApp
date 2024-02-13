@@ -2,7 +2,9 @@ package dii2dam.movieApp.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dii2dam.movieApp.App;
@@ -14,12 +16,13 @@ import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Genre;
-import dii2dam.movieApp.models.a;
+import dii2dam.movieApp.models.Location;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -49,10 +53,16 @@ public class AddMovie {
 	private Pane btnHome;
 
 	@FXML
-	private ColumnConstraints clmMyList;
+	private Button btnSave;
 
 	@FXML
-	private Button btnSave;
+	private Button btnAddActor;
+
+	@FXML
+	private Button btnAddDirector;
+
+	@FXML
+	private Button btnAddGenre;
 
 	@FXML
 	private TableColumn<Actor, String> clmActors;
@@ -79,19 +89,16 @@ public class AddMovie {
 	private DatePicker dateSelector;
 
 	@FXML
-	private Pane expMyList;
-
-	@FXML
 	private ImageView posterMovie;
 
 	@FXML
-	private TableView<Actor> tblActors;
+	private TableView<Genre> tblGenres;
 
 	@FXML
 	private TableView<Director> tblDirectors;
 
 	@FXML
-	private TableView<Genre> tblGenres;
+	private TableView<Actor> tblActors;
 
 	@FXML
 	private TextArea txtOverview;
@@ -107,22 +114,32 @@ public class AddMovie {
 	private List<Genre> genres = new ArrayList<>();
 	private List<Actor> actors = new ArrayList<>();
 	private List<Director> directors = new ArrayList<>();
-	private List<a> locations = new ArrayList<>();
+	private List<Location> locations = new ArrayList<>();
+
+	private ObservableList<String> genreNames = FXCollections.observableArrayList();
+	private ObservableList<String> actorNames = FXCollections.observableArrayList();
+	private ObservableList<String> directorNames = FXCollections.observableArrayList();
+	private ObservableList<String> locationNames = FXCollections.observableArrayList();
+
+	private ObservableList<Genre> addedGenres = FXCollections.observableArrayList();
+	private ObservableList<Actor> addedActors = FXCollections.observableArrayList();
+	private ObservableList<Director> addedDirectors = FXCollections.observableArrayList();
 
 	@FXML
 	void initialize() {
-		expMyList.setVisible(false);
-		clmMyList.setMaxWidth(1);
+
+		clmGenres.setCellValueFactory(new PropertyValueFactory<Genre, String>("name"));
+		clmActors.setCellValueFactory(new PropertyValueFactory<Actor, String>("name"));
+		clmDirectors.setCellValueFactory(new PropertyValueFactory<Director, String>("name"));
 
 		genres.addAll(genreDao.searchAll());
 		actors.addAll(actorDao.searchAll());
 		directors.addAll(directorDao.searchAll());
 		locations.addAll(locationDao.searchLocationsByUser(Manager.getCurrentUser()));
 
-		ObservableList<String> genreNames = FXCollections.observableArrayList();
-		ObservableList<String> actorNames = FXCollections.observableArrayList();
-		ObservableList<String> directorNames = FXCollections.observableArrayList();
-		ObservableList<String> locationNames = FXCollections.observableArrayList();
+		tblGenres.setItems(addedGenres);
+		tblActors.setItems(addedActors);
+		tblDirectors.setItems(addedDirectors);
 
 		cmbGenres.setItems(genreNames);
 		cmbActors.setItems(actorNames);
@@ -141,15 +158,16 @@ public class AddMovie {
 			directorNames.add(director.getName());
 		}
 
-		for (a location : locations) {
+		for (Location location : locations) {
 			locationNames.add(location.getName());
 		}
-	}
 
-	@FXML
-	void expandMyList(MouseEvent event) {
-		expMyList.setVisible(true);
-		clmMyList.setMaxWidth(160);
+		ImageView btnSaveIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/save.png").toExternalForm());
+		btnSaveIcon.setFitHeight(32);
+		btnSaveIcon.setFitWidth(32);
+		btnSave.setGraphic(btnSaveIcon);
+
 	}
 
 	@FXML
@@ -190,17 +208,69 @@ public class AddMovie {
 	}
 
 	@FXML
-	void retractMyList(MouseEvent event) {
-		expMyList.setVisible(false);
-		clmMyList.setMaxWidth(1);
+	void saveMovie(ActionEvent event) {
+		if (!txtTitle.getText().isEmpty()) {
+			if (cmbLocation.getValue() != null) {
+				Movie movie = new Movie(txtTitle.getText(),
+						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
+						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId());
+				movieDao.insert(movie);
+				Manager.setMovie(movie);
+			} else {
+				Movie movie = new Movie(txtTitle.getText(),
+						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser());
+				movieDao.insert(movie);
+				Manager.setMovie(movie);
+			}
+			try {
+				App.setRoot("myListRecord");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@FXML
-	void saveMovie() {
-		if (!txtTitle.getText().isEmpty()) {
-			movieDao.insert(new Movie(txtTitle.getText(), sdf.format(dateSelector.getValue()), txtOverview.getText(),
-					Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
-					locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId()));
+	void addGenre() {
+		if (cmbGenres.getValue() != null) {
+			Genre genre = new Genre(cmbGenres.getValue());
+			if (genreDao.searchByGenreName(cmbGenres.getValue()) != null) {
+				addedGenres.add(genreDao.searchByGenreName(cmbGenres.getValue()));
+			} else {
+				genreDao.insert(genre);
+				addedGenres.add(genre);
+				genreNames.add(genre.getName());
+			}
+		}
+	}
+
+	@FXML
+	void addActor() {
+		if (cmbActors.getValue() != null) {
+			Actor actor = new Actor(cmbActors.getValue());
+			if (actorDao.searchByName(cmbActors.getValue()) != null) {
+				addedActors.add(actorDao.searchByName(cmbActors.getValue()));
+			} else {
+				actorDao.insert(actor);
+				addedActors.add(actor);
+				actorNames.add(actor.getName());
+			}
+		}
+	}
+
+	@FXML
+	void addDirector() {
+		if (cmbDirectors.getValue() != null) {
+			Director director = new Director(cmbDirectors.getValue());
+			if (directorDao.searchByName(cmbDirectors.getValue()) != null) {
+				addedDirectors.add(directorDao.searchByName(cmbDirectors.getValue()));
+			} else {
+				directorDao.insert(director);
+				addedDirectors.add(director);
+				directorNames.add(director.getName());
+			}
 		}
 	}
 

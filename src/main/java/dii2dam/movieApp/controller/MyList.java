@@ -688,7 +688,7 @@ public class MyList {
 		// Reload
 		for (int i = 0; i < 18; i++) {
 			try {
-				String url = movies[i].getPoster_path();
+				String url = movies[i].getPoster_url();
 				String urlPoster = "";
 				if (url != null && url != "null") {
 					urlPoster = "https://image.tmdb.org/t/p/w500" + url;

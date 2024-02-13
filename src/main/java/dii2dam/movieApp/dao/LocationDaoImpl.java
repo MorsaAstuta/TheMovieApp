@@ -4,9 +4,9 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-import dii2dam.movieApp.models.a;
+import dii2dam.movieApp.models.Location;
 
-public class LocationDaoImpl extends CommonDaoImpl<a> implements LocationDaoInt {
+public class LocationDaoImpl extends CommonDaoImpl<Location> implements LocationDaoInt {
 
 	private Session session;
 
@@ -17,19 +17,19 @@ public class LocationDaoImpl extends CommonDaoImpl<a> implements LocationDaoInt 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<a> searchLocationsByUser(Long id) {
+	public List<Location> searchLocationsByUser(Long id) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM location WHERE user_id = '" + id + "'").list();
+		return session.createQuery("FROM Location WHERE user_id = '" + id + "'").list();
 	}
 
 	@Override
-	public a searchLocationByUserIdAndName(Long currentUser, String value) {
+	public Location searchLocationByUserIdAndName(Long currentUser, String value) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return (a)session.createQuery("FROM location WHERE user_id = '" + currentUser + "' and name = '" + value + "'").uniqueResult();
+		return (Location)session.createQuery("FROM Location WHERE user_id = '" + currentUser + "' and name = '" + value + "'").uniqueResult();
 	}
 
 }

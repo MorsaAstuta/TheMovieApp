@@ -181,19 +181,19 @@
          <children>
             <Pane prefHeight="69.0" prefWidth="125.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
                <children>
-                  <ImageView fitHeight="64.0" fitWidth="69.0" layoutX="48.0" layoutY="8.0">
+                  <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="8.0">
                      <image>
                         <Image url="@img/icon/fs.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="117.0" layoutY="9.0" prefHeight="22.0" prefWidth="8.0" text="S">
+                  <Label layoutX="112.0" layoutY="4.0" text="S">
                      <font>
-                        <Font name="Inder" size="48.0" />
+                        <Font name="Reem Kufi Regular" size="48.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="9.0" text="F">
+                  <Label layoutX="19.0" layoutY="4.0" text="F">
                      <font>
-                        <Font name="Inder" size="48.0" />
+                        <Font name="Reem Kufi Regular" size="48.0" />
                      </font>
                   </Label>
                </children>

@@ -1,6 +1,7 @@
 package dii2dam.movieApp.utils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Manager {
 	public static Review review;
 	public static String discoveryType;
 	public static Long currentUser = Long.parseLong("1");
+	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	public static List<Parent> parentval = new ArrayList<Parent>();
 
@@ -184,6 +186,14 @@ public class Manager {
 
 	public static void setIdByGenre(HashMap<String, Integer> idByGenre) {
 		Manager.idByGenre = idByGenre;
+	}
+
+	public static SimpleDateFormat getSdf() {
+		return sdf;
+	}
+
+	public static void setSdf(SimpleDateFormat sdf) {
+		Manager.sdf = sdf;
 	}
 
 }

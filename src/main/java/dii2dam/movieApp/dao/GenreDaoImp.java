@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
-
-import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Genre;
 
 public class GenreDaoImp extends CommonDaoImpl<Genre> implements GenreDaoInt {
@@ -23,16 +21,15 @@ public class GenreDaoImp extends CommonDaoImpl<Genre> implements GenreDaoInt {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM genre INNER JOIN moviegenre ON " + id + "= moviegenre.movie_id").list();
+		return session.createQuery("FROM Genre INNER JOIN moviegenre ON moviegenre.movie_id = '" + id + "'").list();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Genre> searchByGenreName(String name) {
+	public Genre searchByGenreName(String name) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("FROM genre where name =" + name).list();
+		return (Genre) session.createQuery("FROM Genre where name = '" + name + "'").uniqueResult();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -41,6 +38,6 @@ public class GenreDaoImp extends CommonDaoImpl<Genre> implements GenreDaoInt {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("from genre inner join moviegenre on" + idMovie + "= moviegenre.movie_id").list();
+		return session.createQuery("from Genre inner join moviegenre on moviegenre.movie_id = '" + idMovie + "'").list();
 	}
 }

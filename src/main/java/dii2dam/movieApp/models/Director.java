@@ -1,11 +1,10 @@
 package dii2dam.movieApp.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import java.util.Date;
+
+import javax.persistence.*;
+
+import dii2dam.movieApp.utils.Manager;
 
 @Entity
 public class Director implements java.io.Serializable {
@@ -20,21 +19,18 @@ public class Director implements java.io.Serializable {
 	@Column(name = "name")
 	private String name;
 
-  @Column(name="register_date")
-  private String register_date;
-  
-  @Transient
+	@Column(name = "register_date")
+	private String register_date;
+
+	@Transient
 	private String known_for_department;
 
 	public Director() {
-
 	}
 
-	public Director(int id, String name, String known_for_department) {
-		super();
-		setId(id);
+	public Director(String name) {
 		setName(name);
-		setKnownForDepartment(known_for_department);
+		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
 	public int getId() {
@@ -67,6 +63,18 @@ public class Director implements java.io.Serializable {
 
 	public void setKnown_for_department(String known_for_department) {
 		this.known_for_department = known_for_department;
+	}
+
+	public String getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(String register_date) {
+		this.register_date = register_date;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
