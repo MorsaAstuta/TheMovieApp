@@ -41,10 +41,12 @@ public class AccountPage {
 	private Label ifFullUsername;
 
 	public void initialize() {
-
-		idUsername.setText(Manager.user.getUsername());
-		idEmail.setText(Manager.user.getMail());
-		idLastConnect.setText(Manager.user.getRegister_date());
+		if(Manager.user!=null) {
+			idUsername.setText(Manager.user.getUsername());
+			idEmail.setText(Manager.user.getMail());
+			idLastConnect.setText(Manager.user.getRegister_date());
+		}
+		
 	}
 
 	@FXML
