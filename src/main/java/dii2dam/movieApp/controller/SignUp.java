@@ -7,6 +7,7 @@ import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.UserDaoImpl;
 import dii2dam.movieApp.models.User;
 import dii2dam.movieApp.utils.HibernateUtils;
+import dii2dam.movieApp.utils.Manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -79,6 +80,11 @@ public class SignUp {
 		if (!error) {
 			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText(), sdf.format(new Date()));
 			userDao.insert(user);
+			Manager.setUser2(user);
+			String txtMail2 = txtMail.getText();
+			Manager.setUser(txtMail2);
+
+			
 
 			try {
 				App.setRoot("logIn");

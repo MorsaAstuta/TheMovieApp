@@ -49,11 +49,11 @@
             </GridPane>
          </center>
          <top>
-            <BorderPane style="-fx-background-color: rgb(177,133,66);" BorderPane.alignment="CENTER">
+            <BorderPane prefHeight="156.0" prefWidth="1095.0" style="-fx-background-color: rgb(177,133,66);" BorderPane.alignment="CENTER">
                <left>
                   <Pane BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="24.0" layoutY="24.0">
+                        <ImageView fitHeight="128.0" fitWidth="128.0" layoutX="24.0" layoutY="12.0">
                            <image>
                               <Image url="@img/icon/acc.png" />
                            </image>
@@ -70,24 +70,19 @@
                <center>
                   <Pane BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="idUsername" layoutX="76.0" layoutY="49.0" textFill="WHITE">
+                        <Label fx:id="idUsername" layoutX="76.0" layoutY="24.0" prefHeight="35.0" prefWidth="317.0" text="Username" textFill="WHITE">
                            <font>
                               <Font name="Inder" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="idEmail" layoutX="76.0" layoutY="121.0" textFill="WHITE">
+                        <Label fx:id="idEmail" layoutX="76.0" layoutY="67.0" prefHeight="31.0" prefWidth="310.0" text="Email" textFill="WHITE">
                            <font>
                               <Font name="Inder" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="ifFullUsername" layoutX="76.0" layoutY="86.0" textFill="WHITE">
+                        <Label fx:id="idLastConnect" layoutX="76.0" layoutY="107.0" prefHeight="32.0" prefWidth="173.0" text="Active Since" textFill="WHITE">
                            <font>
-                              <Font name="Inder" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="idLastConnect" layoutX="76.0" layoutY="158.0" textFill="WHITE">
-                           <font>
-                              <Font name="Inder" size="12.0" />
+                              <Font name="Inder" size="14.0" />
                            </font>
                         </Label>
                      </children>

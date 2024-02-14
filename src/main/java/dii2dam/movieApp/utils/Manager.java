@@ -8,9 +8,11 @@ import java.util.List;
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.Review;
+import dii2dam.movieApp.models.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Manager {
@@ -27,6 +29,37 @@ public class Manager {
 
 	public static List<Integer> genreIds = new ArrayList<>();
 	public static List<String> genreNames = new ArrayList<>();
+	private static TextField txtUsername; // El txtUsername que recibirá de LogIn
+	private static User user2;
+
+	private static String user;
+
+	public static void setUser2(User user) {
+		Manager.user2 = user;
+	}
+
+	// Método para obtener el correo electrónico desde user2
+	public static String getUserMail() {
+
+		return user2.getMail();
+
+	}
+
+	public static void setUser(String userEmail) {
+		Manager.user = userEmail;
+	}
+
+	public static String getUser() {
+		return user;
+	}
+
+	public static void setTxtUsername(TextField usernameField) {
+		txtUsername = usernameField;
+	}
+
+	public static TextField getTxtUsername() {
+		return txtUsername;
+	}
 
 	public static void loadGenres() {
 		genreIds.add(12);
