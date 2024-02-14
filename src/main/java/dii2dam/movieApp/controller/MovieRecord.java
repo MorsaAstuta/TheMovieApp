@@ -197,7 +197,8 @@ public class MovieRecord {
 		}
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
+			textDate.setText(
+					movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
 			if (movie != null && !directors.isEmpty()) {
 				String output = "";
 				for (Director director : directors) {
@@ -213,7 +214,7 @@ public class MovieRecord {
 
 			textTime.setText(movieInfoResponse.getRuntime() + " min.");
 
-			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
+			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "GÃ©nero no especificado");
 			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
 
 			String url = movie.getPoster_path();

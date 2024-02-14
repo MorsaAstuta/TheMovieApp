@@ -27,6 +27,7 @@ public class Actor {
 	private String known_for_department;
 
 	public Actor() {
+		
 	}
 
 	public Actor(String name) {

@@ -38,6 +38,10 @@ public class LogIn {
 	@FXML
 	private TextField txtUsername;
 
+	
+
+	
+
 	@FXML
 	void loadUser(ActionEvent event) {
 
@@ -52,6 +56,7 @@ public class LogIn {
 			if (user.getUsername().equals(txtUsername.getText())) {
 				if (user.getPassword().equals(txtPassword.getText())) {
 					Manager.setCurrentUser(user.getId());
+			        Manager.setTxtUsername(txtUsername);
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Information");
 					alert.setHeaderText(null);
@@ -79,6 +84,10 @@ public class LogIn {
 			alert.showAndWait();
 		}
 
+	}
+	
+	public TextField getTxtUsername() {
+		return txtUsername;
 	}
 
 	@FXML
