@@ -79,10 +79,7 @@ public class SignUp {
 		if (!error) {
 			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText());
 			userDao.insert(user);
-			Manager.setUser2(user);
-			String txtMail2 = txtMail.getText();
-			Manager.setUser(txtMail2);
-
+			
 			
 
 			try {
