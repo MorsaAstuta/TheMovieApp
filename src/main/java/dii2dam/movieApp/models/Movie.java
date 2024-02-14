@@ -22,16 +22,16 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "title")
 	private String title;
 
-  @Transient
+	@Transient
 	private String name;
 
-  @Transient
+	@Transient
 	private String media_type;
 
 	@Column(name = "release_date")
 	private String release_date;
 
-  @Transient
+	@Transient
 	private String first_air_date;
 
 	@Column(name = "overview")
@@ -58,16 +58,17 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "status")
 	private String status;
 
-  @Transient
+	@Transient
 	private Set<Integer> genre_ids = new HashSet<Integer>(0);
 
-  @Transient
+	@Transient
 	private Double vote_average;
 
 	protected Movie() {
 	}
 
-	public Movie(Long id, String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id, Long location_id) {
+	public Movie(Long id, String title, String release_date, String overview, Integer runtime, String poster_path,
+			Long user_id, Long location_id) {
 		setId(id);
 		setTitle(title);
 		setRelease_date(release_date);
@@ -78,7 +79,8 @@ public class Movie implements java.io.Serializable {
 		setLocation_id(location_id);
 	}
 
-	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id, Long location_id) {
+	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id,
+			Long location_id) {
 		setTitle(title);
 		setRelease_date(release_date);
 		setOverview(overview);

@@ -124,9 +124,6 @@ public class MovieRecord {
 	private ImageView imgUserReview3;
 
 	@FXML
-	private ComboBox<String> comboBoxStateMovie;
-
-	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
 			App.setRoot("accountPage");
@@ -200,7 +197,8 @@ public class MovieRecord {
 		}
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
+			textDate.setText(
+					movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
 			if (movie != null && !directors.isEmpty()) {
 				String output = "";
 				for (Director director : directors) {
@@ -216,7 +214,7 @@ public class MovieRecord {
 
 			textTime.setText(movieInfoResponse.getRuntime() + " min.");
 
-			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "Género no especificado");
+			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "GÃ©nero no especificado");
 			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
 
 			String url = movie.getPoster_path();
@@ -224,17 +222,9 @@ public class MovieRecord {
 			Image image = new Image(urlPoster);
 			posterMovie.setImage(image);
 
-			rate.setText(movie.getRating().toString() + " / 10");
+			rate.setText(movie.getVote_average().toString() + " / 10");
 			btnMyList.setVisible(false);
 		}
-		ObservableList<String> items = FXCollections.observableArrayList();
-		items.add("State: ");
-		items.add("Watching");
-		items.add("Unwatched");
-		items.add("Drop");
-		items.add("On Hold");
-		comboBoxStateMovie.setItems(items);
-		comboBoxStateMovie.getSelectionModel().selectFirst();
 
 		visibleBtnLeft();
 		loadActors();

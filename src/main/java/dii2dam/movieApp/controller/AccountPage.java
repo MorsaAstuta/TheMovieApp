@@ -3,9 +3,7 @@ package dii2dam.movieApp.controller;
 import java.io.IOException;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.UserDaoImpl;
 import dii2dam.movieApp.models.User;
-import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -39,17 +37,12 @@ public class AccountPage {
 	@FXML
 	private Label ifFullUsername;
 
-
-	
+	private User user;
 
 	public void initialize() {
 		TextField txtUsernameField = Manager.getTxtUsername();
 		String username = txtUsernameField.getText();
 		idUsername.setText(username);
-		String txtEmailField = Manager.getUser();
-		System.out.println(txtEmailField);
-
-		idEmail.setText(txtEmailField);
 
 	}
 
