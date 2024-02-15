@@ -1,8 +1,12 @@
 package dii2dam.movieApp.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import dii2dam.movieApp.App;
+import dii2dam.movieApp.dao.MovieDaoImpl;
+import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class AccountPage {
+
+	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
 	@FXML
 	private Pane btnAdd;
@@ -37,31 +43,26 @@ public class AccountPage {
 	@FXML
 	private ImageView idImgPoster1;
 
-    @FXML
-    private ImageView idImgPoster2;
+	@FXML
+	private ImageView idImgPoster2;
 
-    @FXML
-    private ImageView idImgPoster3;
+	@FXML
+	private ImageView idImgPoster3;
 
-    @FXML
-    private ImageView idImgPoster4;
+	@FXML
+	private ImageView idImgPoster4;
 
 	public void initialize() {
 		if (Manager.user != null) {
 			idUsername.setText(Manager.user.getUsername());
 			idEmail.setText(Manager.user.getMail());
 			idLastConnect.setText(Manager.user.getRegister_date());
+			List<Movie> movies = movieDao.searchMoviesOrderByRating();
+			idImgPoster1.setImage(new Image(movies.get(0).getPoster_path()));
+			idImgPoster2.setImage(new Image(movies.get(1).getPoster_path()));
+			idImgPoster3.setImage(new Image(movies.get(2).getPoster_path()));
+			idImgPoster4.setImage(new Image(movies.get(3).getPoster_path()));
 		}
-		if (Manager.movie != null) {
-			String poster = Manager.movie.getPoster_path();
-			String urlPoster = "https://image.tmdb.org/t/p/w500" + poster;
-			Image image = new Image(urlPoster);
-			idImgPoster1.setImage(image);
-			idImgPoster2.setImage(image);
-			idImgPoster3.setImage(image);
-			idImgPoster4.setImage(image);
-		}
-
 	}
 
 	@FXML
@@ -69,7 +70,6 @@ public class AccountPage {
 		try {
 			App.setRoot("HomePage");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -79,7 +79,6 @@ public class AccountPage {
 		try {
 			App.setRoot("addMovie");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -89,7 +88,6 @@ public class AccountPage {
 		try {
 			App.setRoot("myList");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -99,7 +97,6 @@ public class AccountPage {
 		try {
 			App.setRoot("configureAccount");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
