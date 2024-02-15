@@ -231,21 +231,23 @@ public class AddMovie {
 
 			// Comprobamos si se ha añadido una imagen para crear una copia próxima cuya
 			// dirección almacene la base de datos
-			String[] extension = posterPath.split("\\.");
-			for (String string: extension) {
-				System.out.println(string);
-			}
 			String newPath = null;
 			String actualPath = null;
-			if (posterPath != null && (extension[extension.length - 1].equals("png")
-					|| extension[extension.length - 1].equals("jpg") || extension[extension.length - 1].equals("jpeg"))) {
-				String[] fileName = posterPath.split("/");
-				newPath = ("./src/main/resources/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
-				actualPath = ("/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
-				try {
-					Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
-				} catch (IOException e) {
-					e.printStackTrace();
+			if (posterPath != null) {
+				String[] extension = posterPath.split("\\.");
+				for (String string : extension) {
+					System.out.println(string);
+				}
+				if ((extension[extension.length - 1].equals("png") || extension[extension.length - 1].equals("jpg")
+						|| extension[extension.length - 1].equals("jpeg"))) {
+					String[] fileName = posterPath.split("/");
+					newPath = ("./src/main/resources/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
+					actualPath = ("/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
+					try {
+						Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 

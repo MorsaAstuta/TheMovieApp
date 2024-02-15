@@ -208,13 +208,13 @@ public class MyList {
 			totalPages = movies.size() / 3;
 		else
 			totalPages = movies.size() / 3 + 1;
-		
-		for (int i = 0; i < 3*currentPage; i++) {
+
+		for (int i = 0; i < 3 * currentPage; i++) {
 			if (!movies.isEmpty()) {
 				movies.remove(0);
 			}
 		}
-		
+
 		btnPrevPage.setVisible(true);
 		btnNextPage.setVisible(true);
 		filterTab.setVisible(false);
@@ -292,7 +292,7 @@ public class MyList {
 		btnSearchIcon.setFitHeight(32);
 		btnSearchIcon.setFitWidth(32);
 		btnSearch.setGraphic(btnSearchIcon);
-		
+
 		loadPage();
 	}
 
@@ -390,17 +390,25 @@ public class MyList {
 	}
 
 	void movieDetails() {
-		movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0, movieColumn0);
-		movieDetails(movies.get(1), poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1, movieColumn1);
-		movieDetails(movies.get(2), poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2, movieColumn2);
+		if (movies.size() >= 1) {
+			movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0, movieColumn0);
+		}
+		if (movies.size() >= 2) {
+			movieDetails(movies.get(1), poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1, movieColumn1);
+		}
+		if (movies.size() >= 3) {
+			movieDetails(movies.get(2), poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2, movieColumn2);
+		}
 	}
 
 	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate,
 			ColumnConstraints movieColumn) {
-		poster.setImage(new Image(movie.getPoster_path()));
+		if (movie.getPoster_path() != null) {
+			poster.setImage(new Image(movie.getPoster_path()));
+		}
 		movieTitle.setText(movie.getTitle());
 		movieDesc.setText(movie.getOverview());
-		
+
 		String genreText = "";
 		List<Genre> genres = new ArrayList<>();
 		for (MovieGenre thisMovieGenre : movieGenreDao.searchByMovieId(movie.getId())) {

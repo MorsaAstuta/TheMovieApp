@@ -250,7 +250,9 @@ public class MyListRecord {
 		statuses.add("Dropped");
 		cmbStatus.setItems(statuses);
 		
-		posterMovie.setImage(new Image(movie.getPoster_path()));
+		if (movie.getPoster_path() != null) {
+			posterMovie.setImage(new Image(movie.getPoster_path()));
+		}
 
 		String strDirector = "";
 		for (Director director : directors) {

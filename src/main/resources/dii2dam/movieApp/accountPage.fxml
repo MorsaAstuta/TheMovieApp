@@ -39,7 +39,7 @@
                   <ImageView fx:id="idImgPoster1" fitHeight="293.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="36.0" prefWidth="156.0" text="Recently watched:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="Inder" size="18.0" />
+                        <Font name="Reem Kufi Regular" size="18.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="idImgPoster2" fitHeight="293.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
@@ -72,17 +72,17 @@
                      <children>
                         <Label fx:id="idUsername" layoutX="76.0" layoutY="24.0" prefHeight="35.0" prefWidth="317.0" text="Username" textFill="WHITE">
                            <font>
-                              <Font name="Inder" size="16.0" />
+                              <Font name="Reem Kufi Regular" size="16.0" />
                            </font>
                         </Label>
                         <Label fx:id="idEmail" layoutX="76.0" layoutY="67.0" prefHeight="31.0" prefWidth="310.0" text="Email" textFill="WHITE">
                            <font>
-                              <Font name="Inder" size="16.0" />
+                              <Font name="Reem Kufi Regular" size="16.0" />
                            </font>
                         </Label>
                         <Label fx:id="idLastConnect" layoutX="76.0" layoutY="107.0" prefHeight="32.0" prefWidth="173.0" text="Active Since" textFill="WHITE">
                            <font>
-                              <Font name="Inder" size="14.0" />
+                              <Font name="Reem Kufi Regular" size="14.0" />
                            </font>
                         </Label>
                      </children>
