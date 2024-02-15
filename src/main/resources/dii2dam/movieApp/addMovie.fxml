@@ -204,7 +204,7 @@
                           </rowConstraints>
                            <children>
                               <ImageView fx:id="posterMovie" fitHeight="270.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2147483647" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#openPhotoSelector" prefWidth="180.0" text="Upload new poster image" textAlignment="CENTER" GridPane.rowIndex="1">
+                              <Button alignment="CENTER" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" onAction="#openPhotoSelector" prefWidth="180.0" text="Upload new poster image" textAlignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="12.0" />
                                  </font>
