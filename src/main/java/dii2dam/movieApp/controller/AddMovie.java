@@ -9,15 +9,21 @@ import java.util.List;
 
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.ActorDaoImp;
+import dii2dam.movieApp.dao.CastDaoImpl;
+import dii2dam.movieApp.dao.DirectionDaoImpl;
 import dii2dam.movieApp.dao.DirectorDaoImp;
 import dii2dam.movieApp.dao.GenreDaoImp;
 import dii2dam.movieApp.dao.LocationDaoImpl;
 import dii2dam.movieApp.dao.MovieDaoImpl;
+import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Actor;
+import dii2dam.movieApp.models.Cast;
+import dii2dam.movieApp.models.Direction;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Genre;
 import dii2dam.movieApp.models.Location;
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.models.MovieGenre;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
@@ -48,6 +54,12 @@ public class AddMovie {
 	private DirectorDaoImp directorDao = new DirectorDaoImp(HibernateUtils.session);
 
 	private LocationDaoImpl locationDao = new LocationDaoImpl(HibernateUtils.session);
+
+	private CastDaoImpl castDao = new CastDaoImpl(HibernateUtils.session);
+
+	private DirectionDaoImpl directionDao = new DirectionDaoImpl(HibernateUtils.session);
+
+	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
 
 	@FXML
 	private Pane btnHome;
@@ -222,6 +234,15 @@ public class AddMovie {
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
 						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser());
 				movieDao.insert(movie);
+				for (Actor actor : actors) {
+					castDao.insert(new Cast(movie.getId(), actor.getId()));
+				}
+				for (Director director : directors) {
+					directionDao.insert(new Direction(movie.getId(), director.getId()));
+				}
+				for (Genre genre : genres) {
+					movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
+				}
 				Manager.setMovie(movie);
 			}
 			try {

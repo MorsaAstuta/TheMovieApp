@@ -144,7 +144,7 @@ public class MovieRecord {
 	@FXML
 	void goToMyList(MouseEvent event) {
 		try {
-			App.setRoot("");
+			App.setRoot("myList");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

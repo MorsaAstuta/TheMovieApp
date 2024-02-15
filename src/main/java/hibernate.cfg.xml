@@ -4,7 +4,7 @@
     <session-factory>
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.password">root</property> <!-- 12345678 · root -->
+        <property name="hibernate.connection.password">12345678</property> <!-- 12345678 · root -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/movie_db?serverTimezone=UTC</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.default_schema">movie_db</property> <!-- movie_db · movieapp -->
@@ -17,6 +17,8 @@
     	<mapping class="dii2dam.movieApp.models.Actor"/>
     	<mapping class="dii2dam.movieApp.models.User"/>
     	<mapping class="dii2dam.movieApp.models.Movie"/>
-    	<mapping class="dii2dam.movieApp.models.Review"/>
+    	<mapping class="dii2dam.movieApp.models.Genre"/>
+    	<mapping class="dii2dam.movieApp.models.Director"/>
+    	<mapping class="dii2dam.movieApp.models.Location"/>
     </session-factory>
 </hibernate-configuration>

@@ -5,11 +5,20 @@ import java.util.ArrayList;
 import java.util.List;
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.ActorDaoImp;
+import dii2dam.movieApp.dao.CastDaoImpl;
+import dii2dam.movieApp.dao.DirectionDaoImpl;
+import dii2dam.movieApp.dao.DirectorDaoImp;
+import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Actor;
+import dii2dam.movieApp.models.Cast;
 import dii2dam.movieApp.models.Director;
+import dii2dam.movieApp.models.Genre;
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.models.MovieGenre;
 import dii2dam.movieApp.models.MovieInfoResponse;
 import dii2dam.movieApp.models.CreditsResponse;
+import dii2dam.movieApp.models.Direction;
 import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.ReviewResponse;
 import dii2dam.movieApp.utils.Manager;
@@ -29,13 +38,19 @@ public class MyListRecord {
 	private MovieInfoResponse movieInfoResponse;
 	private ReviewResponse reviewResponse;
 
+	private ActorDaoImp actorDao;
+	private CastDaoImpl castDao;
 	private List<Actor> actors = new ArrayList<>();
-	private Integer actorPage = 1;
-
+	
+	private DirectorDaoImp directorDao;
+	private DirectionDaoImpl directionDao;
 	private List<Director> directors = new ArrayList<>();
+	
+	private GenreDaoImp genreDao;
+	private MovieGenreDaoImpl movieGenreDao;
+	private List<Genre> genres = new ArrayList<>();
 
-	private List<Review> reviews = new ArrayList<>();
-	private Integer reviewPage = 1;
+	private Integer actorPage = 1;
 
 	@FXML
 	private ImageView imgActor1;
@@ -125,8 +140,6 @@ public class MyListRecord {
 	@FXML
 	private ComboBox<String> comboBoxStateMovie;
 
-	private ActorDaoImp actorDaoImpl;
-
 	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
@@ -177,7 +190,21 @@ public class MyListRecord {
 	public void initialize() {
 		movie = Manager.getMovie();
 
-		actors = actorDaoImpl.searchByMovieId(movie.getId());
+		List<Cast> casts = castDao.searchByMovieId(movie.getId());
+		List<Direction> directions = directionDao.searchByMovieId(movie.getId());
+		List<MovieGenre> movieGenres = movieGenreDao.searchByMovieId(movie.getId());
+		
+		for (Cast cast : casts) {
+			actors.add(actorDao.seachById(cast.getActor_id()));
+		}
+		
+		for (Direction direction : directions) {
+			directors.add(directorDao.seachById(direction.getDirector_id()));
+		}
+		
+		for (MovieGenre movieGenre : movieGenres) {
+			genres.add(genreDao.seachById(movieGenre.getGenre_id()));
+		}
 
 		ObservableList<String> items = FXCollections.observableArrayList();
 		items.add(null);
