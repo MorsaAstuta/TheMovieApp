@@ -1,5 +1,6 @@
 package dii2dam.movieApp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,7 @@ import javax.persistence.Transient;
 import dii2dam.movieApp.utils.Manager;
 
 @Entity
-public class Movie implements java.io.Serializable {
+public class Movie implements Serializable {
 
 	@Id
 	@Column(name = "id")
@@ -40,8 +41,8 @@ public class Movie implements java.io.Serializable {
 
 	@Column(name = "poster_url")
 	private String poster_url;
-	
-  @Transient
+
+	@Transient
 	private String poster_path;
 
 	@Column(name = "rating")
@@ -65,7 +66,7 @@ public class Movie implements java.io.Serializable {
 	@Column(name = "register_date")
 	private String register_date;
 
-  @Transient
+	@Transient
 	private Set<Integer> genre_ids = new HashSet<Integer>(0);
 
 	@Transient
@@ -74,9 +75,8 @@ public class Movie implements java.io.Serializable {
 	protected Movie() {
 	}
 
-	public Movie(Long id, String title, String release_date, String overview, Integer runtime, String poster_path,
-			Long user_id, Long location_id) {
-		setId(id);
+	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id,
+			Long location_id, String review, Double rating) {
 		setTitle(title);
 		setRelease_date(release_date);
 		setOverview(overview);
@@ -85,21 +85,12 @@ public class Movie implements java.io.Serializable {
 		setUser_id(user_id);
 		setLocation_id(location_id);
 		setRegister_date(Manager.getSdf().format(new Date()));
+		setReview(review);
+		setRating(rating);
 	}
 
 	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id,
-			Long location_id) {
-		setTitle(title);
-		setRelease_date(release_date);
-		setOverview(overview);
-		setRuntime(runtime);
-		setPoster_path(poster_path);
-		setUser_id(user_id);
-		setLocation_id(location_id);
-		setRegister_date(Manager.getSdf().format(new Date()));
-	}
-
-	public Movie(String title, String release_date, String overview, Integer runtime, String poster_path, Long user_id) {
+			String review, Double rating) {
 		setTitle(title);
 		setRelease_date(release_date);
 		setOverview(overview);
@@ -107,6 +98,8 @@ public class Movie implements java.io.Serializable {
 		setPoster_path(poster_path);
 		setUser_id(user_id);
 		setRegister_date(Manager.getSdf().format(new Date()));
+		setReview(review);
+		setRating(rating);
 	}
 
 	public String getGenre() {

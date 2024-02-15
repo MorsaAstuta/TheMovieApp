@@ -22,7 +22,7 @@ public class DirectionDaoImpl extends CommonDaoImpl<Direction> implements Direct
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("from Cast where movie_id = '" + id + "'").list();
+		return session.createQuery("from Direction where movie_id = '" + id + "'").list();
 	}
 
 	@SuppressWarnings("unchecked")

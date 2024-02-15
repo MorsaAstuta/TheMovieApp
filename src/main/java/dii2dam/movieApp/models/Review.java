@@ -2,19 +2,13 @@ package dii2dam.movieApp.models;
 
 public class Review {
 
-	private String username;
-
 	private String author;
 
 	private String content;
 
-	private String avatar_path;
-
 	private String created_at;
 
 	private Long movie_id;
-
-	private Double rating;
 
 	private AuthorDetails author_details;
 
@@ -24,21 +18,10 @@ public class Review {
 
 	public Review(String username, String author, Double rating, String content, String avatar_path, String created_at,
 			Long movie_id) {
-		setUsername(username);
 		setAuthor(author);
-		setRating(rating);
 		setContent(content);
-		setAvatar_path(avatar_path);
 		setCreated_at(created_at);
 		setMovie_id(movie_id);
-	}
-
-	public void setRating(Double rating) {
-		this.rating = rating;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getAuthor() {
@@ -55,10 +38,6 @@ public class Review {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public void setAvatar_path(String avatar_path) {
-		this.avatar_path = avatar_path;
 	}
 
 	public String getCreated_at() {

@@ -1,16 +1,11 @@
 package dii2dam.movieApp.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.UserDaoImpl;
-import dii2dam.movieApp.models.User;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 

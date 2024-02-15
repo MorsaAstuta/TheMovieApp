@@ -40,7 +40,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Pane;
 
 public class AddMovie {
@@ -121,11 +120,14 @@ public class AddMovie {
 	@FXML
 	private TextField txtTitle;
 
+	@FXML
+	private TextField txtRating;
+
+	@FXML
+	private TextArea txtReview;
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-	private List<Genre> genres = new ArrayList<>();
-	private List<Actor> actors = new ArrayList<>();
-	private List<Director> directors = new ArrayList<>();
 	private List<Location> locations = new ArrayList<>();
 
 	private ObservableList<String> genreNames = FXCollections.observableArrayList();
@@ -144,9 +146,6 @@ public class AddMovie {
 		clmActors.setCellValueFactory(new PropertyValueFactory<Actor, String>("name"));
 		clmDirectors.setCellValueFactory(new PropertyValueFactory<Director, String>("name"));
 
-		genres.addAll(genreDao.searchAll());
-		actors.addAll(actorDao.searchAll());
-		directors.addAll(directorDao.searchAll());
 		locations.addAll(locationDao.searchLocationsByUser(Manager.getCurrentUser()));
 
 		tblGenres.setItems(addedGenres);
@@ -158,15 +157,15 @@ public class AddMovie {
 		cmbDirectors.setItems(directorNames);
 		cmbLocation.setItems(locationNames);
 
-		for (Genre genre : genres) {
+		for (Genre genre : genreDao.searchAll()) {
 			genreNames.add(genre.getName());
 		}
 
-		for (Actor actor : actors) {
+		for (Actor actor : actorDao.searchAll()) {
 			actorNames.add(actor.getName());
 		}
 
-		for (Director director : directors) {
+		for (Director director : directorDao.searchAll()) {
 			directorNames.add(director.getName());
 		}
 
@@ -222,29 +221,44 @@ public class AddMovie {
 	@FXML
 	void saveMovie(ActionEvent event) {
 		if (!txtTitle.getText().isEmpty()) {
+			Movie movie;
+
+			// Creamos el objeto Movie con los datos insertados en los campos de la
+			// mitad izquierda de una forma u otra dependiendo de si se ha indicado
+			// ubicación
+			// física o no
 			if (cmbLocation.getValue() != null) {
-				Movie movie = new Movie(txtTitle.getText(),
+				if (locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()) == null) {
+					locationDao.insert(new Location(cmbLocation.getValue()));
+				}
+				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
 						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
-						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId());
-				movieDao.insert(movie);
-				Manager.setMovie(movie);
+						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
+						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			} else {
-				Movie movie = new Movie(txtTitle.getText(),
+				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser());
-				movieDao.insert(movie);
-				for (Actor actor : actors) {
-					castDao.insert(new Cast(movie.getId(), actor.getId()));
-				}
-				for (Director director : directors) {
-					directionDao.insert(new Direction(movie.getId(), director.getId()));
-				}
-				for (Genre genre : genres) {
-					movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
-				}
-				Manager.setMovie(movie);
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
+						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			}
+			movieDao.insert(movie);
+
+			// Añadimos los actores, directores y géneros de la mitad derecha a las tablas
+			// manyToMany acompañados del id autogenerado de esta nueva película
+			for (Actor actor : addedActors) {
+				castDao.insert(new Cast(movie.getId(), actor.getId()));
+			}
+			for (Director director : addedDirectors) {
+				directionDao.insert(new Direction(movie.getId(), director.getId()));
+			}
+			for (Genre genre : addedGenres) {
+				movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
+			}
+
+			// Lanzamos automáticamente la pantalla para visualizar esta nueva película
+			// insertada
+			Manager.setMovie(movie);
 			try {
 				App.setRoot("myListRecord");
 			} catch (IOException e) {

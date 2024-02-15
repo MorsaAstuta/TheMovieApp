@@ -149,9 +149,9 @@
                               <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label fx:id="textTittle" prefHeight="33.0" prefWidth="287.0" text="TITULO" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="7">
+                              <Label fx:id="textTittle" text="TITULO" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="7">
                                  <font>
-                                    <Font name="Reem Kufi Regular" size="36.0" />
+                                    <Font name="Reem Kufi Bold" size="36.0" />
                                  </font>
                               </Label>
                               <Label fx:id="textGenre" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -368,7 +368,7 @@
                               </Label>
                               <Label fx:id="labelUsernameReview1" text="Label" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Reem Kufi Regular" size="24.0" />
+                                    <Font name="Reem Kufi Bold" size="24.0" />
                                  </font>
                               </Label>
                               <ImageView fx:id="imgUserReview1" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -396,7 +396,7 @@
                               </Label>
                               <Label fx:id="labelUsernameReview2" text="Label" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Reem Kufi Regular" size="24.0" />
+                                    <Font name="Reem Kufi Bold" size="24.0" />
                                  </font>
                               </Label>
                               <ImageView fx:id="imgUserReview2" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -424,7 +424,7 @@
                               </Label>
                               <Label fx:id="labelUsernameReview3" text="Label" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                  <font>
-                                    <Font name="Reem Kufi Regular" size="24.0" />
+                                    <Font name="Reem Kufi Bold" size="24.0" />
                                  </font>
                               </Label>
                               <ImageView fx:id="imgUserReview3" fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />

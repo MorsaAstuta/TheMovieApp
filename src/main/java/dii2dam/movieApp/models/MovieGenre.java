@@ -1,11 +1,13 @@
 package dii2dam.movieApp.models;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class MovieGenre {
+public class MovieGenre implements Serializable {
 
 	@Id
 	@Column(name = "genre_id")

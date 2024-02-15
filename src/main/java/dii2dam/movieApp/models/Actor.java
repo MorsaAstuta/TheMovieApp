@@ -1,5 +1,6 @@
 package dii2dam.movieApp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import javax.persistence.*;
 import dii2dam.movieApp.utils.Manager;
 
 @Entity
-public class Actor {
+public class Actor implements Serializable {
 
 	@Id
 	@Column(name = "id")

@@ -124,14 +124,18 @@
                         <RowConstraints maxHeight="24.0" minHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
                         <RowConstraints vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="24.0" minHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="24.0" minHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <ImageView fx:id="posterMovie" fitHeight="270.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.columnSpan="2147483647" GridPane.rowIndex="1" />
                         <GridPane alignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="74.0" prefWidth="92.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="96.0" prefWidth="96.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="84.0" minWidth="84.0" prefWidth="84.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="24.0" minWidth="24.0" prefWidth="24.0" />
                               <ColumnConstraints hgrow="SOMETIMES" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="64.0" minWidth="64.0" prefWidth="64.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
@@ -143,7 +147,7 @@
                               <RowConstraints maxHeight="64.0" minHeight="64.0" prefHeight="64.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <TextField fx:id="txtTitle" alignment="TOP_LEFT" prefHeight="40.0" promptText="Title" GridPane.columnIndex="1" GridPane.columnSpan="4">
+                              <TextField fx:id="txtTitle" alignment="TOP_LEFT" prefHeight="40.0" promptText="Title" GridPane.columnIndex="1" GridPane.columnSpan="6">
                                  <font>
                                     <Font name="Reem Kufi Bold" size="18.0" />
                                  </font>
@@ -154,20 +158,43 @@
                                     <Font name="Reem Kufi Regular" size="12.0" />
                                  </font>
                               </TextField>
-                              <ComboBox fx:id="cmbLocation" editable="true" focusTraversable="false" promptText="Location" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveMovie" prefHeight="64.0" prefWidth="64.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                              <ComboBox fx:id="cmbLocation" editable="true" focusTraversable="false" promptText="Location" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                              <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveMovie" prefHeight="64.0" prefWidth="64.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
                               <Label alignment="CENTER" contentDisplay="CENTER" text="  minutes" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txtRating" promptText="Score" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="12.0" />
+                                 </font>
+                              </TextField>
+                              <Label alignment="CENTER" contentDisplay="CENTER" text=" / 10" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="12.0" />
                                  </font>
                               </Label>
                            </children>
                         </GridPane>
-                        <TextArea fx:id="txtOverview" promptText="Overview" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
-                           <font>
-                              <Font name="Reem Kufi Regular" size="14.0" />
-                           </font>
-                        </TextArea>
+                        <ScrollPane hbarPolicy="NEVER" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <content>
+                              <TextArea fx:id="txtOverview" promptText="Overview">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </content>
+                        </ScrollPane>
+                        <ScrollPane hbarPolicy="NEVER" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="5">
+                           <content>
+                              <TextArea fx:id="txtReview" promptText="Review">
+                                 <font>
+                                    <Font name="Reem Kufi Regular" size="14.0" />
+                                 </font>
+                              </TextArea>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </GridPane>
                </center>

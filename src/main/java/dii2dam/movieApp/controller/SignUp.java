@@ -1,13 +1,10 @@
 package dii2dam.movieApp.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.UserDaoImpl;
 import dii2dam.movieApp.models.User;
 import dii2dam.movieApp.utils.HibernateUtils;
-import dii2dam.movieApp.utils.Manager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

@@ -9,18 +9,17 @@ import dii2dam.movieApp.dao.CastDaoImpl;
 import dii2dam.movieApp.dao.DirectionDaoImpl;
 import dii2dam.movieApp.dao.DirectorDaoImp;
 import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.LocationDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Cast;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Genre;
+import dii2dam.movieApp.models.Location;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.MovieGenre;
-import dii2dam.movieApp.models.MovieInfoResponse;
-import dii2dam.movieApp.models.CreditsResponse;
 import dii2dam.movieApp.models.Direction;
-import dii2dam.movieApp.models.Review;
-import dii2dam.movieApp.models.ReviewResponse;
+import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,21 +33,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class MyListRecord {
-	private CreditsResponse creditsResponse;
-	private MovieInfoResponse movieInfoResponse;
-	private ReviewResponse reviewResponse;
 
-	private ActorDaoImp actorDao;
-	private CastDaoImpl castDao;
+	private Movie movie;
+
+	private ActorDaoImp actorDao = new ActorDaoImp(HibernateUtils.session);
+	private CastDaoImpl castDao = new CastDaoImpl(HibernateUtils.session);
 	private List<Actor> actors = new ArrayList<>();
-	
-	private DirectorDaoImp directorDao;
-	private DirectionDaoImpl directionDao;
+
+	private DirectorDaoImp directorDao = new DirectorDaoImp(HibernateUtils.session);
+	private DirectionDaoImpl directionDao = new DirectionDaoImpl(HibernateUtils.session);
 	private List<Director> directors = new ArrayList<>();
-	
-	private GenreDaoImp genreDao;
-	private MovieGenreDaoImpl movieGenreDao;
+
+	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
+	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
 	private List<Genre> genres = new ArrayList<>();
+
+	private LocationDaoImpl locationDao = new LocationDaoImpl(HibernateUtils.session);
+	private List<Location> locations = new ArrayList<>();
 
 	private Integer actorPage = 1;
 
@@ -68,38 +69,31 @@ public class MyListRecord {
 	private ImageView posterMovie;
 
 	@FXML
-	private Label textComment1;
+	private Label txtDate;
 
 	@FXML
-	private Label textComment2;
+	private Label txtDirector;
 
 	@FXML
-	private Label textComment3;
+	private Label txtGenre;
 
 	@FXML
-	private Label textDate;
+	private Label txtOverview;
 
 	@FXML
-	private Label textDirector;
+	private Label txtRelease;
 
 	@FXML
-	private Label textGenre;
+	private Label txtRating;
 
 	@FXML
-	private Label textSinopsis;
-	@FXML
-	private Pane btnMyList;
+	private Label txtRuntime;
 
 	@FXML
-	private Label rate;
+	private Label txtReview;
 
 	@FXML
-	private Label textTime;
-
-	@FXML
-	private Label textTittle;
-
-	private Movie movie;
+	private Label txtTitle;
 
 	@FXML
 	private Button btnLeftActors;
@@ -138,7 +132,13 @@ public class MyListRecord {
 	private ImageView imgUserReview3;
 
 	@FXML
-	private ComboBox<String> comboBoxStateMovie;
+	private ComboBox<String> cmbLocations;
+
+	@FXML
+	private ComboBox<String> cmbStatus;
+
+	@FXML
+	private Pane expMyList;
 
 	@FXML
 	void goToAccount(MouseEvent event) {
@@ -178,43 +178,75 @@ public class MyListRecord {
 
 	@FXML
 	void retractMyList(MouseEvent event) {
-		btnMyList.setVisible(false);
+		expMyList.setVisible(false);
 	}
 
 	@FXML
 	void expandMyList(MouseEvent event) {
-		btnMyList.setVisible(true);
+		expMyList.setVisible(true);
 
 	}
 
 	public void initialize() {
 		movie = Manager.getMovie();
-
-		List<Cast> casts = castDao.searchByMovieId(movie.getId());
-		List<Direction> directions = directionDao.searchByMovieId(movie.getId());
-		List<MovieGenre> movieGenres = movieGenreDao.searchByMovieId(movie.getId());
 		
-		for (Cast cast : casts) {
-			actors.add(actorDao.seachById(cast.getActor_id()));
-		}
+		System.out.println(movie.getId());
 		
-		for (Direction direction : directions) {
-			directors.add(directorDao.seachById(direction.getDirector_id()));
-		}
-		
-		for (MovieGenre movieGenre : movieGenres) {
-			genres.add(genreDao.seachById(movieGenre.getGenre_id()));
+		for (Cast cast : castDao.searchByMovieId(movie.getId())) {
+			actors.add(actorDao.searchById(cast.getActor_id()));
 		}
 
-		ObservableList<String> items = FXCollections.observableArrayList();
-		items.add(null);
-		items.add("Watching");
-		items.add("Unwatched");
-		items.add("Drop");
-		items.add("On Hold");
-		comboBoxStateMovie.setItems(items);
-		comboBoxStateMovie.getSelectionModel().selectFirst();
-		textComment1.setText(movie.getReview());
+		for (Direction direction : directionDao.searchByMovieId(movie.getId())) {
+			directors.add(directorDao.searchById(direction.getDirector_id()));
+		}
+
+		for (MovieGenre movieGenre : movieGenreDao.searchByMovieId(movie.getId())) {
+			genres.add(genreDao.searchById(movieGenre.getGenre_id()));
+		}
+
+		// Cargamos el combobox de ubicaciones
+		locations.addAll(locationDao.searchLocationsByUser(Manager.getCurrentUser()));
+		ObservableList<String> locationNames = FXCollections.observableArrayList();
+		locationNames.add(null);
+		for (Location location : locations) {
+			locationNames.add(location.getName());
+		}
+		cmbLocations.setItems(locationNames);
+		cmbLocations.getSelectionModel().selectFirst();
+
+		// Cargamos el combobox de estados
+		ObservableList<String> statuses = FXCollections.observableArrayList();
+		statuses.add(null);
+		statuses.add("Watching");
+		statuses.add("Unwatched");
+		statuses.add("Drop");
+		statuses.add("On Hold");
+		cmbStatus.setItems(statuses);
+		cmbStatus.getSelectionModel().selectFirst();
+
+		String strDirector = "";
+		for (Director director : directors) {
+			if (directors.indexOf(director) != 0) {
+				strDirector += ", ";
+			}
+			strDirector += director.getName();
+		}
+		txtDirector.setText(strDirector);
+
+		String strGenre = "";
+		for (Genre genre : genres) {
+			if (genres.indexOf(genre) != 0) {
+				strGenre += ", ";
+			}
+			strGenre += genre.getName();
+		}
+		txtGenre.setText(strGenre);
+
+		txtTitle.setText(movie.getTitle());
+		txtRuntime.setText(movie.getRuntime() + "");
+		txtRating.setText(movie.getRating() + " / 10");
+		txtRelease.setText(movie.getRelease_date());
+		txtReview.setText(movie.getReview());
 
 		visibleBtnLeft();
 		loadActors();

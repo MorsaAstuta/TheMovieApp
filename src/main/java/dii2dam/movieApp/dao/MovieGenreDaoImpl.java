@@ -22,7 +22,7 @@ public class MovieGenreDaoImpl extends CommonDaoImpl<MovieGenre> implements Movi
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("from Cast where movie_id = '" + id + "'").list();
+		return session.createQuery("from MovieGenre where movie_id = '" + id + "'").list();
 	}
 
 	@SuppressWarnings("unchecked")

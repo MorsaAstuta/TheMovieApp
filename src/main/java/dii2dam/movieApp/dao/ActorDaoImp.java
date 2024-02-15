@@ -42,4 +42,12 @@ public class ActorDaoImp extends CommonDaoImpl<Actor> implements ActorDaoInt {
 		return (Actor) session.createQuery("FROM Actor where name = '" + name + "'").uniqueResult();
 	}
 
+	@Override
+	public Actor searchById(Long id) {
+		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
+			session.getTransaction().begin();
+		}
+		return (Actor) session.createQuery("from Actor where id = '" + id + "'").uniqueResult();
+	}
+
 }
