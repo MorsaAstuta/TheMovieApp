@@ -10,11 +10,7 @@ import dii2dam.movieApp.App;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.User;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class Manager {
 	public static Movie movie;

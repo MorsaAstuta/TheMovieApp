@@ -25,14 +25,21 @@ import java.util.List;
 import java.util.Map;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.models.APIResponse;
+import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.MovieDaoImpl;
+import dii2dam.movieApp.dao.MovieGenreDaoImpl;
+import dii2dam.movieApp.models.Genre;
 import dii2dam.movieApp.models.Movie;
-import dii2dam.movieApp.utils.Connector;
+import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 
 public class MyList {
+	
+	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
-	private APIResponse response;
+	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
+	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
+	private List<Genre> genres = new ArrayList<>();
 
 	@FXML
 	private Pane btnAccount;
@@ -98,217 +105,37 @@ public class MyList {
 	private Label lblMovieDate00;
 
 	@FXML
-	private Label lblMovieDate01;
-
-	@FXML
-	private Label lblMovieDate02;
-
-	@FXML
-	private Label lblMovieDate03;
-
-	@FXML
-	private Label lblMovieDate04;
-
-	@FXML
-	private Label lblMovieDate05;
-
-	@FXML
 	private Label lblMovieDate06;
-
-	@FXML
-	private Label lblMovieDate07;
-
-	@FXML
-	private Label lblMovieDate08;
-
-	@FXML
-	private Label lblMovieDate09;
-
-	@FXML
-	private Label lblMovieDate10;
-
-	@FXML
-	private Label lblMovieDate11;
 
 	@FXML
 	private Label lblMovieDate12;
 
 	@FXML
-	private Label lblMovieDate13;
-
-	@FXML
-	private Label lblMovieDate14;
-
-	@FXML
-	private Label lblMovieDate15;
-
-	@FXML
-	private Label lblMovieDate16;
-
-	@FXML
-	private Label lblMovieDate17;
-
-	@FXML
 	private Label lblMovieDesc00;
-
-	@FXML
-	private Label lblMovieDesc01;
-
-	@FXML
-	private Label lblMovieDesc02;
-
-	@FXML
-	private Label lblMovieDesc03;
-
-	@FXML
-	private Label lblMovieDesc04;
-
-	@FXML
-	private Label lblMovieDesc05;
 
 	@FXML
 	private Label lblMovieDesc06;
 
 	@FXML
-	private Label lblMovieDesc07;
-
-	@FXML
-	private Label lblMovieDesc08;
-
-	@FXML
-	private Label lblMovieDesc09;
-
-	@FXML
-	private Label lblMovieDesc10;
-
-	@FXML
-	private Label lblMovieDesc11;
-
-	@FXML
 	private Label lblMovieDesc12;
-
-	@FXML
-	private Label lblMovieDesc13;
-
-	@FXML
-	private Label lblMovieDesc14;
-
-	@FXML
-	private Label lblMovieDesc15;
-
-	@FXML
-	private Label lblMovieDesc16;
-
-	@FXML
-	private Label lblMovieDesc17;
 
 	@FXML
 	private Label lblMovieGenre00;
 
 	@FXML
-	private Label lblMovieGenre01;
-
-	@FXML
-	private Label lblMovieGenre02;
-
-	@FXML
-	private Label lblMovieGenre03;
-
-	@FXML
-	private Label lblMovieGenre04;
-
-	@FXML
-	private Label lblMovieGenre05;
-
-	@FXML
 	private Label lblMovieGenre06;
-
-	@FXML
-	private Label lblMovieGenre07;
-
-	@FXML
-	private Label lblMovieGenre08;
-
-	@FXML
-	private Label lblMovieGenre09;
-
-	@FXML
-	private Label lblMovieGenre10;
-
-	@FXML
-	private Label lblMovieGenre11;
 
 	@FXML
 	private Label lblMovieGenre12;
 
 	@FXML
-	private Label lblMovieGenre13;
-
-	@FXML
-	private Label lblMovieGenre14;
-
-	@FXML
-	private Label lblMovieGenre15;
-
-	@FXML
-	private Label lblMovieGenre16;
-
-	@FXML
-	private Label lblMovieGenre17;
-
-	@FXML
 	private Label lblMovieTitle00;
-
-	@FXML
-	private Label lblMovieTitle01;
-
-	@FXML
-	private Label lblMovieTitle02;
-
-	@FXML
-	private Label lblMovieTitle03;
-
-	@FXML
-	private Label lblMovieTitle04;
-
-	@FXML
-	private Label lblMovieTitle05;
 
 	@FXML
 	private Label lblMovieTitle06;
 
 	@FXML
-	private Label lblMovieTitle07;
-
-	@FXML
-	private Label lblMovieTitle08;
-
-	@FXML
-	private Label lblMovieTitle09;
-
-	@FXML
-	private Label lblMovieTitle10;
-
-	@FXML
-	private Label lblMovieTitle11;
-
-	@FXML
 	private Label lblMovieTitle12;
-
-	@FXML
-	private Label lblMovieTitle13;
-
-	@FXML
-	private Label lblMovieTitle14;
-
-	@FXML
-	private Label lblMovieTitle15;
-
-	@FXML
-	private Label lblMovieTitle16;
-
-	@FXML
-	private Label lblMovieTitle17;
 
 	@FXML
 	private Label lblPage;
@@ -320,163 +147,28 @@ public class MyList {
 	private GridPane movie00;
 
 	@FXML
-	private GridPane movie01;
-
-	@FXML
-	private GridPane movie02;
-
-	@FXML
-	private GridPane movie03;
-
-	@FXML
-	private GridPane movie04;
-
-	@FXML
-	private GridPane movie05;
-
-	@FXML
 	private GridPane movie06;
-
-	@FXML
-	private GridPane movie07;
-
-	@FXML
-	private GridPane movie08;
-
-	@FXML
-	private GridPane movie09;
-
-	@FXML
-	private GridPane movie10;
-
-	@FXML
-	private GridPane movie11;
 
 	@FXML
 	private GridPane movie12;
 
 	@FXML
-	private GridPane movie13;
-
-	@FXML
-	private GridPane movie14;
-
-	@FXML
-	private GridPane movie15;
-
-	@FXML
-	private GridPane movie16;
-
-	@FXML
-	private GridPane movie17;
-
-	@FXML
 	private ColumnConstraints movieColumn00;
-
-	@FXML
-	private ColumnConstraints movieColumn01;
-
-	@FXML
-	private ColumnConstraints movieColumn02;
-
-	@FXML
-	private ColumnConstraints movieColumn03;
-
-	@FXML
-	private ColumnConstraints movieColumn04;
-
-	@FXML
-	private ColumnConstraints movieColumn05;
 
 	@FXML
 	private ColumnConstraints movieColumn06;
 
 	@FXML
-	private ColumnConstraints movieColumn07;
-
-	@FXML
-	private ColumnConstraints movieColumn08;
-
-	@FXML
-	private ColumnConstraints movieColumn09;
-
-	@FXML
-	private ColumnConstraints movieColumn10;
-
-	@FXML
-	private ColumnConstraints movieColumn11;
-
-	@FXML
 	private ColumnConstraints movieColumn12;
-
-	@FXML
-	private ColumnConstraints movieColumn13;
-
-	@FXML
-	private ColumnConstraints movieColumn14;
-
-	@FXML
-	private ColumnConstraints movieColumn15;
-
-	@FXML
-	private ColumnConstraints movieColumn16;
-
-	@FXML
-	private ColumnConstraints movieColumn17;
 
 	@FXML
 	private GridPane movieInfo00;
 
 	@FXML
-	private GridPane movieInfo01;
-
-	@FXML
-	private GridPane movieInfo02;
-
-	@FXML
-	private GridPane movieInfo03;
-
-	@FXML
-	private GridPane movieInfo04;
-
-	@FXML
-	private GridPane movieInfo05;
-
-	@FXML
 	private GridPane movieInfo06;
 
 	@FXML
-	private GridPane movieInfo07;
-
-	@FXML
-	private GridPane movieInfo08;
-
-	@FXML
-	private GridPane movieInfo09;
-
-	@FXML
-	private GridPane movieInfo10;
-
-	@FXML
-	private GridPane movieInfo11;
-
-	@FXML
 	private GridPane movieInfo12;
-
-	@FXML
-	private GridPane movieInfo13;
-
-	@FXML
-	private GridPane movieInfo14;
-
-	@FXML
-	private GridPane movieInfo15;
-
-	@FXML
-	private GridPane movieInfo16;
-
-	@FXML
-	private GridPane movieInfo17;
 
 	@FXML
 	private ColumnConstraints myListExtension;
@@ -485,55 +177,10 @@ public class MyList {
 	private ImageView poster00;
 
 	@FXML
-	private ImageView poster01;
-
-	@FXML
-	private ImageView poster02;
-
-	@FXML
-	private ImageView poster03;
-
-	@FXML
-	private ImageView poster04;
-
-	@FXML
-	private ImageView poster05;
-
-	@FXML
 	private ImageView poster06;
 
 	@FXML
-	private ImageView poster07;
-
-	@FXML
-	private ImageView poster08;
-
-	@FXML
-	private ImageView poster09;
-
-	@FXML
-	private ImageView poster10;
-
-	@FXML
-	private ImageView poster11;
-
-	@FXML
 	private ImageView poster12;
-
-	@FXML
-	private ImageView poster13;
-
-	@FXML
-	private ImageView poster14;
-
-	@FXML
-	private ImageView poster15;
-
-	@FXML
-	private ImageView poster16;
-
-	@FXML
-	private ImageView poster17;
 
 	@FXML
 	private BorderPane searchBar;
@@ -542,7 +189,7 @@ public class MyList {
 	private TextField txtSearch;
 
 	Map<ImageView, Movie> movieByPoster = new HashMap<>();
-	Movie[] movies = null;
+	List<Movie> movies = new ArrayList<>();
 	List<ImageView> posters = new ArrayList<>();
 	String currentSearch = "";
 
@@ -554,115 +201,6 @@ public class MyList {
 	private String searchType = "";
 
 	private void query(String query) {
-		try {
-			if (!filter().isEmpty()) {
-				if (chkMovies.isSelected()) {
-					response = Connector.discoverMovie(filter() + "&page=" + (currentPage + 1));
-					searchType = "movie";
-				} else if (chkSeries.isSelected()) {
-					response = Connector.discoverSeries(filter() + "&page=" + (currentPage + 1));
-					searchType = "tv";
-				}
-			} else {
-				if ((chkMovies.isSelected() && chkSeries.isSelected())) {
-					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
-					searchType = "multi";
-				} else if (chkMovies.isSelected()) {
-					response = Connector.searchMovie(query + "&page=" + (currentPage + 1));
-					searchType = "movie";
-				} else if (chkSeries.isSelected()) {
-					response = Connector.searchSeries(query + "&page=" + (currentPage + 1));
-					searchType = "tv";
-				}
-			}
-			totalPages = response.getTotalPages();
-			movies = response.getResults();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private String filter() {
-		String modifiedQuery = "";
-
-		// Genre filters
-		boolean firstItem = true;
-		for (ComboBox<String> cmbGenre : genreBoxes) {
-			if (cmbGenre.getValue() != null) {
-				if (firstItem) {
-					modifiedQuery += "&with_genres=";
-					firstItem = false;
-				} else {
-					modifiedQuery += ",";
-				}
-				modifiedQuery += Manager.idByGenre.get(cmbGenre.getValue());
-			}
-		}
-
-		// Score/Runtime filters
-		if (cmbScoreMin.getValue() != null) {
-			modifiedQuery += "&vote_average.gte=" + cmbScoreMin.getValue();
-		}
-		if (cmbScoreMax.getValue() != null) {
-			modifiedQuery += "&vote_average.lte=" + cmbScoreMax.getValue();
-		}
-		if (cmbLengthMin.getValue() != null) {
-			modifiedQuery += "&with_runtime.gte=" + cmbLengthMin.getValue();
-		}
-		if (cmbLengthMax.getValue() != null) {
-			modifiedQuery += "&with_runtime.lte=" + cmbLengthMax.getValue();
-		}
-
-		// Sorter
-		String sorter = "";
-		if (cmbSorter.getValue() != null) {
-			modifiedQuery += "&sort_by=";
-			switch (cmbSorter.getValue()) {
-			case "Popularity (Desc.)":
-				modifiedQuery += "popularity.desc";
-				break;
-			case "Popularity (Asc.)":
-				modifiedQuery += "popularity.asc";
-				break;
-			case "Title (Desc.)":
-				if (chkMovies.isSelected()) {
-					modifiedQuery += "title.desc";
-				} else if (chkSeries.isSelected()) {
-					modifiedQuery += "name.desc";
-				}
-				break;
-			case "Title (Asc.)":
-				if (chkMovies.isSelected()) {
-					modifiedQuery += "title.asc";
-				} else if (chkSeries.isSelected()) {
-					modifiedQuery += "name.asc";
-				}
-				break;
-			case "Score (Desc.)":
-				modifiedQuery += "vote_average.desc";
-				break;
-			case "Score (Asc.)":
-				modifiedQuery += "vote_average.asc";
-				break;
-			case "Release (Desc.)":
-				if (chkMovies.isSelected()) {
-					modifiedQuery += "primary_release_date.desc";
-				} else if (chkSeries.isSelected()) {
-					modifiedQuery += "first_air_date.desc";
-				}
-				break;
-			case "Release (Asc.)":
-				if (chkMovies.isSelected()) {
-					modifiedQuery += "primary_release_date.asc";
-				} else if (chkSeries.isSelected()) {
-					modifiedQuery += "first_air_date.asc";
-				}
-				break;
-			}
-		}
-		modifiedQuery += sorter;
-
-		return modifiedQuery;
 	}
 
 	@FXML
@@ -679,24 +217,24 @@ public class MyList {
 		btnNextPage.setVisible(true);
 
 		// Clean
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 3; i++) {
 			posters.get(i).setImage(null);
 			movieByPoster.clear();
 		}
 
 		// Reload
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 3; i++) {
 			try {
-				String url = movies[i].getPoster_url();
+				String url = movies.get(i).getPoster_path();
 				String urlPoster = "";
 				if (url != null && url != "null") {
-					urlPoster = "https://image.tmdb.org/t/p/w500" + url;
+					urlPoster = url;
 				} else {
 					urlPoster = "/dii2dam/movieApp/img/background/x.png";
 				}
 				Image image = new Image(urlPoster);
 				posters.get(i).setImage(image);
-				movieByPoster.put(posters.get(i), movies[i]);
+				movieByPoster.put(posters.get(i), movies.get(i));
 
 				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
 				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
@@ -721,6 +259,8 @@ public class MyList {
 
 	@FXML
 	void initialize() {
+		movies = movieDao.searchMoviesByUser(Manager.getCurrentUser());
+		
 		closeAllDetails();
 		lblMovieDesc00.setWrapText(true);
 		lblMovieDesc06.setWrapText(true);
@@ -855,7 +395,7 @@ public class MyList {
 
 	void visitMoviePageGeneral(int id) {
 		try {
-			Manager.setMovie(movies[id]);
+			Manager.setMovie(movies.get(id));
 			Manager.setDiscoveryType(searchType);
 			App.setRoot("movieRecord");
 		} catch (IOException e) {

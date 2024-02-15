@@ -21,7 +21,7 @@ public class MovieDaoImpl extends CommonDaoImpl<Movie> implements MovieDaoInt {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("from movie where user_id = '" + id + "'").list();
+		return session.createQuery("from Movie where user_id = '" + id + "'").list();
 	}
 
 }

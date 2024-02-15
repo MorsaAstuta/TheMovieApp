@@ -10,6 +10,7 @@ import dii2dam.movieApp.dao.DirectionDaoImpl;
 import dii2dam.movieApp.dao.DirectorDaoImp;
 import dii2dam.movieApp.dao.GenreDaoImp;
 import dii2dam.movieApp.dao.LocationDaoImpl;
+import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Cast;
@@ -23,6 +24,7 @@ import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -35,6 +37,7 @@ import javafx.scene.layout.Pane;
 public class MyListRecord {
 
 	private Movie movie;
+	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
 	private ActorDaoImp actorDao = new ActorDaoImp(HibernateUtils.session);
 	private CastDaoImpl castDao = new CastDaoImpl(HibernateUtils.session);
@@ -141,6 +144,15 @@ public class MyListRecord {
 	private Pane expMyList;
 
 	@FXML
+	private Button btnEdit;
+
+	@FXML
+	private Button btnSave;
+
+	@FXML
+	private Button btnDelete;
+
+	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
 			App.setRoot("accountPage");
@@ -161,7 +173,7 @@ public class MyListRecord {
 	@FXML
 	void goToMyList(MouseEvent event) {
 		try {
-			App.setRoot("");
+			App.setRoot("myList");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -189,9 +201,25 @@ public class MyListRecord {
 
 	public void initialize() {
 		movie = Manager.getMovie();
-		
-		System.out.println(movie.getId());
-		
+
+		ImageView btnDeleteIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/rem.png").toExternalForm());
+		btnDeleteIcon.setFitHeight(32);
+		btnDeleteIcon.setFitWidth(32);
+		btnDelete.setGraphic(btnDeleteIcon);
+
+		ImageView btnSaveIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/save.png").toExternalForm());
+		btnSaveIcon.setFitHeight(32);
+		btnSaveIcon.setFitWidth(32);
+		btnSave.setGraphic(btnSaveIcon);
+
+		ImageView btnEditIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/edit.png").toExternalForm());
+		btnEditIcon.setFitHeight(64);
+		btnEditIcon.setFitWidth(64);
+		btnEdit.setGraphic(btnEditIcon);
+
 		for (Cast cast : castDao.searchByMovieId(movie.getId())) {
 			actors.add(actorDao.searchById(cast.getActor_id()));
 		}
@@ -212,17 +240,17 @@ public class MyListRecord {
 			locationNames.add(location.getName());
 		}
 		cmbLocations.setItems(locationNames);
-		cmbLocations.getSelectionModel().selectFirst();
 
 		// Cargamos el combobox de estados
 		ObservableList<String> statuses = FXCollections.observableArrayList();
 		statuses.add(null);
-		statuses.add("Watching");
 		statuses.add("Unwatched");
-		statuses.add("Drop");
-		statuses.add("On Hold");
+		statuses.add("Watching");
+		statuses.add("On hold");
+		statuses.add("Dropped");
 		cmbStatus.setItems(statuses);
-		cmbStatus.getSelectionModel().selectFirst();
+		
+		posterMovie.setImage(new Image(movie.getPoster_path()));
 
 		String strDirector = "";
 		for (Director director : directors) {
@@ -244,6 +272,7 @@ public class MyListRecord {
 
 		txtTitle.setText(movie.getTitle());
 		txtRuntime.setText(movie.getRuntime() + "");
+		txtOverview.setText(movie.getOverview());
 		txtRating.setText(movie.getRating() + " / 10");
 		txtRelease.setText(movie.getRelease_date());
 		txtReview.setText(movie.getReview());
@@ -255,25 +284,18 @@ public class MyListRecord {
 
 	private void loadActors() {
 		for (Actor actor : actors) {
-			String url = actor.getProfilePath();
-			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
-			Image image = new Image(urlPoster);
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 0) {
-				imgActor1.setImage(image);
 				labelNameAct1.setText(actor.getName());
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 1) {
-				imgActor2.setImage(image);
 				labelNameAct2.setText(actor.getName());
 
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 2) {
-				imgActor3.setImage(image);
 				labelNameAct3.setText(actor.getName());
 
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 3) {
-				imgActor4.setImage(image);
 				labelNameAct4.setText(actor.getName());
 
 			}
@@ -314,7 +336,28 @@ public class MyListRecord {
 			actorPage++;
 			loadActors();
 		}
+	}
 
+	@FXML
+	void saveStatusAndLocation(ActionEvent event) {
+		movie.setStatus(cmbStatus.getValue());
+		movie.setLocation_id(
+				locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocations.getValue()).getId());
+		movieDao.update(movie);
+	}
+
+	@FXML
+	void editMovie(ActionEvent event) {
+	}
+
+	@FXML
+	void deleteMovie(ActionEvent event) {
+		movieDao.delete(movie);
+		try {
+			App.setRoot("myList");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

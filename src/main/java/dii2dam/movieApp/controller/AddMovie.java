@@ -1,6 +1,9 @@
 package dii2dam.movieApp.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -139,6 +143,8 @@ public class AddMovie {
 	private ObservableList<Actor> addedActors = FXCollections.observableArrayList();
 	private ObservableList<Director> addedDirectors = FXCollections.observableArrayList();
 
+	private String posterPath;
+
 	@FXML
 	void initialize() {
 
@@ -223,6 +229,24 @@ public class AddMovie {
 		if (!txtTitle.getText().isEmpty()) {
 			Movie movie;
 
+			// Comprobamos si se ha añadido una imagen para crear una copia próxima cuya
+			// dirección almacene la base de datos
+			String[] extension = posterPath.split("\\.");
+			for (String string: extension) {
+				System.out.println(string);
+			}
+			String newPath = null;
+			if (posterPath != null && (extension[extension.length - 1].equals("png")
+					|| extension[extension.length - 1].equals("jpg") || extension[extension.length - 1].equals("jpeg"))) {
+				String[] fileName = posterPath.split("/");
+				newPath = ("./img/" + fileName[fileName.length - 1]);
+				try {
+					Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
 			// Creamos el objeto Movie con los datos insertados en los campos de la
 			// mitad izquierda de una forma u otra dependiendo de si se ha indicado
 			// ubicación
@@ -233,13 +257,13 @@ public class AddMovie {
 				}
 				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
 						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
 						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			} else {
 				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
 						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			}
 			movieDao.insert(movie);
@@ -264,6 +288,16 @@ public class AddMovie {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@FXML
+	void openPhotoSelector(ActionEvent event) {
+		try {
+			posterPath = "file:///" + App.loadFileChooser().getPath().replaceAll("\\\\", "/");
+			posterMovie.setImage(new Image(posterPath));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

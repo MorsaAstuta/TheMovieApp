@@ -38,11 +38,8 @@ public class Movie implements Serializable {
 
 	@Column(name = "overview")
 	private String overview;
-
-	@Column(name = "poster_url")
-	private String poster_url;
-
-	@Transient
+	
+	@Column(name = "poster_path")
 	private String poster_path;
 
 	@Column(name = "rating")
@@ -248,14 +245,6 @@ public class Movie implements Serializable {
 
 	public void setRegister_date(String register_date) {
 		this.register_date = register_date;
-	}
-
-	public String getPoster_url() {
-		return poster_url;
-	}
-
-	public void setPoster_url(String poster_url) {
-		this.poster_url = poster_url;
 	}
 
 }
