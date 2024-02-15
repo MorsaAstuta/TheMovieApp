@@ -36,7 +36,6 @@ public class ConfigureAccount {
 	@FXML
 	private TextField textFieldUsername;
 
-	private UserDaoImpl user = new UserDaoImpl(null);
 
 	public void initialize() {
 
@@ -72,10 +71,6 @@ public class ConfigureAccount {
 
 	}
 
-	@FXML
-	void changeImageAccount(MouseEvent event) {
-
-	}
 
 	@FXML
 	void saveAllChanges(MouseEvent event) {
@@ -86,6 +81,12 @@ public class ConfigureAccount {
 			Manager.user.setPassword(idPasswordField.getText());
 			UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
 			userDao.update(Manager.user);
+			try {
+				App.setRoot("accountPage");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		} else {
 			Stage popupStage = new Stage();
@@ -113,7 +114,12 @@ public class ConfigureAccount {
 	@FXML
 	void goBack(MouseEvent event) {
 
-		Manager.goToLastPage();
+		try {
+			App.setRoot("accountPage");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
