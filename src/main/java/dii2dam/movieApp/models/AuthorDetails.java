@@ -1,13 +1,6 @@
 package dii2dam.movieApp.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class AuthorDetails {
-
-	private String name;
 
 	private String username;
 

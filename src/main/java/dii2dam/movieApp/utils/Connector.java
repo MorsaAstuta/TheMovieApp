@@ -5,7 +5,6 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 import dii2dam.movieApp.models.APIResponse;
-import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.MovieInfoResponse;
 import dii2dam.movieApp.models.ReviewResponse;
 import dii2dam.movieApp.models.CreditsResponse;

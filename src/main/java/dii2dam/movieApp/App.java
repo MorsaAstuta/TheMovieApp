@@ -4,7 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.io.IOException;
 
 import dii2dam.movieApp.utils.HibernateUtils;
@@ -25,7 +28,7 @@ public class App extends Application {
 		HibernateUtils.begin();
 		Manager.loadGenres();
 
-		scene = new Scene(loadFXML("configureAccount"), 1024, 1024);
+		scene = new Scene(loadFXML("login"), 1024, 1024);
 		stage.setMinHeight(1024);
 		stage.setMinWidth(1024);
 		stage.setMaximized(true);
@@ -40,6 +43,10 @@ public class App extends Application {
 
 	public static void loadLast(Parent parent) throws IOException {
 		scene.setRoot(parent);
+	}
+
+	public static File loadFileChooser() throws IOException {
+		return (new FileChooser()).showOpenDialog(scene.getWindow());
 	}
 
 	private static Parent loadFXML(String fxml) throws IOException {

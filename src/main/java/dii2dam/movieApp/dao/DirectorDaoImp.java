@@ -17,7 +17,7 @@ public class DirectorDaoImp extends CommonDaoImpl<Director> implements DirectorD
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Director> searchByDirectorId(long id) {
+	public List<Director> searchByDirectorId(Long id) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
@@ -30,6 +30,14 @@ public class DirectorDaoImp extends CommonDaoImpl<Director> implements DirectorD
 			session.getTransaction().begin();
 		}
 		return (Director) session.createQuery("FROM Director where name = '" + name + "'").uniqueResult();
+	}
+
+	@Override
+	public Director searchById(Long id) {
+		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
+			session.getTransaction().begin();
+		}
+		return (Director) session.createQuery("FROM Director where id = '" + id + "'").uniqueResult();
 	}
 
 }

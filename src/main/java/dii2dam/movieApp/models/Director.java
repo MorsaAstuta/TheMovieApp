@@ -1,5 +1,6 @@
 package dii2dam.movieApp.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -7,14 +8,14 @@ import javax.persistence.*;
 import dii2dam.movieApp.utils.Manager;
 
 @Entity
-public class Director implements java.io.Serializable {
+public class Director implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
@@ -33,11 +34,11 @@ public class Director implements java.io.Serializable {
 		setRegister_date(Manager.getSdf().format(new Date()));
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

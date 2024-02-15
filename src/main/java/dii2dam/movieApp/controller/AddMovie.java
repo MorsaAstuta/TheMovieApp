@@ -1,6 +1,9 @@
 package dii2dam.movieApp.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -9,15 +12,21 @@ import java.util.List;
 
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.ActorDaoImp;
+import dii2dam.movieApp.dao.CastDaoImpl;
+import dii2dam.movieApp.dao.DirectionDaoImpl;
 import dii2dam.movieApp.dao.DirectorDaoImp;
 import dii2dam.movieApp.dao.GenreDaoImp;
 import dii2dam.movieApp.dao.LocationDaoImpl;
 import dii2dam.movieApp.dao.MovieDaoImpl;
+import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Actor;
+import dii2dam.movieApp.models.Cast;
+import dii2dam.movieApp.models.Direction;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Genre;
 import dii2dam.movieApp.models.Location;
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.models.MovieGenre;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
@@ -32,9 +41,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.Pane;
 
 public class AddMovie {
@@ -48,6 +57,12 @@ public class AddMovie {
 	private DirectorDaoImp directorDao = new DirectorDaoImp(HibernateUtils.session);
 
 	private LocationDaoImpl locationDao = new LocationDaoImpl(HibernateUtils.session);
+
+	private CastDaoImpl castDao = new CastDaoImpl(HibernateUtils.session);
+
+	private DirectionDaoImpl directionDao = new DirectionDaoImpl(HibernateUtils.session);
+
+	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
 
 	@FXML
 	private Pane btnHome;
@@ -109,11 +124,14 @@ public class AddMovie {
 	@FXML
 	private TextField txtTitle;
 
+	@FXML
+	private TextField txtRating;
+
+	@FXML
+	private TextArea txtReview;
+
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-	private List<Genre> genres = new ArrayList<>();
-	private List<Actor> actors = new ArrayList<>();
-	private List<Director> directors = new ArrayList<>();
 	private List<Location> locations = new ArrayList<>();
 
 	private ObservableList<String> genreNames = FXCollections.observableArrayList();
@@ -125,6 +143,8 @@ public class AddMovie {
 	private ObservableList<Actor> addedActors = FXCollections.observableArrayList();
 	private ObservableList<Director> addedDirectors = FXCollections.observableArrayList();
 
+	private String posterPath;
+
 	@FXML
 	void initialize() {
 
@@ -132,9 +152,6 @@ public class AddMovie {
 		clmActors.setCellValueFactory(new PropertyValueFactory<Actor, String>("name"));
 		clmDirectors.setCellValueFactory(new PropertyValueFactory<Director, String>("name"));
 
-		genres.addAll(genreDao.searchAll());
-		actors.addAll(actorDao.searchAll());
-		directors.addAll(directorDao.searchAll());
 		locations.addAll(locationDao.searchLocationsByUser(Manager.getCurrentUser()));
 
 		tblGenres.setItems(addedGenres);
@@ -146,15 +163,15 @@ public class AddMovie {
 		cmbDirectors.setItems(directorNames);
 		cmbLocation.setItems(locationNames);
 
-		for (Genre genre : genres) {
+		for (Genre genre : genreDao.searchAll()) {
 			genreNames.add(genre.getName());
 		}
 
-		for (Actor actor : actors) {
+		for (Actor actor : actorDao.searchAll()) {
 			actorNames.add(actor.getName());
 		}
 
-		for (Director director : directors) {
+		for (Director director : directorDao.searchAll()) {
 			directorNames.add(director.getName());
 		}
 
@@ -210,25 +227,77 @@ public class AddMovie {
 	@FXML
 	void saveMovie(ActionEvent event) {
 		if (!txtTitle.getText().isEmpty()) {
-			if (cmbLocation.getValue() != null) {
-				Movie movie = new Movie(txtTitle.getText(),
-						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser(),
-						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId());
-				movieDao.insert(movie);
-				Manager.setMovie(movie);
-			} else {
-				Movie movie = new Movie(txtTitle.getText(),
-						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), null, Manager.getCurrentUser());
-				movieDao.insert(movie);
-				Manager.setMovie(movie);
+			Movie movie;
+
+			// Comprobamos si se ha añadido una imagen para crear una copia próxima cuya
+			// dirección almacene la base de datos
+			String[] extension = posterPath.split("\\.");
+			for (String string: extension) {
+				System.out.println(string);
 			}
+			String newPath = null;
+			if (posterPath != null && (extension[extension.length - 1].equals("png")
+					|| extension[extension.length - 1].equals("jpg") || extension[extension.length - 1].equals("jpeg"))) {
+				String[] fileName = posterPath.split("/");
+				newPath = ("./img/" + fileName[fileName.length - 1]);
+				try {
+					Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			// Creamos el objeto Movie con los datos insertados en los campos de la
+			// mitad izquierda de una forma u otra dependiendo de si se ha indicado
+			// ubicación
+			// física o no
+			if (cmbLocation.getValue() != null) {
+				if (locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()) == null) {
+					locationDao.insert(new Location(cmbLocation.getValue()));
+				}
+				movie = new Movie(txtTitle.getText(),
+						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
+						txtReview.getText(), Double.parseDouble(txtRating.getText()));
+			} else {
+				movie = new Movie(txtTitle.getText(),
+						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+						txtReview.getText(), Double.parseDouble(txtRating.getText()));
+			}
+			movieDao.insert(movie);
+
+			// Añadimos los actores, directores y géneros de la mitad derecha a las tablas
+			// manyToMany acompañados del id autogenerado de esta nueva película
+			for (Actor actor : addedActors) {
+				castDao.insert(new Cast(movie.getId(), actor.getId()));
+			}
+			for (Director director : addedDirectors) {
+				directionDao.insert(new Direction(movie.getId(), director.getId()));
+			}
+			for (Genre genre : addedGenres) {
+				movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
+			}
+
+			// Lanzamos automáticamente la pantalla para visualizar esta nueva película
+			// insertada
+			Manager.setMovie(movie);
 			try {
 				App.setRoot("myListRecord");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@FXML
+	void openPhotoSelector(ActionEvent event) {
+		try {
+			posterPath = "file:///" + App.loadFileChooser().getPath().replaceAll("\\\\", "/");
+			posterMovie.setImage(new Image(posterPath));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -36,15 +36,15 @@
                   <RowConstraints maxHeight="174.0" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
-                  <Pane prefHeight="279.0" prefWidth="166.0" style="-fx-background-color: green;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Pane prefHeight="139.0" prefWidth="200.0" style="-fx-background-color: gray;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <ImageView fx:id="idImgPoster1" fitHeight="293.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="36.0" prefWidth="156.0" text="Recently watched:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="Inder" size="18.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="idImgPoster2" fitHeight="293.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <ImageView fx:id="idImgPoster3" fitHeight="293.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <ImageView fx:id="idImgPoster4" fitHeight="298.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </center>
