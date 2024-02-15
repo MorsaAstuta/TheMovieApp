@@ -236,10 +236,12 @@ public class AddMovie {
 				System.out.println(string);
 			}
 			String newPath = null;
+			String actualPath = null;
 			if (posterPath != null && (extension[extension.length - 1].equals("png")
 					|| extension[extension.length - 1].equals("jpg") || extension[extension.length - 1].equals("jpeg"))) {
 				String[] fileName = posterPath.split("/");
-				newPath = ("./img/" + fileName[fileName.length - 1]);
+				newPath = ("./src/main/resources/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
+				actualPath = ("/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
 				try {
 					Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
 				} catch (IOException e) {
@@ -257,13 +259,13 @@ public class AddMovie {
 				}
 				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), actualPath, Manager.getCurrentUser(),
 						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
 						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			} else {
 				movie = new Movie(txtTitle.getText(),
 						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), actualPath, Manager.getCurrentUser(),
 						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			}
 			movieDao.insert(movie);
