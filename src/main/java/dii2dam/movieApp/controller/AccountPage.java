@@ -76,7 +76,12 @@ public class AccountPage {
 
 	@FXML
 	void pageConfig(MouseEvent event) {
-
+		try {
+			App.setRoot("configureAccount");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
