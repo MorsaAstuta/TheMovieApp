@@ -30,11 +30,12 @@ import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Genre;
 import dii2dam.movieApp.models.Movie;
+import dii2dam.movieApp.models.MovieGenre;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 
 public class MyList {
-	
+
 	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
 	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
@@ -102,40 +103,40 @@ public class MyList {
 	private Label lblCurrentPage;
 
 	@FXML
-	private Label lblMovieDate00;
+	private Label lblMovieDate0;
 
 	@FXML
-	private Label lblMovieDate06;
+	private Label lblMovieDate1;
 
 	@FXML
-	private Label lblMovieDate12;
+	private Label lblMovieDate2;
 
 	@FXML
-	private Label lblMovieDesc00;
+	private Label lblMovieDesc0;
 
 	@FXML
-	private Label lblMovieDesc06;
+	private Label lblMovieDesc1;
 
 	@FXML
-	private Label lblMovieDesc12;
+	private Label lblMovieDesc2;
 
 	@FXML
-	private Label lblMovieGenre00;
+	private Label lblMovieGenre0;
 
 	@FXML
-	private Label lblMovieGenre06;
+	private Label lblMovieGenre1;
 
 	@FXML
-	private Label lblMovieGenre12;
+	private Label lblMovieGenre2;
 
 	@FXML
-	private Label lblMovieTitle00;
+	private Label lblMovieTitle0;
 
 	@FXML
-	private Label lblMovieTitle06;
+	private Label lblMovieTitle1;
 
 	@FXML
-	private Label lblMovieTitle12;
+	private Label lblMovieTitle2;
 
 	@FXML
 	private Label lblPage;
@@ -144,43 +145,34 @@ public class MyList {
 	private Label lblTotalPages;
 
 	@FXML
-	private GridPane movie00;
+	private ColumnConstraints movieColumn0;
 
 	@FXML
-	private GridPane movie06;
+	private ColumnConstraints movieColumn1;
 
 	@FXML
-	private GridPane movie12;
+	private ColumnConstraints movieColumn2;
 
 	@FXML
-	private ColumnConstraints movieColumn00;
+	private GridPane movieInfo0;
 
 	@FXML
-	private ColumnConstraints movieColumn06;
+	private GridPane movieInfo1;
 
 	@FXML
-	private ColumnConstraints movieColumn12;
-
-	@FXML
-	private GridPane movieInfo00;
-
-	@FXML
-	private GridPane movieInfo06;
-
-	@FXML
-	private GridPane movieInfo12;
+	private GridPane movieInfo2;
 
 	@FXML
 	private ColumnConstraints myListExtension;
 
 	@FXML
-	private ImageView poster00;
+	private ImageView poster0;
 
 	@FXML
-	private ImageView poster06;
+	private ImageView poster1;
 
 	@FXML
-	private ImageView poster12;
+	private ImageView poster2;
 
 	@FXML
 	private BorderPane searchBar;
@@ -211,40 +203,25 @@ public class MyList {
 	}
 
 	void loadPage() {
-		query(currentSearch);
-		closeAllDetails();
-		btnPrevPage.setVisible(true);
-		btnNextPage.setVisible(true);
-
-		// Clean
-		for (int i = 0; i < 3; i++) {
-			posters.get(i).setImage(null);
-			movieByPoster.clear();
-		}
-
-		// Reload
-		for (int i = 0; i < 3; i++) {
-			try {
-				String url = movies.get(i).getPoster_path();
-				String urlPoster = "";
-				if (url != null && url != "null") {
-					urlPoster = url;
-				} else {
-					urlPoster = "/dii2dam/movieApp/img/background/x.png";
-				}
-				Image image = new Image(urlPoster);
-				posters.get(i).setImage(image);
-				movieByPoster.put(posters.get(i), movies.get(i));
-
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
-			} catch (Exception e) {
-				e.printStackTrace();
-				totalPages = currentPage;
-				lblCurrentPage.setText(((Integer) (currentPage + 1)).toString());
-				lblTotalPages.setText(((Integer) (totalPages + 1)).toString());
+		movies = movieDao.searchMoviesByUser(Manager.getCurrentUser());
+		if (movies.size() % 3 == 0)
+			totalPages = movies.size() / 3;
+		else
+			totalPages = movies.size() / 3 + 1;
+		
+		for (int i = 0; i < 3*currentPage; i++) {
+			if (!movies.isEmpty()) {
+				movies.remove(0);
 			}
 		}
+		
+		btnPrevPage.setVisible(true);
+		btnNextPage.setVisible(true);
+		filterTab.setVisible(false);
+		filterTabRow.setMaxHeight(1);
+
+		// Reload
+		movieDetails();
 
 		if (currentPage == 0)
 			btnPrevPage.setVisible(false);
@@ -259,16 +236,14 @@ public class MyList {
 
 	@FXML
 	void initialize() {
-		movies = movieDao.searchMoviesByUser(Manager.getCurrentUser());
-		
-		closeAllDetails();
-		lblMovieDesc00.setWrapText(true);
-		lblMovieDesc06.setWrapText(true);
-		lblMovieDesc12.setWrapText(true);
 
-		posters.add(poster00);
-		posters.add(poster06);
-		posters.add(poster12);
+		lblMovieDesc0.setWrapText(true);
+		lblMovieDesc1.setWrapText(true);
+		lblMovieDesc2.setWrapText(true);
+
+		posters.add(poster0);
+		posters.add(poster1);
+		posters.add(poster2);
 
 		btnPrevPage.setVisible(false);
 		btnNextPage.setVisible(false);
@@ -309,20 +284,16 @@ public class MyList {
 		}
 
 		sortings.add(null);
-		sortings.add("Popularity (Desc.)");
-		sortings.add("Popularity (Asc.)");
-		sortings.add("Title (Desc.)");
-		sortings.add("Title (Asc.)");
 		sortings.add("Score (Desc.)");
 		sortings.add("Score (Asc.)");
-		sortings.add("Release (Desc.)");
-		sortings.add("Release (Asc.)");
 
 		ImageView btnSearchIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
 		btnSearchIcon.setFitHeight(32);
 		btnSearchIcon.setFitWidth(32);
 		btnSearch.setGraphic(btnSearchIcon);
+		
+		loadPage();
 	}
 
 	@FXML
@@ -393,93 +364,55 @@ public class MyList {
 		Manager.goToLastPage();
 	}
 
-	void visitMoviePageGeneral(int id) {
+	void visitMoviePageGeneral(Integer i) {
 		try {
-			Manager.setMovie(movies.get(id));
+			Manager.setMovie(movies.get(i));
 			Manager.setDiscoveryType(searchType);
-			App.setRoot("movieRecord");
+			App.setRoot("myListRecord");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
-	void visitMoviePage00() {
+	void visitMoviePage0() {
 		visitMoviePageGeneral(0);
 	}
 
 	@FXML
-	void visitMoviePage06() {
+	void visitMoviePage1() {
 		visitMoviePageGeneral(1);
 	}
 
 	@FXML
-	void visitMoviePage12() {
+	void visitMoviePage2() {
 		visitMoviePageGeneral(2);
 	}
 
-	void closeAllDetails() {
-		filterTab.setVisible(false);
-		filterTabRow.setMaxHeight(1);
+	void movieDetails() {
+		movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0, movieColumn0);
+		movieDetails(movies.get(1), poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1, movieColumn1);
+		movieDetails(movies.get(2), poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2, movieColumn2);
 	}
 
-	void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc,
-			Label movieGenre, Label movieDate, ColumnConstraints movieColumn) {
-		Movie movie = movieByPoster.get(poster);
-		if (movieColumn.getMaxWidth() != 400) {
-			closeAllDetails();
-
-			moviePane.toFront();
-			movieColumn.setMaxWidth(400);
-			movieInfo.setVisible(true);
-
-			switch (searchType) {
-			case "movie":
-				movieTitle.setText(movie.getTitle());
-				movieDesc.setText(movie.getOverview());
-				movieGenre.setText(movie.getGenre());
-				movieDate.setText(movie.getRelease_date());
-				break;
-			case "tv":
-				movieTitle.setText(movie.getName());
-				movieDesc.setText(movie.getOverview());
-				movieGenre.setText(movie.getGenre());
-				movieDate.setText(movie.getFirst_air_date());
-				break;
-			case "multi":
-				if (movie.getMedia_type().equals("movie")) {
-					movieTitle.setText(movie.getTitle());
-					movieDesc.setText(movie.getOverview());
-					movieGenre.setText(movie.getGenre());
-					movieDate.setText(movie.getRelease_date());
-				} else if (movie.getMedia_type().equals("tv")) {
-					movieTitle.setText(movie.getName());
-					movieDesc.setText(movie.getOverview());
-					movieGenre.setText(movie.getGenre());
-					movieDate.setText(movie.getFirst_air_date());
-				}
-				break;
-			}
-		} else {
-			closeAllDetails();
+	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate,
+			ColumnConstraints movieColumn) {
+		poster.setImage(new Image(movie.getPoster_path()));
+		movieTitle.setText(movie.getTitle());
+		movieDesc.setText(movie.getOverview());
+		
+		String genreText = "";
+		List<Genre> genres = new ArrayList<>();
+		for (MovieGenre thisMovieGenre : movieGenreDao.searchByMovieId(movie.getId())) {
+			genres.add(genreDao.searchById(thisMovieGenre.getGenre_id()));
 		}
-	}
-
-	@FXML
-	void movieDetails00() {
-		movieDetails(movie00, poster00, movieInfo00, lblMovieTitle00, lblMovieDesc00, lblMovieGenre00, lblMovieDate00,
-				movieColumn00);
-	}
-
-	@FXML
-	void movieDetails06() {
-		movieDetails(movie06, poster06, movieInfo06, lblMovieTitle06, lblMovieDesc06, lblMovieGenre06, lblMovieDate06,
-				movieColumn06);
-	}
-
-	@FXML
-	void movieDetails12() {
-		movieDetails(movie12, poster12, movieInfo12, lblMovieTitle12, lblMovieDesc12, lblMovieGenre12, lblMovieDate12,
-				movieColumn12);
+		for (Genre genre : genres) {
+			if (genres.indexOf(genre) != 0) {
+				genreText += ", ";
+			}
+			genreText += genre.getName();
+		}
+		movieGenre.setText(genreText);
+		movieDate.setText(movie.getRelease_date());
 	}
 }

@@ -41,7 +41,7 @@
                   <RowConstraints vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <GridPane fx:id="movie00" alignment="CENTER" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                  <GridPane alignment="CENTER" onMouseClicked="#visitMoviePage0" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="8.0" minWidth="8.0" prefWidth="8.0" />
                         <ColumnConstraints hgrow="SOMETIMES" />
@@ -55,8 +55,8 @@
                         <RowConstraints maxHeight="8.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster00" fitHeight="240.0" fitWidth="160.0" onMouseClicked="#movieDetails00" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <GridPane fx:id="movieInfo00" alignment="CENTER" onMouseClicked="#visitMoviePage00" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <ImageView fx:id="poster0" fitHeight="240.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <GridPane alignment="CENTER" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                               <ColumnConstraints hgrow="ALWAYS" />
@@ -72,12 +72,12 @@
                               <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label fx:id="lblMovieTitle00" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                              <Label fx:id="lblMovieTitle0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblMovieDesc00" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="lblMovieDesc0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
@@ -92,12 +92,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="lblMovieGenre00" text="genre">
+                                    <Label fx:id="lblMovieGenre0">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblMovieDate00" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
+                                    <Label fx:id="lblMovieDate0" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
@@ -108,7 +108,7 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie06" alignment="CENTER" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                  <GridPane alignment="CENTER" onMouseClicked="#visitMoviePage1" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="8.0" minWidth="8.0" prefWidth="8.0" />
                         <ColumnConstraints hgrow="SOMETIMES" />
@@ -122,8 +122,8 @@
                         <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster06" fitHeight="240.0" fitWidth="160.0" onMouseClicked="#movieDetails06" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <GridPane fx:id="movieInfo06" alignment="CENTER" onMouseClicked="#visitMoviePage06" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <ImageView fx:id="poster1" fitHeight="240.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <GridPane alignment="CENTER" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                               <ColumnConstraints hgrow="ALWAYS" />
@@ -139,12 +139,12 @@
                               <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label fx:id="lblMovieTitle06" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                              <Label fx:id="lblMovieTitle1" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblMovieDesc06" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="lblMovieDesc1" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
@@ -159,12 +159,12 @@
                                     <RowConstraints vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="lblMovieGenre06" text="genre">
+                                    <Label fx:id="lblMovieGenre1">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblMovieDate06" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
+                                    <Label fx:id="lblMovieDate1" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
@@ -175,7 +175,7 @@
                         </GridPane>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="movie12" alignment="CENTER" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                  <GridPane alignment="CENTER" onMouseClicked="#visitMoviePage2" style="-fx-background-color: rgb(140,110,80);" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="8.0" minWidth="8.0" prefWidth="8.0" />
                         <ColumnConstraints hgrow="SOMETIMES" />
@@ -189,8 +189,8 @@
                         <RowConstraints maxHeight="8.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ImageView fx:id="poster12" fitHeight="240.0" fitWidth="160.0" onMouseClicked="#movieDetails12" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <GridPane fx:id="movieInfo12" alignment="CENTER" onMouseClicked="#visitMoviePage12" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <ImageView fx:id="poster2" fitHeight="240.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <GridPane alignment="CENTER" style="-fx-background-color: rgb(222,184,135);" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" />
                               <ColumnConstraints hgrow="ALWAYS" />
@@ -206,12 +206,12 @@
                               <RowConstraints maxHeight="16.0" minHeight="16.0" prefHeight="16.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label fx:id="lblMovieTitle12" text="title" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+                              <Label fx:id="lblMovieTitle2" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="24.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblMovieDesc12" text="overview" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="lblMovieDesc2" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="Reem Kufi Regular" size="14.0" />
                                  </font>
@@ -226,12 +226,12 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="lblMovieGenre12" text="genre">
+                                    <Label fx:id="lblMovieGenre2">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="lblMovieDate12" text="date" textAlignment="RIGHT" GridPane.columnIndex="2">
+                                    <Label fx:id="lblMovieDate2" textAlignment="RIGHT" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="Reem Kufi Regular" size="18.0" />
                                        </font>
