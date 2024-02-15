@@ -47,7 +47,6 @@ public class LogIn {
 
 		UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
 		if (userDao.isUsernameInUse(txtUsername.getText())) {
-			System.out.println(txtUsername.getText());
 
 			// Si el usuario existe, iteramos para detectarlo y mostrar sus datos en la
 			// pantalla menú
@@ -56,8 +55,8 @@ public class LogIn {
 			if (user.getUsername().equals(txtUsername.getText())) {
 				if (user.getPassword().equals(txtPassword.getText())) {
 					Manager.setCurrentUser(user.getId());
-			        Manager.setTxtUsername(txtUsername);
 					Alert alert = new Alert(AlertType.INFORMATION);
+					Manager.user = user;
 					alert.setTitle("Information");
 					alert.setHeaderText(null);
 					alert.setContentText("Access granted.");

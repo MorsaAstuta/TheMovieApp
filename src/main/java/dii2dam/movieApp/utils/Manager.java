@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 public class Manager {
 	public static Movie movie;
 	public static Review review;
+	public static User user;
 	public static String discoveryType;
 	public static Long currentUser = Long.parseLong("1");
 	public static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -31,37 +32,7 @@ public class Manager {
 
 	public static List<Integer> genreIds = new ArrayList<>();
 	public static List<String> genreNames = new ArrayList<>();
-	private static TextField txtUsername; // El txtUsername que recibirá de LogIn
-	private static User user2;
-
-	private static String user;
-
-	public static void setUser2(User user) {
-		Manager.user2 = user;
-	}
-
-	// Método para obtener el correo electrónico desde user2
-	public static String getUserMail() {
-
-		return user2.getMail();
-
-	}
-
-	public static void setUser(String userEmail) {
-		Manager.user = userEmail;
-	}
-
-	public static String getUser() {
-		return user;
-	}
-
-	public static void setTxtUsername(TextField usernameField) {
-		txtUsername = usernameField;
-	}
-
-	public static TextField getTxtUsername() {
-		return txtUsername;
-	}
+	
 
 	public static void loadGenres() {
 		genreIds.add(12);
@@ -123,7 +94,7 @@ public class Manager {
 			idByGenre.put(genreNames.get(i), genreIds.get(i));
 		}
 	}
-
+	
 	public static Movie getMovie() {
 		return movie;
 	}
@@ -220,6 +191,7 @@ public class Manager {
 	public static void setIdByGenre(HashMap<String, Integer> idByGenre) {
 		Manager.idByGenre = idByGenre;
 	}
+	
 
 	public static SimpleDateFormat getSdf() {
 		return sdf;

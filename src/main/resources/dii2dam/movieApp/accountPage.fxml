@@ -117,7 +117,7 @@
             <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Pane onMouseClicked="#goToHomePage" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
+            <Pane onMouseClicked="#loadHomePage" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="1">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="48.0" layoutY="9.0">
                      <image>
@@ -136,7 +136,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane onMouseClicked="#goToMyList" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
+            <Pane onMouseClicked="#myList" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217);" GridPane.columnIndex="3">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>
@@ -154,7 +154,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane onMouseClicked="#goToConfig" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);" GridPane.columnIndex="7">
+            <Pane onMouseClicked="#pageConfig" prefWidth="80.0" style="-fx-background-color: rgb(217,217,217) rgb(217,217,217);" GridPane.columnIndex="7">
                <children>
                   <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="8.0" layoutY="8.0">
                      <image>

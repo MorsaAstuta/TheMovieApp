@@ -14,6 +14,7 @@ public class UserDaoImpl extends CommonDaoImpl<User> implements UserDaoInt {
 	super(session);
 	this.session = session;
   }
+
   
   @Override
   public User searchByUsername(final String username) {
