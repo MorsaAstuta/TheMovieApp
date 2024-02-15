@@ -28,7 +28,7 @@ public class App extends Application {
 		HibernateUtils.begin();
 		Manager.loadGenres();
 
-		scene = new Scene(loadFXML("configureAccount"), 1024, 1024);
+		scene = new Scene(loadFXML("logIn"), 1024, 1024);
 		stage.setMinHeight(1024);
 		stage.setMinWidth(1024);
 		stage.setMaximized(true);
