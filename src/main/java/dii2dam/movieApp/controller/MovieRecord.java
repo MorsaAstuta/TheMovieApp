@@ -12,6 +12,7 @@ import dii2dam.movieApp.models.MovieInfoResponse;
 import dii2dam.movieApp.models.CreditsResponse;
 import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.ReviewResponse;
+import dii2dam.movieApp.utils.CSVUtils;
 import dii2dam.movieApp.utils.Connector;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
@@ -188,6 +189,11 @@ public class MovieRecord {
 	 */
 	@FXML
 	void exportAsCSV(MouseEvent event) {
+		try {
+			CSVUtils.export(movie);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

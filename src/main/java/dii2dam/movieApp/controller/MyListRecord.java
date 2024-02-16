@@ -20,6 +20,7 @@ import dii2dam.movieApp.models.Location;
 import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.models.MovieGenre;
 import dii2dam.movieApp.models.Direction;
+import dii2dam.movieApp.utils.CSVUtils;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.collections.FXCollections;
@@ -213,6 +214,11 @@ public class MyListRecord {
 	 */
 	@FXML
 	void exportAsCSV(MouseEvent event) {
+		try {
+			CSVUtils.export(movie);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
