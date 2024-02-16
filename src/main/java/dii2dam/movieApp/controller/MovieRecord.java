@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import dii2dam.movieApp.App;
+import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.models.Actor;
 import dii2dam.movieApp.models.Director;
 import dii2dam.movieApp.models.Movie;
@@ -12,10 +13,14 @@ import dii2dam.movieApp.models.CreditsResponse;
 import dii2dam.movieApp.models.Review;
 import dii2dam.movieApp.models.ReviewResponse;
 import dii2dam.movieApp.utils.Connector;
+import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,6 +38,8 @@ public class MovieRecord {
 
 	private List<Review> reviews = new ArrayList<>();
 	private Integer reviewPage = 1;
+	
+	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
 	@FXML
 	private ImageView imgActor1;
@@ -293,6 +300,23 @@ public class MovieRecord {
 			btnLeftActors.setVisible(true);
 		else
 			btnLeftActors.setVisible(false);
+	}
+
+	@FXML
+	private void saveMovie(ActionEvent event) {
+		
+		// If movie is instance of TV series, set Title as Name
+		if (movie.getTitle() == null) {
+			movie.setTitle(movie.getName());
+		}
+		
+		// Insert movie on database
+		movieDao.insert(new Movie(movie.getTitle(), movie.getRelease_date(), movie.getOverview(), movie.getRuntime(), null, Manager.getCurrentUser(), "", 0.0));
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information");
+		alert.setHeaderText(null);
+		alert.setContentText("Movie successfully added.");
+		alert.showAndWait();
 	}
 
 	private void visibleBtnRight() {

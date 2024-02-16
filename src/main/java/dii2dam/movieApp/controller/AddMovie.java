@@ -1,6 +1,5 @@
 package dii2dam.movieApp.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -33,6 +32,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -40,6 +40,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -287,6 +288,11 @@ public class AddMovie {
 			// Lanzamos automáticamente la pantalla para visualizar esta nueva película
 			// insertada
 			Manager.setMovie(movie);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText(null);
+			alert.setContentText("Movie successfully added.");
+			alert.showAndWait();
 			try {
 				App.setRoot("myListRecord");
 			} catch (IOException e) {
@@ -311,6 +317,11 @@ public class AddMovie {
 			Genre genre = new Genre(cmbGenres.getValue());
 			if (genreDao.searchByGenreName(cmbGenres.getValue()) != null) {
 				addedGenres.add(genreDao.searchByGenreName(cmbGenres.getValue()));
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText(null);
+				alert.setContentText("New Genre successfully created.");
+				alert.showAndWait();
 			} else {
 				genreDao.insert(genre);
 				addedGenres.add(genre);
@@ -325,6 +336,11 @@ public class AddMovie {
 			Actor actor = new Actor(cmbActors.getValue());
 			if (actorDao.searchByName(cmbActors.getValue()) != null) {
 				addedActors.add(actorDao.searchByName(cmbActors.getValue()));
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText(null);
+				alert.setContentText("New Actor successfully created.");
+				alert.showAndWait();
 			} else {
 				actorDao.insert(actor);
 				addedActors.add(actor);
@@ -339,6 +355,11 @@ public class AddMovie {
 			Director director = new Director(cmbDirectors.getValue());
 			if (directorDao.searchByName(cmbDirectors.getValue()) != null) {
 				addedDirectors.add(directorDao.searchByName(cmbDirectors.getValue()));
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText(null);
+				alert.setContentText("New Director successfully created.");
+				alert.showAndWait();
 			} else {
 				directorDao.insert(director);
 				addedDirectors.add(director);

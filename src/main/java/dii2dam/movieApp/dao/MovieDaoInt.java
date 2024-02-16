@@ -9,4 +9,6 @@ public interface MovieDaoInt extends CommonDaoInt<Movie> {
 
 	List<Movie> searchMoviesOrderByRating();
 
+	List<Movie> searchMoviesByName(String name);
+
 }

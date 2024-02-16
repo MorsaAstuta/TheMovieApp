@@ -1,22 +1,19 @@
 package dii2dam.movieApp.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +37,6 @@ public class MyList {
 
 	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
 	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
-	private List<Genre> genres = new ArrayList<>();
 
 	@FXML
 	private Pane btnAccount;
@@ -56,45 +52,6 @@ public class MyList {
 
 	@FXML
 	private Button btnSearch;
-
-	@FXML
-	private ComboBox<String> cmbSorter = new ComboBox<>();
-
-	@FXML
-	private CheckBox chkSeries;
-
-	@FXML
-	private CheckBox chkMovies;
-
-	@FXML
-	private ComboBox<String> cmbGenre1 = new ComboBox<>();
-
-	@FXML
-	private ComboBox<String> cmbGenre2 = new ComboBox<>();
-
-	@FXML
-	private ComboBox<String> cmbGenre3 = new ComboBox<>();
-
-	@FXML
-	private ComboBox<String> cmbGenre4 = new ComboBox<>();
-
-	@FXML
-	private ComboBox<Integer> cmbLengthMax = new ComboBox<>();
-
-	@FXML
-	private ComboBox<Integer> cmbLengthMin = new ComboBox<>();
-
-	@FXML
-	private ComboBox<Integer> cmbScoreMax = new ComboBox<>();
-
-	@FXML
-	private ComboBox<Integer> cmbScoreMin = new ComboBox<>();
-
-	@FXML
-	private BorderPane filterTab;
-
-	@FXML
-	private RowConstraints filterTabRow;
 
 	@FXML
 	private Label lblBar;
@@ -145,15 +102,6 @@ public class MyList {
 	private Label lblTotalPages;
 
 	@FXML
-	private ColumnConstraints movieColumn0;
-
-	@FXML
-	private ColumnConstraints movieColumn1;
-
-	@FXML
-	private ColumnConstraints movieColumn2;
-
-	@FXML
 	private GridPane movieInfo0;
 
 	@FXML
@@ -161,9 +109,6 @@ public class MyList {
 
 	@FXML
 	private GridPane movieInfo2;
-
-	@FXML
-	private ColumnConstraints myListExtension;
 
 	@FXML
 	private ImageView poster0;
@@ -185,15 +130,10 @@ public class MyList {
 	List<ImageView> posters = new ArrayList<>();
 	String currentSearch = "";
 
-	List<ComboBox<String>> genreBoxes = new ArrayList<>();
-
 	private Integer currentPage = 0;
 	private Integer totalPages = 0;
 
 	private String searchType = "";
-
-	private void query(String query) {
-	}
 
 	@FXML
 	void searchByTitle(ActionEvent event) throws IOException {
@@ -217,8 +157,6 @@ public class MyList {
 
 		btnPrevPage.setVisible(true);
 		btnNextPage.setVisible(true);
-		filterTab.setVisible(false);
-		filterTabRow.setMaxHeight(1);
 
 		// Reload
 		movieDetails();
@@ -228,7 +166,7 @@ public class MyList {
 		else if (!btnPrevPage.isVisible())
 			btnPrevPage.setVisible(true);
 
-		if (currentPage == totalPages)
+		if (currentPage == totalPages-1)
 			btnNextPage.setVisible(false);
 		else if (btnNextPage.isVisible())
 			btnNextPage.setVisible(true);
@@ -248,45 +186,6 @@ public class MyList {
 		btnPrevPage.setVisible(false);
 		btnNextPage.setVisible(false);
 
-		ObservableList<String> genreNames = FXCollections.observableArrayList();
-		ObservableList<Integer> lengthRange = FXCollections.observableArrayList();
-		ObservableList<Integer> scoreRange = FXCollections.observableArrayList();
-		ObservableList<String> sortings = FXCollections.observableArrayList();
-
-		cmbGenre1.setItems(genreNames);
-		cmbGenre2.setItems(genreNames);
-		cmbGenre3.setItems(genreNames);
-		cmbGenre4.setItems(genreNames);
-		cmbLengthMin.setItems(lengthRange);
-		cmbLengthMax.setItems(lengthRange);
-		cmbScoreMin.setItems(scoreRange);
-		cmbScoreMax.setItems(scoreRange);
-		cmbSorter.setItems(sortings);
-
-		genreBoxes.add(cmbGenre1);
-		genreBoxes.add(cmbGenre2);
-		genreBoxes.add(cmbGenre3);
-		genreBoxes.add(cmbGenre4);
-
-		genreNames.add(null);
-		for (String genre : Manager.getGenreNames()) {
-			genreNames.add(genre);
-		}
-
-		lengthRange.add(null);
-		for (Integer i = 0; i < 601; i++) {
-			lengthRange.add(i);
-		}
-
-		scoreRange.add(null);
-		for (Integer i = 0; i < 11; i++) {
-			scoreRange.add(i);
-		}
-
-		sortings.add(null);
-		sortings.add("Score (Desc.)");
-		sortings.add("Score (Asc.)");
-
 		ImageView btnSearchIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/lens.png").toExternalForm());
 		btnSearchIcon.setFitHeight(32);
@@ -294,17 +193,6 @@ public class MyList {
 		btnSearch.setGraphic(btnSearchIcon);
 
 		loadPage();
-	}
-
-	@FXML
-	void showFilterTab() {
-		if (!filterTab.isVisible()) {
-			filterTab.setVisible(true);
-			filterTabRow.setMaxHeight(64);
-		} else {
-			filterTab.setVisible(false);
-			filterTabRow.setMaxHeight(1);
-		}
 	}
 
 	@FXML
@@ -317,7 +205,7 @@ public class MyList {
 
 	@FXML
 	void nextPage() {
-		if (currentPage < totalPages) {
+		if (currentPage < totalPages-1) {
 			currentPage++;
 			loadPage();
 		}
@@ -390,19 +278,30 @@ public class MyList {
 	}
 
 	void movieDetails() {
+		// Clear details
+		movieDetails(poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0);
+		movieDetails(poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1);
+		movieDetails(poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2);
+		
+		// Fill details if movie exists
 		if (movies.size() >= 1) {
-			movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0, movieColumn0);
+			movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0);
 		}
 		if (movies.size() >= 2) {
-			movieDetails(movies.get(1), poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1, movieColumn1);
+			movieDetails(movies.get(1), poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1);
 		}
 		if (movies.size() >= 3) {
-			movieDetails(movies.get(2), poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2, movieColumn2);
+			movieDetails(movies.get(2), poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2);
 		}
 	}
 
-	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate,
-			ColumnConstraints movieColumn) {
+	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
+		poster.setImage(null);
+		movieTitle.setText("");
+		movieDesc.setText("");
+		movieGenre.setText("");
+		movieDate.setText("");
+		
 		if (movie.getPoster_path() != null) {
 			poster.setImage(new Image(movie.getPoster_path()));
 		}
@@ -422,5 +321,13 @@ public class MyList {
 		}
 		movieGenre.setText(genreText);
 		movieDate.setText(movie.getRelease_date());
+	}
+
+	void movieDetails(ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
+		poster.setImage(null);
+		movieTitle.setText("");
+		movieDesc.setText("");
+		movieGenre.setText("");
+		movieDate.setText("");
 	}
 }

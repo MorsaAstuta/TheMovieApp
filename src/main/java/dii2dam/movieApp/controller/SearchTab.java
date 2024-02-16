@@ -555,6 +555,7 @@ public class SearchTab {
 
 	private void query(String query) {
 		try {
+			// If the filter IS NOT empty, do a filtered search (discover)
 			if (!filter().isEmpty()) {
 				if (chkMovies.isSelected()) {
 					response = Connector.discoverMovie(filter() + "&page=" + (currentPage + 1));
@@ -563,6 +564,7 @@ public class SearchTab {
 					response = Connector.discoverSeries(filter() + "&page=" + (currentPage + 1));
 					searchType = "tv";
 				}
+			// If the filter IS empty, do a search by name (search)
 			} else {
 				if ((chkMovies.isSelected() && chkSeries.isSelected())) {
 					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));

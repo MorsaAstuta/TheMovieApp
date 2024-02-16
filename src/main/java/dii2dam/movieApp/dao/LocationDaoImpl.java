@@ -32,4 +32,12 @@ public class LocationDaoImpl extends CommonDaoImpl<Location> implements Location
 		return (Location)session.createQuery("FROM Location WHERE user_id = '" + currentUser + "' and name = '" + value + "'").uniqueResult();
 	}
 
+	@Override
+	public Location searchById(Long id) {
+		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
+			session.getTransaction().begin();
+		}
+		return (Location)session.createQuery("FROM Location WHERE id = '" + id + "'").uniqueResult();
+	}
+
 }

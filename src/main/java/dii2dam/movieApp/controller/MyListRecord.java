@@ -26,9 +26,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -201,6 +203,8 @@ public class MyListRecord {
 
 	public void initialize() {
 		movie = Manager.getMovie();
+		
+		expMyList.setVisible(false);
 
 		ImageView btnDeleteIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/rem.png").toExternalForm());
@@ -216,8 +220,8 @@ public class MyListRecord {
 
 		ImageView btnEditIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/edit.png").toExternalForm());
-		btnEditIcon.setFitHeight(64);
-		btnEditIcon.setFitWidth(64);
+		btnEditIcon.setFitHeight(48);
+		btnEditIcon.setFitWidth(48);
 		btnEdit.setGraphic(btnEditIcon);
 
 		for (Cast cast : castDao.searchByMovieId(movie.getId())) {
@@ -250,10 +254,22 @@ public class MyListRecord {
 		statuses.add("Dropped");
 		cmbStatus.setItems(statuses);
 		
+		// Load status if it's not null
+		if (movie.getStatus() != null) {
+			cmbStatus.getSelectionModel().select(movie.getStatus());
+		}
+		
+		// Load location if it's not null
+		if (movie.getLocation_id() != null) {
+			cmbStatus.getSelectionModel().select(locationDao.searchById(movie.getLocation_id()).getName());
+		}
+		
+		// Load poster if it's not null
 		if (movie.getPoster_path() != null) {
 			posterMovie.setImage(new Image(movie.getPoster_path()));
 		}
-
+		
+		// Load directors
 		String strDirector = "";
 		for (Director director : directors) {
 			if (directors.indexOf(director) != 0) {
@@ -262,7 +278,8 @@ public class MyListRecord {
 			strDirector += director.getName();
 		}
 		txtDirector.setText(strDirector);
-
+		
+		// Load genres
 		String strGenre = "";
 		for (Genre genre : genres) {
 			if (genres.indexOf(genre) != 0) {
@@ -291,15 +308,12 @@ public class MyListRecord {
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 1) {
 				labelNameAct2.setText(actor.getName());
-
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 2) {
 				labelNameAct3.setText(actor.getName());
-
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 3) {
 				labelNameAct4.setText(actor.getName());
-
 			}
 			visibleBtnLeft();
 			visibleBtnRight();
@@ -355,6 +369,11 @@ public class MyListRecord {
 	@FXML
 	void deleteMovie(ActionEvent event) {
 		movieDao.delete(movie);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information");
+		alert.setHeaderText(null);
+		alert.setContentText("Entry successfully deleted.");
+		alert.showAndWait();
 		try {
 			App.setRoot("myList");
 		} catch (IOException e) {
