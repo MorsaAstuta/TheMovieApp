@@ -182,8 +182,8 @@ public class AddMovie {
 
 		ImageView btnSaveIcon = new ImageView(
 				getClass().getResource("/dii2dam/movieApp/img/icon/save.png").toExternalForm());
-		btnSaveIcon.setFitHeight(32);
-		btnSaveIcon.setFitWidth(32);
+		btnSaveIcon.setFitHeight(40);
+		btnSaveIcon.setFitWidth(40);
 		btnSave.setGraphic(btnSaveIcon);
 
 	}

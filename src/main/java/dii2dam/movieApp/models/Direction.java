@@ -9,6 +9,11 @@ import javax.persistence.Id;
 @Entity
 public class Direction implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "director_id")
 	private Long director_id;

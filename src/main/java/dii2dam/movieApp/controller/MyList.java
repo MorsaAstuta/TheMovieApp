@@ -2,12 +2,9 @@ package dii2dam.movieApp.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -135,38 +132,59 @@ public class MyList {
 
 	private String searchType = "";
 
+	private Boolean isSearchByTitle = false;
+
 	@FXML
 	void searchByTitle(ActionEvent event) throws IOException {
 		currentPage = 0;
 		currentSearch = txtSearch.getText();
+		if (currentSearch != null && !currentSearch.isEmpty()) {
+			movies = movieDao.searchMoviesByUserIdAndName(Manager.getCurrentUser(), currentSearch);
+			isSearchByTitle = true;
+		} else {
+			isSearchByTitle = false;
+		}
 		loadPage();
 	}
 
 	void loadPage() {
-		movies = movieDao.searchMoviesByUser(Manager.getCurrentUser());
+
+		// Search
+		if (!isSearchByTitle) {
+			movies = movieDao.searchMoviesByUser(Manager.getCurrentUser());
+		} else {
+			movies = movieDao.searchMoviesByUserIdAndName(Manager.getCurrentUser(), currentSearch);
+		}
+
+		// Get total pages
 		if (movies.size() % 3 == 0)
 			totalPages = movies.size() / 3;
 		else
 			totalPages = movies.size() / 3 + 1;
 
+		// Delete movies from list depending on current page
 		for (int i = 0; i < 3 * currentPage; i++) {
 			if (!movies.isEmpty()) {
 				movies.remove(0);
 			}
 		}
 
+		// Reinitialize page labels and buttons
 		btnPrevPage.setVisible(true);
 		btnNextPage.setVisible(true);
+		lblPage.setText((currentPage + 1) + "");
+		lblTotalPages.setText(totalPages + "");
 
 		// Reload
 		movieDetails();
 
+		// Conditions to show next page and previous page buttons
 		if (currentPage == 0)
 			btnPrevPage.setVisible(false);
 		else if (!btnPrevPage.isVisible())
 			btnPrevPage.setVisible(true);
 
-		if (currentPage == totalPages-1)
+		if (currentPage == totalPages - 1)
 			btnNextPage.setVisible(false);
 		else if (btnNextPage.isVisible())
 			btnNextPage.setVisible(true);
@@ -205,7 +223,7 @@ public class MyList {
 
 	@FXML
 	void nextPage() {
-		if (currentPage < totalPages-1) {
+		if (currentPage < totalPages - 1) {
 			currentPage++;
 			loadPage();
 		}
@@ -282,7 +300,7 @@ public class MyList {
 		movieDetails(poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0);
 		movieDetails(poster1, lblMovieTitle1, lblMovieDesc1, lblMovieGenre1, lblMovieDate1);
 		movieDetails(poster2, lblMovieTitle2, lblMovieDesc2, lblMovieGenre2, lblMovieDate2);
-		
+
 		// Fill details if movie exists
 		if (movies.size() >= 1) {
 			movieDetails(movies.get(0), poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0);
@@ -295,13 +313,14 @@ public class MyList {
 		}
 	}
 
-	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
+	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre,
+			Label movieDate) {
 		poster.setImage(null);
 		movieTitle.setText("");
 		movieDesc.setText("");
 		movieGenre.setText("");
 		movieDate.setText("");
-		
+
 		if (movie.getPoster_path() != null) {
 			poster.setImage(new Image(movie.getPoster_path()));
 		}

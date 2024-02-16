@@ -10,7 +10,12 @@ import dii2dam.movieApp.utils.Manager;
 @Entity
 public class Genre implements Serializable {
 
-  @Id
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
   @Column(name="id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

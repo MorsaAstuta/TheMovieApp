@@ -9,6 +9,11 @@ import javax.persistence.Id;
 @Entity
 public class MovieGenre implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "genre_id")
 	private Long genre_id;

@@ -9,6 +9,11 @@ import javax.persistence.Id;
 @Entity
 public class Cast implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "actor_id")
 	private Long actor_id;

@@ -127,6 +127,9 @@ public class MovieRecord {
 	private ImageView imgUserReview3;
 
 	@FXML
+	private Button btnAdd;
+
+	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
 			App.setRoot("accountPage");
@@ -228,6 +231,12 @@ public class MovieRecord {
 			rate.setText(movie.getVote_average().toString() + " / 10");
 			btnMyList.setVisible(false);
 		}
+
+		ImageView btnSaveIcon = new ImageView(
+				getClass().getResource("/dii2dam/movieApp/img/icon/save.png").toExternalForm());
+		btnSaveIcon.setFitHeight(32);
+		btnSaveIcon.setFitWidth(32);
+		btnAdd.setGraphic(btnSaveIcon);
 
 		visibleBtnLeft();
 		loadActors();

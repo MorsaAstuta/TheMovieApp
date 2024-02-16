@@ -35,11 +35,20 @@ public class MovieDaoImpl extends CommonDaoImpl<Movie> implements MovieDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Movie> searchMoviesByName(String name) {
+	public List<Movie> searchMoviesByUserIdOrderByRating(Long id) {
 		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
 			session.getTransaction().begin();
 		}
-		return session.createQuery("from Movie with title like '%" + name + "%'").list();
+		return session.createQuery("from Movie where user_id = " + id + " order by rating desc").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movie> searchMoviesByUserIdAndName(Long id, String name) {
+		if (!session.getTransaction().equals(TransactionStatus.ACTIVE)) {
+			session.getTransaction().begin();
+		}
+		return session.createQuery("from Movie where user_id = " + id + " and title like '%" + name + "%'").list();
 	}
 
 }

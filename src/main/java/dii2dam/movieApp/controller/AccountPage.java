@@ -2,6 +2,7 @@ package dii2dam.movieApp.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.MovieDaoImpl;
@@ -9,7 +10,10 @@ import dii2dam.movieApp.models.Movie;
 import dii2dam.movieApp.utils.HibernateUtils;
 import dii2dam.movieApp.utils.Manager;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -57,7 +61,7 @@ public class AccountPage {
 			idUsername.setText(Manager.user.getUsername());
 			idEmail.setText(Manager.user.getMail());
 			idLastConnect.setText(Manager.user.getRegister_date());
-			List<Movie> movies = movieDao.searchMoviesOrderByRating();
+			List<Movie> movies = movieDao.searchMoviesByUserIdOrderByRating(Manager.getCurrentUser());
 			idImgPoster1.setImage(new Image(movies.get(0).getPoster_path()));
 			idImgPoster2.setImage(new Image(movies.get(1).getPoster_path()));
 			idImgPoster3.setImage(new Image(movies.get(2).getPoster_path()));
@@ -103,7 +107,18 @@ public class AccountPage {
 
 	@FXML
 	void signOut(MouseEvent event) {
-
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Sign Out");
+		alert.setHeaderText(null);
+		alert.setContentText("Do you really want to finish your session and sign out?");
+		Optional<ButtonType> buttonType = alert.showAndWait();
+		if(buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
+			try {
+				App.setRoot("logIn");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@FXML
