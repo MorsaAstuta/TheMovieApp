@@ -28,8 +28,10 @@ public class Manager {
 
 	public static List<Integer> genreIds = new ArrayList<>();
 	public static List<String> genreNames = new ArrayList<>();
-	
 
+	/**
+	 * Loads the genres' names and ids and creates a dual HashMap
+	 */
 	public static void loadGenres() {
 		genreIds.add(12);
 		genreNames.add("Adventure");
@@ -90,7 +92,7 @@ public class Manager {
 			idByGenre.put(genreNames.get(i), genreIds.get(i));
 		}
 	}
-	
+
 	public static Movie getMovie() {
 		return movie;
 	}
@@ -139,6 +141,9 @@ public class Manager {
 		Manager.discoveryType = discoveryType;
 	}
 
+	/**
+	 * Gets the last seen FXML content to load it as the last screen
+	 */
 	public static void goToLastPage() {
 		try {
 			back(parentval.get(parentval.size() - 1));
@@ -148,6 +153,9 @@ public class Manager {
 		parentval.remove(parentval.size() - 1);
 	}
 
+	/**
+	 * Loads the last screen
+	 */
 	public static void back(Parent parent) throws IOException {
 		try {
 			App.loadLast(parent);
@@ -187,7 +195,6 @@ public class Manager {
 	public static void setIdByGenre(HashMap<String, Integer> idByGenre) {
 		Manager.idByGenre = idByGenre;
 	}
-	
 
 	public static SimpleDateFormat getSdf() {
 		return sdf;

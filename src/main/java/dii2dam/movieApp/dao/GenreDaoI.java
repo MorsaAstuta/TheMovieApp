@@ -4,7 +4,7 @@ import java.util.List;
 
 import dii2dam.movieApp.models.Genre;
 
-public interface GenreDaoInt extends CommonDaoInt<Genre> {
+public interface GenreDaoI extends CommonDaoI<Genre> {
 	public List<Genre> searchByGenreId(final long id);
 
 	public Genre searchByGenreName(final String name);

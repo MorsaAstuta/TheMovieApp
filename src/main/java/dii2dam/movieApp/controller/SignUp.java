@@ -46,6 +46,11 @@ public class SignUp {
 	@FXML
 	private TextField txtUsername;
 
+	/**
+	 * Tries to insert a new user
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void loadUser(ActionEvent event) {
 
@@ -76,8 +81,6 @@ public class SignUp {
 		if (!error) {
 			User user = new User(txtUsername.getText(), txtPassword.getText(), txtMail.getText());
 			userDao.insert(user);
-			
-			
 
 			try {
 				App.setRoot("logIn");
@@ -95,6 +98,10 @@ public class SignUp {
 		}
 	}
 
+	/**
+	 * Loads the logIn FXML
+	 * @param event
+	 */
 	@FXML
 	void logIn(ActionEvent event) {
 		try {

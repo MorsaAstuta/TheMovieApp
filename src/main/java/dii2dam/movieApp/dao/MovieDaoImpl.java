@@ -6,7 +6,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import dii2dam.movieApp.models.Movie;
 
-public class MovieDaoImpl extends CommonDaoImpl<Movie> implements MovieDaoInt {
+public class MovieDaoImpl extends CommonDaoImpl<Movie> implements MovieDaoI {
 
 	private Session session;
 

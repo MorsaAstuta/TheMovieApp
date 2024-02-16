@@ -36,9 +36,8 @@ public class ConfigureAccount {
 	@FXML
 	private TextField textFieldUsername;
 
-
+	@FXML
 	public void initialize() {
-
 		if (Manager.user != null) {
 			idLabelEmail.setText("Email: " + Manager.user.getMail());
 			idPasswordField.setText(Manager.user.getPassword());
@@ -48,9 +47,7 @@ public class ConfigureAccount {
 			textFieldEmail.setVisible(false);
 			textFieldEmail.setText(Manager.user.getMail());
 			idPasswordField.setEditable(false);
-
 		}
-
 	}
 
 	@FXML
@@ -70,7 +67,6 @@ public class ConfigureAccount {
 		idPasswordField.setEditable(true);
 
 	}
-
 
 	@FXML
 	void saveAllChanges(MouseEvent event) {

@@ -4,11 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.ActorDaoImp;
+import dii2dam.movieApp.dao.ActorDaoImpl;
 import dii2dam.movieApp.dao.CastDaoImpl;
 import dii2dam.movieApp.dao.DirectionDaoImpl;
-import dii2dam.movieApp.dao.DirectorDaoImp;
-import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.DirectorDaoImpl;
+import dii2dam.movieApp.dao.GenreDaoImpl;
 import dii2dam.movieApp.dao.LocationDaoImpl;
 import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
@@ -41,15 +41,15 @@ public class MyListRecord {
 	private Movie movie;
 	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
-	private ActorDaoImp actorDao = new ActorDaoImp(HibernateUtils.session);
+	private ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);
 	private CastDaoImpl castDao = new CastDaoImpl(HibernateUtils.session);
 	private List<Actor> actors = new ArrayList<>();
 
-	private DirectorDaoImp directorDao = new DirectorDaoImp(HibernateUtils.session);
+	private DirectorDaoImpl directorDao = new DirectorDaoImpl(HibernateUtils.session);
 	private DirectionDaoImpl directionDao = new DirectionDaoImpl(HibernateUtils.session);
 	private List<Director> directors = new ArrayList<>();
 
-	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
+	private GenreDaoImpl genreDao = new GenreDaoImpl(HibernateUtils.session);
 	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
 	private List<Genre> genres = new ArrayList<>();
 
@@ -154,6 +154,11 @@ public class MyListRecord {
 	@FXML
 	private Button btnDelete;
 
+	/**
+	 * Loads the accountPage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
@@ -163,6 +168,11 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToHomePage(MouseEvent event) {
 		try {
@@ -172,6 +182,11 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Loads the myList FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToMyList(MouseEvent event) {
 		try {
@@ -181,29 +196,53 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Loads the last screen
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goBack(MouseEvent event) {
 		Manager.goToLastPage();
 	}
 
+	/**
+	 * Exports this entry as CSV file
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void exportAsCSV(MouseEvent event) {
 	}
 
+	/**
+	 * Hides the My List text
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void retractMyList(MouseEvent event) {
 		expMyList.setVisible(false);
 	}
 
+	/**
+	 * Shows the My List text
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void expandMyList(MouseEvent event) {
 		expMyList.setVisible(true);
 
 	}
 
+	/**
+	 * Initializes the FXML
+	 */
+	@FXML
 	public void initialize() {
 		movie = Manager.getMovie();
-		
+
 		expMyList.setVisible(false);
 
 		ImageView btnDeleteIcon = new ImageView(
@@ -253,22 +292,22 @@ public class MyListRecord {
 		statuses.add("On hold");
 		statuses.add("Dropped");
 		cmbStatus.setItems(statuses);
-		
+
 		// Load status if it's not null
 		if (movie.getStatus() != null) {
 			cmbStatus.getSelectionModel().select(movie.getStatus());
 		}
-		
+
 		// Load location if it's not null
 		if (movie.getLocation_id() != null) {
-			cmbStatus.getSelectionModel().select(locationDao.searchById(movie.getLocation_id()).getName());
+			cmbLocations.getSelectionModel().select(locationDao.searchById(movie.getLocation_id()).getName());
 		}
-		
+
 		// Load poster if it's not null
 		if (movie.getPoster_path() != null) {
 			posterMovie.setImage(new Image(movie.getPoster_path()));
 		}
-		
+
 		// Load directors
 		String strDirector = "";
 		for (Director director : directors) {
@@ -278,7 +317,7 @@ public class MyListRecord {
 			strDirector += director.getName();
 		}
 		txtDirector.setText(strDirector);
-		
+
 		// Load genres
 		String strGenre = "";
 		for (Genre genre : genres) {
@@ -301,6 +340,9 @@ public class MyListRecord {
 
 	}
 
+	/**
+	 * Loads the current actor page
+	 */
 	private void loadActors() {
 		for (Actor actor : actors) {
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 0) {
@@ -320,6 +362,9 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Shows or hides the left button depending on current page
+	 */
 	private void visibleBtnLeft() {
 		if (actorPage > 1)
 			btnLeftActors.setVisible(true);
@@ -327,6 +372,9 @@ public class MyListRecord {
 			btnLeftActors.setVisible(false);
 	}
 
+	/**
+	 * Shows or hides the right button depending on current page
+	 */
 	private void visibleBtnRight() {
 		Integer actorTotalPages = actors.size() / 4;
 		if (actors.size() % 4 != 0) {
@@ -338,6 +386,11 @@ public class MyListRecord {
 			btnRightActor.setVisible(false);
 	}
 
+	/**
+	 * Loads previous actor page
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pressedActorsLeft(MouseEvent event) {
 		if (actorPage > 1) {
@@ -346,6 +399,11 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Loads next actor page
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pressedActorsRight(MouseEvent event) {
 		if (actorPage >= 1) {
@@ -354,6 +412,11 @@ public class MyListRecord {
 		}
 	}
 
+	/**
+	 * Saves selected status and location
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void saveStatusAndLocation(ActionEvent event) {
 		movie.setStatus(cmbStatus.getValue());
@@ -362,10 +425,11 @@ public class MyListRecord {
 		movieDao.update(movie);
 	}
 
-	@FXML
-	void editMovie(ActionEvent event) {
-	}
-
+	/**
+	 * Deletes entry
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void deleteMovie(ActionEvent event) {
 		movieDao.delete(movie);

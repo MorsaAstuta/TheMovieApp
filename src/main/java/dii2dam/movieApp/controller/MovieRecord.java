@@ -38,7 +38,7 @@ public class MovieRecord {
 
 	private List<Review> reviews = new ArrayList<>();
 	private Integer reviewPage = 1;
-	
+
 	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
 	@FXML
@@ -129,6 +129,11 @@ public class MovieRecord {
 	@FXML
 	private Button btnAdd;
 
+	/**
+	 * Loads the accountPage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
@@ -138,6 +143,11 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToHomePage(MouseEvent event) {
 		try {
@@ -147,6 +157,11 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Loads the myList FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToMyList(MouseEvent event) {
 		try {
@@ -156,26 +171,52 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Loads the last screen
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goBack(MouseEvent event) {
 		Manager.goToLastPage();
 	}
 
+	/**
+	 * Exports this entry as CSV file
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void exportAsCSV(MouseEvent event) {
 	}
 
+	/**
+	 * Hides the My List text
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void retractMyList(MouseEvent event) {
 		btnMyList.setVisible(false);
 	}
 
+	/**
+	 * Shows the My List text
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void expandMyList(MouseEvent event) {
 		btnMyList.setVisible(true);
-
 	}
 
+	/**
+	 * Loads the movie details
+	 * 
+	 * @param type
+	 * @param id
+	 * @param page
+	 */
 	public void getMovieDetails(String type, Integer id, Integer page) {
 		try {
 			creditsResponse = Connector.getMovieCredits(type, id);
@@ -194,6 +235,10 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Initializes the FXML
+	 */
+	@FXML
 	public void initialize() {
 		movie = Manager.getMovie();
 		if (Manager.getDiscoveryType() != "multi") {
@@ -203,8 +248,7 @@ public class MovieRecord {
 		}
 		if (movie != null) {
 			textTittle.setText(movie.getTitle() != null ? movie.getTitle() : "Titulo no especificado");
-			textDate.setText(
-					movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
+			textDate.setText(movie.getRelease_date() != null ? movie.getRelease_date() : "Fecha de estreno no especificada");
 			if (movie != null && !directors.isEmpty()) {
 				String output = "";
 				for (Director director : directors) {
@@ -244,6 +288,9 @@ public class MovieRecord {
 
 	}
 
+	/**
+	 * Loads the current page of actors
+	 */
 	private void loadActors() {
 		for (Actor actor : actors) {
 			String url = actor.getProfilePath();
@@ -273,6 +320,9 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Loads the top reviews
+	 */
 	private void loadReviews() {
 
 		for (Review review : reviewResponse.getReviews()) {
@@ -304,6 +354,9 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Shows or hides the left button depending on current page
+	 */
 	private void visibleBtnLeft() {
 		if (actorPage > 1)
 			btnLeftActors.setVisible(true);
@@ -311,16 +364,22 @@ public class MovieRecord {
 			btnLeftActors.setVisible(false);
 	}
 
+	/**
+	 * Saves the API entry as a local entry
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void saveMovie(ActionEvent event) {
-		
+
 		// If movie is instance of TV series, set Title as Name
 		if (movie.getTitle() == null) {
 			movie.setTitle(movie.getName());
 		}
-		
+
 		// Insert movie on database
-		movieDao.insert(new Movie(movie.getTitle(), movie.getRelease_date(), movie.getOverview(), movie.getRuntime(), null, Manager.getCurrentUser(), "", 0.0));
+		movieDao.insert(new Movie(movie.getTitle(), movie.getRelease_date(), movie.getOverview(), movie.getRuntime(), null,
+				Manager.getCurrentUser(), "", 0.0));
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information");
 		alert.setHeaderText(null);
@@ -328,6 +387,9 @@ public class MovieRecord {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Shows or hides the right button depending on current page
+	 */
 	private void visibleBtnRight() {
 		Integer actorTotalPages = actors.size() / 4;
 		if (actors.size() % 4 != 0) {
@@ -339,6 +401,11 @@ public class MovieRecord {
 			btnRightActor.setVisible(false);
 	}
 
+	/**
+	 * Loads previous actor page
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pressedActorsLeft(MouseEvent event) {
 		if (actorPage > 1) {
@@ -347,6 +414,11 @@ public class MovieRecord {
 		}
 	}
 
+	/**
+	 * Loads next actor page
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pressedActorsRight(MouseEvent event) {
 		if (actorPage >= 1) {

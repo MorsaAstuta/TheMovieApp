@@ -553,6 +553,11 @@ public class SearchTab {
 
 	private String searchType = "";
 
+	/**
+	 * Tries to search an array of movies through the API
+	 * 
+	 * @param query
+	 */
 	private void query(String query) {
 		try {
 			// If the filter IS NOT empty, do a filtered search (discover)
@@ -564,7 +569,7 @@ public class SearchTab {
 					response = Connector.discoverSeries(filter() + "&page=" + (currentPage + 1));
 					searchType = "tv";
 				}
-			// If the filter IS empty, do a search by name (search)
+				// If the filter IS empty, do a search by name (search)
 			} else {
 				if ((chkMovies.isSelected() && chkSeries.isSelected())) {
 					response = Connector.searchMulti(query + "&page=" + (currentPage + 1));
@@ -584,6 +589,11 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Gets filters if selected
+	 * 
+	 * @return
+	 */
 	private String filter() {
 		String modifiedQuery = "";
 
@@ -667,6 +677,12 @@ public class SearchTab {
 		return modifiedQuery;
 	}
 
+	/**
+	 * Tries to search through the API by name and/or filters
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void searchByTitle(ActionEvent event) throws IOException {
 		currentPage = 0;
@@ -674,6 +690,9 @@ public class SearchTab {
 		loadPage();
 	}
 
+	/**
+	 * Loads the current page
+	 */
 	void loadPage() {
 		query(currentSearch);
 		closeAllDetails();
@@ -721,6 +740,9 @@ public class SearchTab {
 			btnNextPage.setVisible(true);
 	}
 
+	/**
+	 * Initializes the FXML
+	 */
 	@FXML
 	void initialize() {
 		closeAllDetails();
@@ -814,6 +836,9 @@ public class SearchTab {
 		btnSearch.setGraphic(btnSearchIcon);
 	}
 
+	/**
+	 * Shows or hides the filter tab if the search tab is pressed
+	 */
 	@FXML
 	void showFilterTab() {
 		if (!filterTab.isVisible()) {
@@ -825,6 +850,9 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Goes to previous page
+	 */
 	@FXML
 	void prevPage() {
 		if (currentPage > 0) {
@@ -833,6 +861,9 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Goes to next page
+	 */
 	@FXML
 	void nextPage() {
 		if (currentPage < totalPages) {
@@ -841,6 +872,9 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Loads the accountPage FXML
+	 */
 	@FXML
 	void goToAccount() {
 		try {
@@ -850,11 +884,17 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Loads the last screen
+	 */
 	@FXML
 	void goBack() {
 		Manager.goToLastPage();
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 */
 	@FXML
 	void goToHome() {
 		try {
@@ -864,6 +904,9 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Loads the myList FXML
+	 */
 	@FXML
 	void goToMyList() {
 		try {
@@ -873,16 +916,27 @@ public class SearchTab {
 		}
 	}
 
+	/**
+	 * Shows the My List text
+	 */
 	@FXML
 	void expandMyList() {
 		btnMyListExp.setVisible(true);
 	}
 
+	/**
+	 * Hides the My List text
+	 */
 	@FXML
 	void retractMyList() {
 		btnMyListExp.setVisible(false);
 	}
 
+	/**
+	 * Loads the movieRecord FXML with the selected movie
+	 * 
+	 * @param id
+	 */
 	void visitMoviePageGeneral(int id) {
 		try {
 			Manager.setMovie(movies[id]);
@@ -983,6 +1037,9 @@ public class SearchTab {
 		visitMoviePageGeneral(17);
 	}
 
+	/**
+	 * Closes all movie details
+	 */
 	void closeAllDetails() {
 		filterTab.setVisible(false);
 		filterTabRow.setMaxHeight(1);
@@ -1045,6 +1102,18 @@ public class SearchTab {
 		movie17.toBack();
 	}
 
+	/**
+	 * Shows the selected movie details
+	 * 
+	 * @param moviePane
+	 * @param poster
+	 * @param movieInfo
+	 * @param movieTitle
+	 * @param movieDesc
+	 * @param movieGenre
+	 * @param movieDate
+	 * @param movieColumn
+	 */
 	void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc,
 			Label movieGenre, Label movieDate, ColumnConstraints movieColumn) {
 		Movie movie = movieByPoster.get(poster);

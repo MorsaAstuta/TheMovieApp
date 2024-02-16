@@ -6,7 +6,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import dii2dam.movieApp.models.Location;
 
-public class LocationDaoImpl extends CommonDaoImpl<Location> implements LocationDaoInt {
+public class LocationDaoImpl extends CommonDaoImpl<Location> implements LocationDaoI {
 
 	private Session session;
 

@@ -7,7 +7,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import dii2dam.movieApp.models.User;
 
-public class UserDaoImpl extends CommonDaoImpl<User> implements UserDaoInt {
+public class UserDaoImpl extends CommonDaoImpl<User> implements UserDaoI {
   private Session session;
   
   public UserDaoImpl(Session session) {

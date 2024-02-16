@@ -413,24 +413,32 @@ public class HomePage {
 	String currentSearch = "";
 
 	List<ComboBox<String>> genreBoxes = new ArrayList<>();
-	
+
 	private String searchType = "";
 
+	/**
+	 * Tries to get an APIResponse
+	 */
 	private void query() {
 		try {
-				if (chkMovies.isSelected()) {
-					response = Connector.discoverMovie(filter());
-					searchType = "movie";
-				} else if (chkSeries.isSelected()) {
-					response = Connector.discoverSeries(filter());
-					searchType = "tv";
-				}
+			if (chkMovies.isSelected()) {
+				response = Connector.discoverMovie(filter());
+				searchType = "movie";
+			} else if (chkSeries.isSelected()) {
+				response = Connector.discoverSeries(filter());
+				searchType = "tv";
+			}
 			movies = response.getResults();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Checks if there are any filters and add them to the API query
+	 * 
+	 * @return
+	 */
 	private String filter() {
 		String modifiedQuery = "";
 
@@ -447,7 +455,7 @@ public class HomePage {
 				modifiedQuery += Manager.idByGenre.get(cmbGenre.getValue());
 			}
 		}
-		
+
 		// Score/Runtime filters
 		if (cmbScoreMin.getValue() != null) {
 			modifiedQuery += "&vote_average.gte=" + cmbScoreMin.getValue();
@@ -514,11 +522,20 @@ public class HomePage {
 		return modifiedQuery;
 	}
 
+	/**
+	 * Reloads the page
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void reloadPage(ActionEvent event) throws IOException {
 		loadPage();
 	}
 
+	/**
+	 * Loads the page with the latest specifications
+	 */
 	void loadPage() {
 		query();
 		closeAllDetails();
@@ -558,10 +575,13 @@ public class HomePage {
 		}
 	}
 
+	/**
+	 * Initializes the FXML
+	 */
 	@FXML
 	void initialize() {
 		closeAllDetails();
-		
+
 		fmOverview.setWrapText(true);
 		lblMovieDesc00.setWrapText(true);
 		lblMovieDesc01.setWrapText(true);
@@ -642,11 +662,14 @@ public class HomePage {
 		btnReloadIcon.setFitHeight(32);
 		btnReloadIcon.setFitWidth(32);
 		btnReload.setGraphic(btnReloadIcon);
-		
+
 		cmbSorter.getSelectionModel().select(1);
 		loadPage();
 	}
 
+	/**
+	 * Loads the searchTab FXML
+	 */
 	@FXML
 	void goToSearch() {
 		try {
@@ -656,6 +679,9 @@ public class HomePage {
 		}
 	}
 
+	/**
+	 * Loads the accountPage FXML
+	 */
 	@FXML
 	void goToAccount() {
 		try {
@@ -665,6 +691,9 @@ public class HomePage {
 		}
 	}
 
+	/**
+	 * Loads the myList FXML
+	 */
 	@FXML
 	void goToMyList() {
 		try {
@@ -674,16 +703,27 @@ public class HomePage {
 		}
 	}
 
+	/**
+	 * Shows the My List text
+	 */
 	@FXML
 	void expandMyList() {
 		btnMyListExp.setVisible(true);
 	}
 
+	/**
+	 * Hides the My List text
+	 */
 	@FXML
 	void retractMyList() {
 		btnMyListExp.setVisible(false);
 	}
 
+	/**
+	 * Loads the movieRecord FXML with the selected movie from the response array
+	 * 
+	 * @param id
+	 */
 	void visitMoviePageGeneral(int id) {
 		try {
 			Manager.setMovie(movies[id]);
@@ -759,6 +799,9 @@ public class HomePage {
 		visitMoviePageGeneral(12);
 	}
 
+	/**
+	 * Closes all details
+	 */
 	void closeAllDetails() {
 
 		movieColumn00.setMaxWidth(1);
@@ -801,17 +844,29 @@ public class HomePage {
 		movie11.toBack();
 	}
 
+	/**
+	 * Shows the specified movie details
+	 * 
+	 * @param moviePane
+	 * @param poster
+	 * @param movieInfo
+	 * @param movieTitle
+	 * @param movieDesc
+	 * @param movieGenre
+	 * @param movieDate
+	 * @param movieColumn
+	 */
 	void movieDetails(GridPane moviePane, ImageView poster, GridPane movieInfo, Label movieTitle, Label movieDesc,
 			Label movieGenre, Label movieDate, ColumnConstraints movieColumn) {
 		Movie movie = movieByPoster.get(poster);
 		if (movieColumn.getMaxWidth() != 400) {
 			closeAllDetails();
-			
+
 			moviePane.toFront();
 			movieColumn.setMaxWidth(400);
 			movieInfo.setVisible(true);
-			
-			switch(searchType) {
+
+			switch (searchType) {
 			case "movie":
 				movieTitle.setText(movie.getTitle());
 				movieDesc.setText(movie.getOverview());

@@ -56,11 +56,19 @@ public class AccountPage {
 	@FXML
 	private ImageView idImgPoster4;
 
+	/**
+	 * Initializes the FXML file
+	 */
+	@FXML
 	public void initialize() {
 		if (Manager.user != null) {
+
+			// Sets user information
 			idUsername.setText(Manager.user.getUsername());
 			idEmail.setText(Manager.user.getMail());
 			idLastConnect.setText(Manager.user.getRegister_date());
+
+			// Shows highest rated movies
 			List<Movie> movies = movieDao.searchMoviesByUserIdOrderByRating(Manager.getCurrentUser());
 			idImgPoster1.setImage(new Image(movies.get(0).getPoster_path()));
 			idImgPoster2.setImage(new Image(movies.get(1).getPoster_path()));
@@ -69,15 +77,25 @@ public class AccountPage {
 		}
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void loadHomePage(MouseEvent event) {
 		try {
-			App.setRoot("HomePage");
+			App.setRoot("homePage");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Loads the addMovie FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void addMovie(MouseEvent event) {
 		try {
@@ -87,6 +105,11 @@ public class AccountPage {
 		}
 	}
 
+	/**
+	 * Loads the myList FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void myList(MouseEvent event) {
 		try {
@@ -96,6 +119,11 @@ public class AccountPage {
 		}
 	}
 
+	/**
+	 * Loads the configureAccount FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void pageConfig(MouseEvent event) {
 		try {
@@ -105,6 +133,11 @@ public class AccountPage {
 		}
 	}
 
+	/**
+	 * Loads the signOut FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void signOut(MouseEvent event) {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -112,7 +145,7 @@ public class AccountPage {
 		alert.setHeaderText(null);
 		alert.setContentText("Do you really want to finish your session and sign out?");
 		Optional<ButtonType> buttonType = alert.showAndWait();
-		if(buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
+		if (buttonType.isPresent() && buttonType.get().equals(ButtonType.OK)) {
 			try {
 				App.setRoot("logIn");
 			} catch (IOException e) {
@@ -121,6 +154,9 @@ public class AccountPage {
 		}
 	}
 
+	/**
+	 * Loads the last screen
+	 */
 	@FXML
 	void goBack() {
 		Manager.goToLastPage();

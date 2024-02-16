@@ -38,10 +38,11 @@ public class LogIn {
 	@FXML
 	private TextField txtUsername;
 
-	
-
-	
-
+	/**
+	 * Tries to load the user
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void loadUser(ActionEvent event) {
 
@@ -84,11 +85,16 @@ public class LogIn {
 		}
 
 	}
-	
+
 	public TextField getTxtUsername() {
 		return txtUsername;
 	}
 
+	/**
+	 * Loads the signUp FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void signUp(ActionEvent event) {
 		try {
@@ -98,6 +104,11 @@ public class LogIn {
 		}
 	}
 
+	/**
+	 * Loads the forgotPass FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void forgotPass(ActionEvent event) {
 		try {

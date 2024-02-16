@@ -6,7 +6,7 @@ import java.lang.reflect.ParameterizedType;
 import org.hibernate.Session;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-public abstract class CommonDaoImpl<T> implements CommonDaoInt<T> {
+public abstract class CommonDaoImpl<T> implements CommonDaoI<T> {
 
 	private Class<T> entityClass;
 	private Session session;

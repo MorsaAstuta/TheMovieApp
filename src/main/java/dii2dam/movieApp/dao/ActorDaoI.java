@@ -4,7 +4,7 @@ import java.util.List;
 
 import dii2dam.movieApp.models.Actor;
 
-public interface ActorDaoInt extends CommonDaoInt<Actor> {
+public interface ActorDaoI extends CommonDaoI<Actor> {
 	public List<Actor> searchByActorId(final Long id);
 
 	public List<Actor> searchByMovieId(final Long id);

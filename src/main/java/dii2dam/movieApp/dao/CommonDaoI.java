@@ -2,7 +2,7 @@ package dii2dam.movieApp.dao;
 
 import java.util.List;
 
-public interface CommonDaoInt<T> {
+public interface CommonDaoI<T> {
 
 	public void insert(final T paramT);
 

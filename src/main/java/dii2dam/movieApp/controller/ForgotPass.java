@@ -15,7 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 public class ForgotPass {
 
 	private UserDaoImpl userDao = new UserDaoImpl(HibernateUtils.session);
-	
+
 	@FXML
 	private Button btnCheck;
 
@@ -43,6 +43,11 @@ public class ForgotPass {
 	@FXML
 	private TextField txtUsername;
 
+	/**
+	 * Checks details inserted and shows password if details match
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void loadPass(ActionEvent event) {
 		boolean error = false;
@@ -77,6 +82,11 @@ public class ForgotPass {
 		}
 	}
 
+	/**
+	 * Loads the logIn FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void logIn(ActionEvent event) {
 		try {

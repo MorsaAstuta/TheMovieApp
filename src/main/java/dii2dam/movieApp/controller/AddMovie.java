@@ -10,11 +10,11 @@ import java.util.Date;
 import java.util.List;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.ActorDaoImp;
+import dii2dam.movieApp.dao.ActorDaoImpl;
 import dii2dam.movieApp.dao.CastDaoImpl;
 import dii2dam.movieApp.dao.DirectionDaoImpl;
-import dii2dam.movieApp.dao.DirectorDaoImp;
-import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.DirectorDaoImpl;
+import dii2dam.movieApp.dao.GenreDaoImpl;
 import dii2dam.movieApp.dao.LocationDaoImpl;
 import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
@@ -51,11 +51,11 @@ public class AddMovie {
 
 	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
-	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
+	private GenreDaoImpl genreDao = new GenreDaoImpl(HibernateUtils.session);
 
-	private ActorDaoImp actorDao = new ActorDaoImp(HibernateUtils.session);
+	private ActorDaoImpl actorDao = new ActorDaoImpl(HibernateUtils.session);
 
-	private DirectorDaoImp directorDao = new DirectorDaoImp(HibernateUtils.session);
+	private DirectorDaoImpl directorDao = new DirectorDaoImpl(HibernateUtils.session);
 
 	private LocationDaoImpl locationDao = new LocationDaoImpl(HibernateUtils.session);
 
@@ -146,6 +146,9 @@ public class AddMovie {
 
 	private String posterPath;
 
+	/**
+	 * Initializes the FXML file
+	 */
 	@FXML
 	void initialize() {
 
@@ -188,11 +191,21 @@ public class AddMovie {
 
 	}
 
+	/**
+	 * Loads the last screen
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goBack(MouseEvent event) {
 		Manager.goToLastPage();
 	}
 
+	/**
+	 * Loads the accountPage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToAccount(MouseEvent event) {
 		try {
@@ -202,6 +215,11 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToHomePage(MouseEvent event) {
 		try {
@@ -211,6 +229,11 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Loads the searchTab FXML
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void goToSearchTab(MouseEvent event) {
 		try {
@@ -220,11 +243,21 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Exports entry as CSV file
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void importAsCSV(MouseEvent event) {
 
 	}
 
+	/**
+	 * Saves API entry as local entry
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void saveMovie(ActionEvent event) {
 		if (!txtTitle.getText().isEmpty()) {
@@ -252,10 +285,8 @@ public class AddMovie {
 				}
 			}
 
-			// Creamos el objeto Movie con los datos insertados en los campos de la
-			// mitad izquierda de una forma u otra dependiendo de si se ha indicado
-			// ubicación
-			// física o no
+			// Creation of the entry with the details specified in the left half of the
+			// screen
 			if (cmbLocation.getValue() != null) {
 				if (locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()) == null) {
 					locationDao.insert(new Location(cmbLocation.getValue()));
@@ -273,8 +304,8 @@ public class AddMovie {
 			}
 			movieDao.insert(movie);
 
-			// Añadimos los actores, directores y géneros de la mitad derecha a las tablas
-			// manyToMany acompañados del id autogenerado de esta nueva película
+			// Adding actors, directors and genres to the manyToMany tables with the details
+			// specified in the right half of the screen
 			for (Actor actor : addedActors) {
 				castDao.insert(new Cast(movie.getId(), actor.getId()));
 			}
@@ -285,8 +316,7 @@ public class AddMovie {
 				movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
 			}
 
-			// Lanzamos automáticamente la pantalla para visualizar esta nueva película
-			// insertada
+			// Loads movieRecord FXML to visualize the new entry
 			Manager.setMovie(movie);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
@@ -301,6 +331,11 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Opens the FileChooser alert to load a poster image
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void openPhotoSelector(ActionEvent event) {
 		try {
@@ -311,10 +346,15 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Adds a Genre to the Genre table
+	 */
 	@FXML
 	void addGenre() {
+		// Only if the selected value is not null
 		if (cmbGenres.getValue() != null) {
 			Genre genre = new Genre(cmbGenres.getValue());
+			// If the Genre does not exist already, create a new one
 			if (genreDao.searchByGenreName(cmbGenres.getValue()) != null) {
 				addedGenres.add(genreDao.searchByGenreName(cmbGenres.getValue()));
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -330,10 +370,15 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Adds an Actor to the Actor table
+	 */
 	@FXML
 	void addActor() {
+		// Only if the selected value is not null
 		if (cmbActors.getValue() != null) {
 			Actor actor = new Actor(cmbActors.getValue());
+			// If the Actor does not exist already, create a new one
 			if (actorDao.searchByName(cmbActors.getValue()) != null) {
 				addedActors.add(actorDao.searchByName(cmbActors.getValue()));
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -349,10 +394,15 @@ public class AddMovie {
 		}
 	}
 
+	/**
+	 * Adds a Director to the Director table
+	 */
 	@FXML
 	void addDirector() {
+		// Only if the selected value is not null
 		if (cmbDirectors.getValue() != null) {
 			Director director = new Director(cmbDirectors.getValue());
+			// If the Director does not exist already, create a new one
 			if (directorDao.searchByName(cmbDirectors.getValue()) != null) {
 				addedDirectors.add(directorDao.searchByName(cmbDirectors.getValue()));
 				Alert alert = new Alert(AlertType.INFORMATION);

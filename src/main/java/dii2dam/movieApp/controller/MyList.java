@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import dii2dam.movieApp.App;
-import dii2dam.movieApp.dao.GenreDaoImp;
+import dii2dam.movieApp.dao.GenreDaoImpl;
 import dii2dam.movieApp.dao.MovieDaoImpl;
 import dii2dam.movieApp.dao.MovieGenreDaoImpl;
 import dii2dam.movieApp.models.Genre;
@@ -32,7 +32,7 @@ public class MyList {
 
 	private MovieDaoImpl movieDao = new MovieDaoImpl(HibernateUtils.session);
 
-	private GenreDaoImp genreDao = new GenreDaoImp(HibernateUtils.session);
+	private GenreDaoImpl genreDao = new GenreDaoImpl(HibernateUtils.session);
 	private MovieGenreDaoImpl movieGenreDao = new MovieGenreDaoImpl(HibernateUtils.session);
 
 	@FXML
@@ -134,6 +134,12 @@ public class MyList {
 
 	private Boolean isSearchByTitle = false;
 
+	/**
+	 * Searches a local movie by title
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	void searchByTitle(ActionEvent event) throws IOException {
 		currentPage = 0;
@@ -147,6 +153,9 @@ public class MyList {
 		loadPage();
 	}
 
+	/**
+	 * Loads the current page
+	 */
 	void loadPage() {
 
 		// Search
@@ -190,6 +199,9 @@ public class MyList {
 			btnNextPage.setVisible(true);
 	}
 
+	/**
+	 * Initializes the FXML
+	 */
 	@FXML
 	void initialize() {
 
@@ -213,6 +225,9 @@ public class MyList {
 		loadPage();
 	}
 
+	/**
+	 * Goes to the previous page
+	 */
 	@FXML
 	void prevPage() {
 		if (currentPage > 0) {
@@ -221,6 +236,9 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Goes to the next page
+	 */
 	@FXML
 	void nextPage() {
 		if (currentPage < totalPages - 1) {
@@ -229,6 +247,9 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the accountPage FXML
+	 */
 	@FXML
 	void goToAccount() {
 		try {
@@ -238,6 +259,9 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the addMovie FXML
+	 */
 	@FXML
 	void goToAddMovie() {
 		try {
@@ -247,6 +271,9 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the searchTab FXML
+	 */
 	@FXML
 	void goToSearchTab() {
 		try {
@@ -256,6 +283,9 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the homePage FXML
+	 */
 	@FXML
 	void goToHome() {
 		try {
@@ -265,11 +295,19 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the last screen
+	 */
 	@FXML
 	void goBack(MouseEvent event) {
 		Manager.goToLastPage();
 	}
 
+	/**
+	 * Loads the myListRecord FXML with the selected movie
+	 * 
+	 * @param i
+	 */
 	void visitMoviePageGeneral(Integer i) {
 		try {
 			Manager.setMovie(movies.get(i));
@@ -295,6 +333,9 @@ public class MyList {
 		visitMoviePageGeneral(2);
 	}
 
+	/**
+	 * Loads all the page's movies details
+	 */
 	void movieDetails() {
 		// Clear details
 		movieDetails(poster0, lblMovieTitle0, lblMovieDesc0, lblMovieGenre0, lblMovieDate0);
@@ -313,6 +354,16 @@ public class MyList {
 		}
 	}
 
+	/**
+	 * Loads the selected movie details
+	 * 
+	 * @param movie
+	 * @param poster
+	 * @param movieTitle
+	 * @param movieDesc
+	 * @param movieGenre
+	 * @param movieDate
+	 */
 	void movieDetails(Movie movie, ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre,
 			Label movieDate) {
 		poster.setImage(null);
@@ -342,6 +393,15 @@ public class MyList {
 		movieDate.setText(movie.getRelease_date());
 	}
 
+	/**
+	 * Clears the movie details
+	 * 
+	 * @param poster
+	 * @param movieTitle
+	 * @param movieDesc
+	 * @param movieGenre
+	 * @param movieDate
+	 */
 	void movieDetails(ImageView poster, Label movieTitle, Label movieDesc, Label movieGenre, Label movieDate) {
 		poster.setImage(null);
 		movieTitle.setText("");

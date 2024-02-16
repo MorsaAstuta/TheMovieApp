@@ -7,11 +7,11 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import dii2dam.movieApp.models.Genre;
 
-public class GenreDaoImp extends CommonDaoImpl<Genre> implements GenreDaoInt {
+public class GenreDaoImpl extends CommonDaoImpl<Genre> implements GenreDaoI {
 
 	private Session session;
 
-	public GenreDaoImp(Session session) {
+	public GenreDaoImpl(Session session) {
 		super(session);
 		this.session = session;
 	}

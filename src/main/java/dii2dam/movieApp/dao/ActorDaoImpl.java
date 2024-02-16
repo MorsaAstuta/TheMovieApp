@@ -7,11 +7,11 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import dii2dam.movieApp.models.Actor;
 
-public class ActorDaoImp extends CommonDaoImpl<Actor> implements ActorDaoInt {
+public class ActorDaoImpl extends CommonDaoImpl<Actor> implements ActorDaoI {
 
 	private Session session;
 
-	public ActorDaoImp(Session session) {
+	public ActorDaoImpl(Session session) {
 		super(session);
 		this.session = session;
 	}
