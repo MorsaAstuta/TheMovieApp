@@ -80,7 +80,6 @@ public class ConfigureAccount {
 			try {
 				App.setRoot("accountPage");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -113,7 +112,6 @@ public class ConfigureAccount {
 		try {
 			App.setRoot("accountPage");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -124,7 +122,6 @@ public class ConfigureAccount {
 		try {
 			App.setRoot("homePage");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

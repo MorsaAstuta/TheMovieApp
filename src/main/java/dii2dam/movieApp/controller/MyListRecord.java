@@ -380,7 +380,7 @@ public class MyListRecord {
 		if (actors.size() % 4 != 0) {
 			actorTotalPages++;
 		}
-		if (actorPage < actorTotalPages)
+		if (actorPage < actorTotalPages && actorTotalPages > 1)
 			btnRightActor.setVisible(true);
 		else
 			btnRightActor.setVisible(false);

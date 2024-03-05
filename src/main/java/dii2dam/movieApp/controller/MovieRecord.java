@@ -270,8 +270,11 @@ public class MovieRecord {
 
 			textTime.setText(movieInfoResponse.getRuntime() + " min.");
 
-			textGenre.setText(movie.getGenre() != null ? movie.getGenre() : "GÃ©nero no especificado");
-			textSinopsis.setText(movie.getOverview() != null ? movie.getOverview() : "Sinopsis no especificada");
+			textGenre.setText(movie.getGenre());
+			
+			if (movie.getOverview() != null) {
+				textSinopsis.setText(movie.getOverview());
+			}
 
 			String url = movie.getPoster_path();
 			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
@@ -332,7 +335,6 @@ public class MovieRecord {
 	private void loadReviews() {
 
 		for (Review review : reviewResponse.getReviews()) {
-			System.out.println(review.getUsername());
 			if (reviews.indexOf(review) == (reviewPage - 1) * 3 + 0) {
 				labelUsernameReview1.setText(review.getUsername());
 				textComment1.setText(review.getContent());
@@ -401,7 +403,7 @@ public class MovieRecord {
 		if (actors.size() % 4 != 0) {
 			actorTotalPages++;
 		}
-		if (actorPage < actorTotalPages)
+		if (actorPage < actorTotalPages && actorTotalPages > 1)
 			btnRightActor.setVisible(true);
 		else
 			btnRightActor.setVisible(false);
