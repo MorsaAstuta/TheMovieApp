@@ -263,12 +263,6 @@ public class MyListRecord {
 		btnSaveIcon.setFitWidth(32);
 		btnSave.setGraphic(btnSaveIcon);
 
-		ImageView btnEditIcon = new ImageView(
-				getClass().getResource("/dii2dam/movieApp/img/icon/edit.png").toExternalForm());
-		btnEditIcon.setFitHeight(48);
-		btnEditIcon.setFitWidth(48);
-		btnEdit.setGraphic(btnEditIcon);
-
 		for (Cast cast : castDao.searchByMovieId(movie.getId())) {
 			actors.add(actorDao.searchById(cast.getActor_id()));
 		}

@@ -70,10 +70,18 @@ public class AccountPage {
 
 			// Shows highest rated movies
 			List<Movie> movies = movieDao.searchMoviesByUserIdOrderByRating(Manager.getCurrentUser());
-			idImgPoster1.setImage(new Image(movies.get(0).getPoster_path()));
-			idImgPoster2.setImage(new Image(movies.get(1).getPoster_path()));
-			idImgPoster3.setImage(new Image(movies.get(2).getPoster_path()));
-			idImgPoster4.setImage(new Image(movies.get(3).getPoster_path()));
+			if (movies.size() >= 1 && movies.get(0).getPoster_path() != null) {
+				idImgPoster1.setImage(new Image(movies.get(0).getPoster_path()));
+			}
+			if (movies.size() >= 2 && movies.get(1).getPoster_path() != null) {
+				idImgPoster2.setImage(new Image(movies.get(1).getPoster_path()));
+			}
+			if (movies.size() >= 3 && movies.get(2).getPoster_path() != null) {
+				idImgPoster3.setImage(new Image(movies.get(2).getPoster_path()));
+			}
+			if (movies.size() >= 4 && movies.get(3).getPoster_path() != null) {
+				idImgPoster4.setImage(new Image(movies.get(3).getPoster_path()));
+			}
 		}
 	}
 
