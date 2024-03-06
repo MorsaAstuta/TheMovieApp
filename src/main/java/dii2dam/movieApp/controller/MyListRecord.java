@@ -305,7 +305,7 @@ public class MyListRecord {
 
 		// Load poster if it's not null
 		if (movie.getPoster_path() != null) {
-			posterMovie.setImage(new Image(movie.getPoster_path()));
+			posterMovie.setImage(new Image("file:" + movie.getPoster_path()));
 		}
 
 		// Load directors
@@ -344,6 +344,21 @@ public class MyListRecord {
 	 * Loads the current actor page
 	 */
 	private void loadActors() {
+		// Clear
+		imgActor1.setImage(null);
+		labelNameAct1.setText("");
+		imgActor2.setImage(null);
+		labelNameAct2.setText("");
+		imgActor3.setImage(null);
+		labelNameAct3.setText("");
+		imgActor4.setImage(null);
+		labelNameAct4.setText("");
+		
+		// Check button visibility
+		visibleBtnLeft();
+		visibleBtnRight();
+		
+		// Fill with next batch of actors
 		for (Actor actor : actors) {
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 0) {
 				labelNameAct1.setText(actor.getName());
@@ -357,8 +372,6 @@ public class MyListRecord {
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 3) {
 				labelNameAct4.setText(actor.getName());
 			}
-			visibleBtnLeft();
-			visibleBtnRight();
 		}
 	}
 
@@ -366,10 +379,11 @@ public class MyListRecord {
 	 * Shows or hides the left button depending on current page
 	 */
 	private void visibleBtnLeft() {
-		if (actorPage > 1)
+		if (actorPage > 1) {
 			btnLeftActors.setVisible(true);
-		else
+		} else {
 			btnLeftActors.setVisible(false);
+		}
 	}
 
 	/**
@@ -380,10 +394,14 @@ public class MyListRecord {
 		if (actors.size() % 4 != 0) {
 			actorTotalPages++;
 		}
-		if (actorPage < actorTotalPages && actorTotalPages > 1)
+		if (actorTotalPages == 0) {
+			actorTotalPages++;
+		}
+		if (actorPage < actorTotalPages) {
 			btnRightActor.setVisible(true);
-		else
+		} else {
 			btnRightActor.setVisible(false);
+		}
 	}
 
 	/**
@@ -393,10 +411,8 @@ public class MyListRecord {
 	 */
 	@FXML
 	void pressedActorsLeft(MouseEvent event) {
-		if (actorPage > 1) {
-			actorPage--;
-			loadActors();
-		}
+		actorPage--;
+		loadActors();
 	}
 
 	/**
@@ -406,10 +422,8 @@ public class MyListRecord {
 	 */
 	@FXML
 	void pressedActorsRight(MouseEvent event) {
-		if (actorPage >= 1) {
-			actorPage++;
-			loadActors();
-		}
+		actorPage++;
+		loadActors();
 	}
 
 	/**
@@ -432,17 +446,24 @@ public class MyListRecord {
 	 */
 	@FXML
 	void deleteMovie(ActionEvent event) {
-		movieDao.delete(movie);
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information");
-		alert.setHeaderText(null);
-		alert.setContentText("Entry successfully deleted.");
-		alert.showAndWait();
 		try {
-			App.setRoot("myList");
-		} catch (IOException e) {
-			e.printStackTrace();
+			movieDao.delete(movie);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText(null);
+			alert.setContentText("Entry successfully deleted.");
+			alert.showAndWait();
+			try {
+				App.setRoot("myList");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Entry could not be deleted.");
+			alert.showAndWait();
 		}
 	}
-
 }

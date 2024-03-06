@@ -181,7 +181,7 @@ public class MyList {
 		// Reinitialize page labels and buttons
 		btnPrevPage.setVisible(true);
 		btnNextPage.setVisible(true);
-		lblPage.setText((currentPage + 1) + "");
+		lblCurrentPage.setText((currentPage + 1) + "");
 		lblTotalPages.setText(totalPages + "");
 
 		// Reload
@@ -373,7 +373,7 @@ public class MyList {
 		movieDate.setText("");
 
 		if (movie.getPoster_path() != null) {
-			poster.setImage(new Image(movie.getPoster_path()));
+			poster.setImage(new Image("file:" + movie.getPoster_path()));
 		}
 		movieTitle.setText(movie.getTitle());
 		movieDesc.setText(movie.getOverview());

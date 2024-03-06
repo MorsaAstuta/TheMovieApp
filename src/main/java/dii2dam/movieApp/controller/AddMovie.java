@@ -8,6 +8,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import dii2dam.movieApp.App;
 import dii2dam.movieApp.dao.ActorDaoImpl;
@@ -260,74 +261,130 @@ public class AddMovie {
 	 */
 	@FXML
 	void saveMovie(ActionEvent event) {
-		if (!txtTitle.getText().isEmpty()) {
-			Movie movie;
+		boolean error = false;
+		String errorMessage = "";
 
-			// Comprobamos si se ha añadido una imagen para crear una copia próxima cuya
-			// dirección almacene la base de datos
-			String newPath = null;
-			String actualPath = null;
-			if (posterPath != null) {
-				String[] extension = posterPath.split("\\.");
-				for (String string : extension) {
-					System.out.println(string);
-				}
-				if ((extension[extension.length - 1].equals("png") || extension[extension.length - 1].equals("jpg")
-						|| extension[extension.length - 1].equals("jpeg"))) {
-					String[] fileName = posterPath.split("/");
-					newPath = ("./src/main/resources/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
-					actualPath = ("/dii2dam/movieApp/posters/" + fileName[fileName.length - 1]);
+		String integerPattern = "[0-9]*";
+		String decimalPattern = "([0-9]*)\\.([0-9]*)";
+
+		if (!txtTitle.getText().isEmpty()) {
+
+			// Check if score is filled and is not higher than 10 nor lower than 0
+			if (txtRating.getText().isEmpty()) {
+				error = true;
+				errorMessage += "\nScore field cannot be empty.";
+			} else if (!Pattern.matches(decimalPattern, txtRating.getText())
+					&& !Pattern.matches(integerPattern, txtRating.getText())) {
+				error = true;
+				errorMessage += "\nScore field must be an integer or a decimal number.";
+			} else if (Double.parseDouble(txtRating.getText()) > 10 || Double.parseDouble(txtRating.getText()) < 0) {
+				error = true;
+				errorMessage += "\nScore value must be a number between between 0 and 10.";
+			}
+
+			// Check if release date is selected
+			if (dateSelector.getValue() == null) {
+				error = true;
+				errorMessage += "\nRelease date must be selected.";
+			}
+
+			// Check if runtime is filled
+			if (txtRuntime.getText().isEmpty()) {
+				error = true;
+				errorMessage += "\nRuntime field cannot be empty.";
+			} else if (!Pattern.matches(integerPattern, txtRuntime.getText())) {
+				error = true;
+				errorMessage += "\nRuntime field must be an integer.";
+			} else if (Integer.parseInt(txtRuntime.getText()) < 0) {
+				error = true;
+				errorMessage += "\nScore value must be a number equal to or higher than 0.";
+			}
+
+			// Only if there are no errors with the format of the fields:
+			if (!error) {
+				try {
+					// Instantiates the movie
+					Movie movie;
+
+					// Checks if image has been selected to copy it to the local folder
+					String newPath = null;
+					if (posterPath != null) {
+						String[] extension = posterPath.split("\\.");
+						if ((extension[extension.length - 1].equals("png") || extension[extension.length - 1].equals("jpg")
+								|| extension[extension.length - 1].equals("jpeg"))) {
+							String[] fileName = posterPath.split("/");
+							newPath = ("./posters/" + fileName[fileName.length - 1]);
+							try {
+								Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+
+					// Creation of the entry with the details specified in the left half of the
+					// screen
+					if (cmbLocation.getValue() != null) {
+						if (locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()) == null) {
+							locationDao.insert(new Location(cmbLocation.getValue()));
+						}
+						movie = new Movie(txtTitle.getText(),
+								sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+								txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+								locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
+								txtReview.getText(), Double.parseDouble(txtRating.getText()));
+					} else {
+						movie = new Movie(txtTitle.getText(),
+								sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
+								txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), newPath, Manager.getCurrentUser(),
+								txtReview.getText(), Double.parseDouble(txtRating.getText()));
+					}
+					movieDao.insert(movie);
+
+					// Adding actors, directors and genres to the manyToMany tables with the details
+					// specified in the right half of the screen
+					for (Actor actor : addedActors) {
+						castDao.insert(new Cast(movie.getId(), actor.getId()));
+					}
+					for (Director director : addedDirectors) {
+						directionDao.insert(new Direction(movie.getId(), director.getId()));
+					}
+					for (Genre genre : addedGenres) {
+						movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
+					}
+
+					// Loads movieRecord FXML to visualize the new entry
+					Manager.setMovie(movie);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Information");
+					alert.setHeaderText(null);
+					alert.setContentText("Movie successfully added.");
+					alert.showAndWait();
 					try {
-						Files.copy(Paths.get(posterPath.replace("file:///", "")), Paths.get(newPath));
+						App.setRoot("myListRecord");
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+				} catch (Exception e) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText(null);
+					alert.setContentText("Data could not be stored in the database correctly.");
+					alert.showAndWait();
 				}
-			}
-
-			// Creation of the entry with the details specified in the left half of the
-			// screen
-			if (cmbLocation.getValue() != null) {
-				if (locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()) == null) {
-					locationDao.insert(new Location(cmbLocation.getValue()));
-				}
-				movie = new Movie(txtTitle.getText(),
-						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), actualPath, Manager.getCurrentUser(),
-						locationDao.searchLocationByUserIdAndName(Manager.getCurrentUser(), cmbLocation.getValue()).getId(),
-						txtReview.getText(), Double.parseDouble(txtRating.getText()));
 			} else {
-				movie = new Movie(txtTitle.getText(),
-						sdf.format(Date.from(dateSelector.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())),
-						txtOverview.getText(), Integer.parseInt(txtRuntime.getText()), actualPath, Manager.getCurrentUser(),
-						txtReview.getText(), Double.parseDouble(txtRating.getText()));
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error");
+				alert.setHeaderText(null);
+				alert.setContentText("Some fields contain format errors:" + errorMessage);
+				alert.showAndWait();
 			}
-			movieDao.insert(movie);
-
-			// Adding actors, directors and genres to the manyToMany tables with the details
-			// specified in the right half of the screen
-			for (Actor actor : addedActors) {
-				castDao.insert(new Cast(movie.getId(), actor.getId()));
-			}
-			for (Director director : addedDirectors) {
-				directionDao.insert(new Direction(movie.getId(), director.getId()));
-			}
-			for (Genre genre : addedGenres) {
-				movieGenreDao.insert(new MovieGenre(movie.getId(), genre.getId()));
-			}
-
-			// Loads movieRecord FXML to visualize the new entry
-			Manager.setMovie(movie);
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Information");
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
 			alert.setHeaderText(null);
-			alert.setContentText("Movie successfully added.");
+			alert.setContentText("The Title field cannot be empty.");
 			alert.showAndWait();
-			try {
-				App.setRoot("myListRecord");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 

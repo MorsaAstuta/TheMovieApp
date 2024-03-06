@@ -271,7 +271,7 @@ public class MovieRecord {
 			textTime.setText(movieInfoResponse.getRuntime() + " min.");
 
 			textGenre.setText(movie.getGenre());
-			
+
 			if (movie.getOverview() != null) {
 				textSinopsis.setText(movie.getOverview());
 			}
@@ -301,6 +301,21 @@ public class MovieRecord {
 	 * Loads the current page of actors
 	 */
 	private void loadActors() {
+		// Clear
+		imgActor1.setImage(null);
+		labelNameAct1.setText("");
+		imgActor2.setImage(null);
+		labelNameAct2.setText("");
+		imgActor3.setImage(null);
+		labelNameAct3.setText("");
+		imgActor4.setImage(null);
+		labelNameAct4.setText("");
+
+		// Check button visibility
+		visibleBtnLeft();
+		visibleBtnRight();
+
+		// Fill with next batch of actors
 		for (Actor actor : actors) {
 			String url = actor.getProfilePath();
 			String urlPoster = "https://image.tmdb.org/t/p/w500" + url;
@@ -312,7 +327,6 @@ public class MovieRecord {
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 1) {
 				imgActor2.setImage(image);
 				labelNameAct2.setText(actor.getName());
-
 			}
 			if (actors.indexOf(actor) == (actorPage - 1) * 4 + 2) {
 				imgActor3.setImage(image);
@@ -324,8 +338,6 @@ public class MovieRecord {
 				labelNameAct4.setText(actor.getName());
 
 			}
-			visibleBtnLeft();
-			visibleBtnRight();
 		}
 	}
 
@@ -363,13 +375,32 @@ public class MovieRecord {
 	}
 
 	/**
+	 * Shows or hides the right button depending on current page
+	 */
+	private void visibleBtnRight() {
+		Integer actorTotalPages = actors.size() / 4;
+		if (actors.size() % 4 != 0) {
+			actorTotalPages++;
+		}
+		if (actorTotalPages == 0) {
+			actorTotalPages++;
+		}
+		if (actorPage < actorTotalPages) {
+			btnRightActor.setVisible(true);
+		} else {
+			btnRightActor.setVisible(false);
+		}
+	}
+
+	/**
 	 * Shows or hides the left button depending on current page
 	 */
 	private void visibleBtnLeft() {
-		if (actorPage > 1)
+		if (actorPage > 1) {
 			btnLeftActors.setVisible(true);
-		else
+		} else {
 			btnLeftActors.setVisible(false);
+		}
 	}
 
 	/**
@@ -386,27 +417,29 @@ public class MovieRecord {
 		}
 
 		// Insert movie on database
-		movieDao.insert(new Movie(movie.getTitle(), movie.getRelease_date(), movie.getOverview(), movie.getRuntime(), null,
-				Manager.getCurrentUser(), "", 0.0));
-		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information");
-		alert.setHeaderText(null);
-		alert.setContentText("Movie successfully added.");
-		alert.showAndWait();
-	}
-
-	/**
-	 * Shows or hides the right button depending on current page
-	 */
-	private void visibleBtnRight() {
-		Integer actorTotalPages = actors.size() / 4;
-		if (actors.size() % 4 != 0) {
-			actorTotalPages++;
+		try {
+			Movie newMovie = new Movie(movie.getTitle(), movie.getRelease_date(), movie.getOverview(), movie.getRuntime(),
+					null, Manager.getCurrentUser(), "", 0.0);
+			movieDao.insert(newMovie);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText(null);
+			alert.setContentText("Movie successfully added to My List.");
+			alert.showAndWait();
+			// Loads myListRecord FXML to visualize the new entry
+			Manager.setMovie(newMovie);
+			try {
+				App.setRoot("myListRecord");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Movie could not be added to My List.");
+			alert.showAndWait();
 		}
-		if (actorPage < actorTotalPages && actorTotalPages > 1)
-			btnRightActor.setVisible(true);
-		else
-			btnRightActor.setVisible(false);
 	}
 
 	/**
